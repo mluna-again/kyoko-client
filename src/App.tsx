@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
+import Room from "./components/Room";
 
 // const SERVER_URL: string = process.env.SERVER_URL
 //   ? `wss://${process.env.SERVER_URL}/socket`
@@ -20,7 +21,7 @@ function App() {
       <ToastContainer position="top-center" pauseOnHover theme="colored" />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/:room_id" element={<Home />} />
+        <Route path="/:roomId" element={<Room />} />
       </Routes>
     </>
   );
