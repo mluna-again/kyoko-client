@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styles from "./Home.module.css";
 
 const SERVER_URL: string = process.env.SERVER_URL ?? "http://localhost:4000";
@@ -11,14 +12,20 @@ const Home = () => {
   const startGameHandler = async (e: React.SyntheticEvent) => {
     e.preventDefault();
 
-    const response = await axios.post(`${SERVER_URL}/api/rooms`, {
-      room: {
-        name: "Friends",
-        first: { name: "Mari" },
-      },
-    });
+    try {
+      const response = await axios.post(`${SERVER_URL}/api/rooms`, {
+        room: {
+          name: "Friends",
+          first: { name: "Mari" },
+        },
+      });
 
-    navigate(`/${response.data.data.code}`);
+      toast("Game created!", { type: "success" });
+      navigate(`/${response.data.data.code}`);
+    } catch (error: any) {
+      console.error(error);
+      toast(`Server says: ${error.message}`, { type: "error" });
+    }
   };
 
   return (

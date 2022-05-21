@@ -1,4 +1,6 @@
 // import { Socket, Channel } from "phoenix";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 
@@ -14,10 +16,13 @@ import Home from "./components/Home";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/:room_id" element={<Home />} />
-    </Routes>
+    <>
+      <ToastContainer position="top-center" pauseOnHover theme="colored" />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:room_id" element={<Home />} />
+      </Routes>
+    </>
   );
 }
 
