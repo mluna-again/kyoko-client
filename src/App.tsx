@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// import { Socket, Channel } from "phoenix";
+import { useEffect, useState } from "react";
+
+// const SERVER_URL: string = process.env.SERVER_URL
+//   ? `wss://${process.env.SERVER_URL}/socket`
+//   : "ws://localhost:4000/socket";
+
+// const socket = new Socket(SERVER_URL);
+// socket.connect();
+// socket.onOpen(() => console.log("Socket connected"));
+// socket.onClose(() => console.log("Socket disconnected"));
+// socket.onError(console.error);
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
