@@ -13,9 +13,9 @@ const SERVER_SOCKET_URL: string =
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
-socket.onOpen(() => console.log("Socket connected"));
-socket.onClose(() => console.log("Socket disconnected"));
-socket.onError(console.error);
+// socket.onOpen(() => console.log("Socket connected"));
+// socket.onClose(() => console.log("Socket disconnected"));
+// socket.onError(console.error);
 
 type UserType = {
   name: string;
@@ -28,12 +28,19 @@ type RoomType = {
 
 const Room = () => {
   const { state } = useLocation();
-  const playerName = (state as any)?.player;
+  const [playerName, setPlayerName] = useState((state as any)?.player);
   const shouldPromptForName = !Boolean(playerName);
+  useEffect(() => {
+    if (!shouldPromptForName) return;
+
+    const name = prompt("What's your name? :)");
+    if (name) {
+      setPlayerName(name);
+    }
+  }, [shouldPromptForName]);
 
   const [room, setRoom] = useState<RoomType>();
-  const { channel, users } = useRoomChannel(socket, room, playerName);
-	console.log(users)
+  const { users } = useRoomChannel(socket, room, playerName);
 
   const params = useParams();
   useEffect(() => {
@@ -70,6 +77,11 @@ const Room = () => {
 
       <div>
         <h3>Players</h3>
+        <ul>
+          {users.map((user) => (
+            <li key={user.name}>{user.name}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );

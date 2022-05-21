@@ -31,16 +31,12 @@ const useRoomChannel = (
   const [users, setUsers] = useState<UserType[]>([]);
   useEffect(() => {
     if (!channel) return;
+    if (!player) return;
 
     const presence = new Presence(channel);
     presence.onSync(() => {
-      setUsers(
-        presence.list((users: any) => {
-          if (typeof users === "string") return [users];
-          if (!users) return [];
-          return users.map((user: any) => user.metas);
-        })
-      );
+      const users = presence.list().map((user) => user.metas.at(-1));
+      setUsers(users);
     });
   }, [channel, player]);
 
