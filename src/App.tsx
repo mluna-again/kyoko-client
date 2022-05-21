@@ -16,6 +16,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/:room_id" element={<Home />} />
     </Routes>
   );
 }
