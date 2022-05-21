@@ -11,6 +11,7 @@
     "@types/phoenix": "^1.5.4",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "framer-motion": "^6.3.3",
     "phoenix": "^1.6.9",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",

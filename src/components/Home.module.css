@@ -1,0 +1,43 @@
+.container {
+  /*
+		10rem ->
+			- 2rem * 2 del padding
+			- 3rem * 3 del margin (framer)
+	*/
+  width: calc(100% - 10rem);
+  height: 80vh;
+  border-radius: 5px;
+  padding: 0.5rem 2rem;
+  color: var(--white);
+  background-color: var(--primary);
+	text-align: center;
+}
+
+.inputGroup {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-bottom: 4rem;
+}
+
+.inputGroup label {
+	font-size: 26px;
+}
+
+.inputGroup input {
+	min-width: 250px;
+	margin-top: 10px;
+	border-radius: 5px;
+	border: none;
+	padding: 0.4rem;
+}
+
+.playContainer button {
+	background-color: var(--white);
+	color: var(--primary);
+	font-size: 25px;
+	border-radius: 5px;
+	border: none;
+	padding: 1rem 2rem;
+	cursor: pointer;
+}
