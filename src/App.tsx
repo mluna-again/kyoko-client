@@ -1,5 +1,6 @@
 // import { Socket, Channel } from "phoenix";
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
 
 // const SERVER_URL: string = process.env.SERVER_URL
 //   ? `wss://${process.env.SERVER_URL}/socket`
@@ -12,7 +13,11 @@ import { useEffect, useState } from "react";
 // socket.onError(console.error);
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  );
 }
 
 export default App;
