@@ -90,7 +90,7 @@ const Home = () => {
               minLength: 4,
             })}
           />
-          {errors.playerName && <span>{errors.roomName?.message}</span>}
+          {errors.playerName && <span>{errors.playerName?.message}</span>}
         </div>
 
         <div className={styles.playContainer}>
