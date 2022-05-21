@@ -7,7 +7,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./Home.module.css";
 
-const SERVER_URL: string = process.env.SERVER_URL ?? "http://localhost:4000";
+const SERVER_URL: string = process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
 
 type Inputs = {
   roomName: string;

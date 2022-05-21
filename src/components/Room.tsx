@@ -7,9 +7,9 @@ import { toast } from "react-toastify";
 import useRoomChannel from "../hooks/useRoomChannel";
 import styles from "./Room.module.css";
 
-const SERVER_URL: string = process.env.SERVER_URL ?? "http://localhost:4000";
+const SERVER_URL: string = process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
 const SERVER_SOCKET_URL: string =
-  process.env.SERVER_SOCKET_URL ?? "ws://localhost:4000/socket";
+  process.env.REACT_APP_SERVER_SOCKET_URL ?? "ws://localhost:4000/socket";
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
