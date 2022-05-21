@@ -26,7 +26,7 @@ const useRoomChannel = (
       .receive("error", console.error);
 
     setChannel(chan);
-  }, [room]);
+  }, [room, player, socket]);
 
   const [users, setUsers] = useState<UserType[]>([]);
   useEffect(() => {
