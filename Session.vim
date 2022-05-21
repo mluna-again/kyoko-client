@@ -9,11 +9,12 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
 endif
 let s:shortmess_save = &shortmess
 set shortmess=aoO
-badd +93 src/components/Home.tsx
-badd +20 src/components/Home.module.css
+badd +1 .gitignore
+badd +56 src/components/Room.tsx
+badd +14 src/components/Room.module.css
 argglobal
 %argdel
-edit src/components/Home.tsx
+edit .gitignore
 wincmd t
 let s:save_winminheight = &winminheight
 let s:save_winminwidth = &winminwidth
@@ -23,6 +24,7 @@ set winminwidth=0
 set winwidth=1
 wincmd =
 argglobal
+balt src/components/Room.tsx
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -31,19 +33,19 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=3
 setlocal nofen
-let s:l = 93 - ((31 * winheight(0) + 21) / 43)
+let s:l = 1 - ((0 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 93
-normal! 056|
+keepjumps 1
+normal! 0
 wincmd w
 argglobal
 if bufexists(fnamemodify("term://~/Repos/kyoko/kyoko-client//146191:/usr/bin/zsh", ":p")) | buffer term://~/Repos/kyoko/kyoko-client//146191:/usr/bin/zsh | else | edit term://~/Repos/kyoko/kyoko-client//146191:/usr/bin/zsh | endif
 if &buftype ==# 'terminal'
   silent file term://~/Repos/kyoko/kyoko-client//146191:/usr/bin/zsh
 endif
-balt src/components/Home.tsx
+balt .gitignore
 setlocal fdm=expr
 setlocal fde=nvim_treesitter#foldexpr()
 setlocal fmr={{{,}}}
@@ -52,11 +54,11 @@ setlocal fdl=2
 setlocal fml=1
 setlocal fdn=3
 setlocal nofen
-let s:l = 2 - ((1 * winheight(0) + 16) / 33)
+let s:l = 20 - ((19 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
+keepjumps 20
 normal! 02|
 wincmd w
 wincmd =

@@ -1,8 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Socket, Channel } from "phoenix";
+import { Socket } from "phoenix";
 import axios from "axios";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "react-toastify";
 import useRoomChannel from "../hooks/useRoomChannel";
+import styles from "./Room.module.css";
 
 const SERVER_URL: string = process.env.SERVER_URL ?? "http://localhost:4000";
 const SERVER_SOCKET_URL: string =
@@ -26,7 +29,6 @@ type RoomType = {
 const Room = () => {
   const [room, setRoom] = useState<RoomType>();
   const { channel, users } = useRoomChannel(socket, room);
-  console.log(users);
 
   const params = useParams();
   useEffect(() => {
@@ -41,9 +43,27 @@ const Room = () => {
     fetchData();
   }, [params.roomId]);
 
+  const copyLinkHandler = () => {
+    toast("Link copied!", { type: "success" });
+  };
+
   if (!room) return <h1>Loading...</h1>;
 
-  return <h1>{`Welcome to room \`${room.name}\``}</h1>;
+  return (
+    <div className={styles.container}>
+      <h1>{`Room \`${room.name}\``}</h1>
+      <CopyToClipboard
+        text={`${window.origin}/${room.code}`}
+        onCopy={copyLinkHandler}
+      >
+        <button className={styles.inviteContainer}>
+          <h3>
+            Invite your friends with <span>this</span> link
+          </h3>
+        </button>
+      </CopyToClipboard>
+    </div>
+  );
 };
 
 export default Room;
