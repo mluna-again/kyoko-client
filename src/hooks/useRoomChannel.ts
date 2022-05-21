@@ -9,12 +9,17 @@ type UserType = {
   name: string;
 };
 
-const useRoomChannel = (socket: Socket, room: RoomType | undefined) => {
+const useRoomChannel = (
+  socket: Socket,
+  room: RoomType | undefined,
+  player: string | null
+) => {
   const [channel, setChannel] = useState<Channel>();
   useEffect(() => {
     if (!room) return;
+    if (!player) return;
 
-    const chan = socket.channel(`room:${room.code}`);
+    const chan = socket.channel(`room:${room.code}`, { player });
     chan
       .join()
       .receive("ok", () => console.log("Room entered"))
@@ -37,7 +42,7 @@ const useRoomChannel = (socket: Socket, room: RoomType | undefined) => {
         })
       );
     });
-  }, [channel]);
+  }, [channel, player]);
 
   return { channel, users };
 };

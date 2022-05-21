@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Socket } from "phoenix";
 import axios from "axios";
@@ -27,8 +27,13 @@ type RoomType = {
 };
 
 const Room = () => {
+  const { state } = useLocation();
+  const playerName = (state as any)?.player;
+  const shouldPromptForName = !Boolean(playerName);
+
   const [room, setRoom] = useState<RoomType>();
-  const { channel, users } = useRoomChannel(socket, room);
+  const { channel, users } = useRoomChannel(socket, room, playerName);
+	console.log(users)
 
   const params = useParams();
   useEffect(() => {
@@ -62,6 +67,10 @@ const Room = () => {
           </h3>
         </button>
       </CopyToClipboard>
+
+      <div>
+        <h3>Players</h3>
+      </div>
     </div>
   );
 };

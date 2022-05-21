@@ -39,7 +39,6 @@ const Home = () => {
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
 
   const navigate = useNavigate();
-  console.log(isSubmitting);
 
   const startGameHandler: SubmitHandler<Inputs> = async (data) => {
     try {
@@ -51,7 +50,9 @@ const Home = () => {
       });
 
       toast("Game created!", { type: "success" });
-      navigate(`/${response.data.data.code}`);
+      navigate(`/${response.data.data.code}`, {
+        state: { player: data.playerName },
+      });
     } catch (error: any) {
       console.error(error);
       toast(`Server says: ${error.message}`, { type: "error" });
