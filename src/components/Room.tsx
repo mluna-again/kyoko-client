@@ -38,7 +38,7 @@ const Room = () => {
         setRoom(response.data.data);
         let pName = playerName;
         while (!Boolean(pName)) {
-          pName = prompt("What's your name? :)");
+          pName = prompt("What's your name? :) (name should be at least 4 characters long or you'll break the game)");
         }
         setPlayerName(pName);
       } catch (error) {
