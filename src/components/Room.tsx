@@ -48,7 +48,7 @@ const Room = () => {
     };
 
     fetchData();
-  }, [params.roomId]);
+  }, [params.roomId, playerName]);
 
   const copyLinkHandler = () => {
     toast("Link copied!", { type: "success" });

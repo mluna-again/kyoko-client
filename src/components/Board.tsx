@@ -25,7 +25,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     if (!users.every((user) => Boolean(user.selection))) {
       setShowCards(false);
     }
-  }, [users]);
+  }, [users, channel]);
 
   const selectionHandler = (num?: number) => {
     channel.push("user_selection", { selection: num, player: playerName });
