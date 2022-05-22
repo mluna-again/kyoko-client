@@ -9,3 +9,7 @@
 	margin: 0 1rem;
 	cursor: pointer;
 }
+
+.container.selected {
+	outline: 10px crimson solid;
+}

@@ -41,6 +41,9 @@ const Board = ({ users, channel, playerName }: Props) => {
     .filter((sel) => !Number.isNaN(sel))
     .reduce((acc, val) => acc! + val!, 0);
 
+  const userPlaying = users.find((user) => user.name === playerName);
+  const selectedOption = userPlaying?.selection;
+
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -56,9 +59,14 @@ const Board = ({ users, channel, playerName }: Props) => {
 
       <div style={{ display: "flex" }}>
         {OPTIONS.map((opt) => (
-          <Option key={opt} value={opt} onChange={selectionHandler} />
+          <Option
+            selected={opt === selectedOption}
+            key={opt}
+            value={opt}
+            onChange={selectionHandler}
+          />
         ))}
-        <Option label="x" value={undefined} onChange={selectionHandler} />
+        <Option label="None" value={undefined} onChange={selectionHandler} />
       </div>
 
       <div className={styles.revealContainer}>
