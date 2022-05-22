@@ -33,20 +33,12 @@ const useRoomChannel = (
     if (!player) return;
 
     const presence = new Presence(channel);
-    presence.onSync(() => {
+    const syncUsers = () => {
       const users = presence.list().map((user) => user.metas.at(-1));
       setUsers(users);
-    });
-    channel.on("user_selection", (data) => {
-      const updatedUsers = users.map((user) => {
-        if (user.name === data.player)
-          return { ...user, selection: data.selection };
-        return user;
-      });
-
-      setUsers(updatedUsers);
-    });
-
+    };
+    presence.onSync(syncUsers);
+    channel.on("user_selection", syncUsers);
     return () => {
       channel.off("user_selection");
     };
