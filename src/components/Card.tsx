@@ -4,9 +4,10 @@ import styles from "./Card.module.css";
 
 type Props = {
   user: UserType;
+  playerName: string;
 };
 
-const Card = ({ user }: Props) => {
+const Card = ({ user, playerName }: Props) => {
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
@@ -15,9 +16,12 @@ const Card = ({ user }: Props) => {
             [styles.selected]: Boolean(user.selection),
           })}
         >
-          {user.selection && "?"}
+          <span>{user.selection && "?"}</span>
         </div>
-        <h1>{user.name}</h1>
+        <h1>
+          {user.name}
+          {user.name === playerName ? " (Me)" : ""}
+        </h1>
       </div>
     </div>
   );

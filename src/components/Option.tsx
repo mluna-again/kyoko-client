@@ -3,12 +3,13 @@ import styles from "./Option.module.css";
 type Props = {
   value?: number;
   onChange: (value?: number) => void;
+  label?: string;
 };
 
-const Option = ({ value, onChange }: Props) => {
+const Option = ({ value, onChange, label }: Props) => {
   return (
     <button className={styles.container} onClick={() => onChange(value)}>
-      <span>{value}</span>
+      <span>{label || value}</span>
     </button>
   );
 };

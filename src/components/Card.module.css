@@ -1,14 +1,22 @@
 .container {
-	margin: 3rem;
+  margin: 3rem;
 }
 
 .card {
   height: 100px;
   width: 60px;
   border-radius: 5px;
-	border: 1px dashed black;
+  border: 1px dashed black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card span {
+  font-size: 25px;
 }
 
 .card.selected {
   background-color: crimson;
+  border: none;
 }
