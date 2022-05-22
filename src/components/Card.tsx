@@ -16,10 +16,10 @@ const Card = ({ user, playerName, show }: Props) => {
         <motion.div
           animate={{
             rotateY: show ? [0, 180] : 0,
-            backgroundColor: user.selection ? "crimson" : "transparent",
+            backgroundColor: Number.isInteger(user.selection) ? "crimson" : "transparent",
           }}
           className={cx(styles.card, {
-            [styles.selected]: Boolean(user.selection),
+            [styles.selected]: Number.isInteger(user.selection),
           })}
         >
           <motion.span
@@ -27,7 +27,8 @@ const Card = ({ user, playerName, show }: Props) => {
             transition={{ delay: 0.5 }}
           >
             {(() => {
-              if (user.selection && show) return user.selection;
+              if (Number.isInteger(user.selection) && show)
+                return user.selection;
               if (user.selection) return "?";
             })()}
           </motion.span>

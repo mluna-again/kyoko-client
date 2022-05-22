@@ -81,7 +81,7 @@ const Board = ({ users, channel, playerName }: Props) => {
 
       <div className={styles.revealContainer}>
         <button
-          disabled={!users.every((user) => Boolean(user.selection))}
+          disabled={!users.every((user) => Number.isInteger(user.selection))}
           onClick={revealHandler}
           className={styles.revealBtn}
         >
