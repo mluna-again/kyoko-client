@@ -21,6 +21,11 @@ const Board = ({ users, channel, playerName }: Props) => {
       channel.off("reveal_cards");
     };
   }, []);
+  useEffect(() => {
+    if (!users.every((user) => Boolean(user.selection))) {
+      setShowCards(false);
+    }
+  }, [users]);
 
   const selectionHandler = (num?: number) => {
     channel.push("user_selection", { selection: num, player: playerName });
@@ -29,6 +34,11 @@ const Board = ({ users, channel, playerName }: Props) => {
   const revealHandler = () => {
     channel.push("reveal_cards", {});
   };
+
+  const selectionSum = users
+    .map((user) => user.selection)
+    .filter((sel) => !Number.isNaN(sel))
+    .reduce((acc, val) => acc! + val!, 0);
 
   return (
     <div>
@@ -55,6 +65,14 @@ const Board = ({ users, channel, playerName }: Props) => {
           Reveal cards
         </button>
       </div>
+
+      {showCards && (
+        <div>
+          <h1>
+            Average: {Math.round((selectionSum as number) / users.length)}
+          </h1>
+        </div>
+      )}
     </div>
   );
 };
