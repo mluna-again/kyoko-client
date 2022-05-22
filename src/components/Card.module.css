@@ -1,0 +1,14 @@
+.container {
+	margin: 3rem;
+}
+
+.card {
+  height: 100px;
+  width: 60px;
+  border-radius: 5px;
+	border: 1px dashed black;
+}
+
+.card .selected {
+  background-color: crimson;
+}

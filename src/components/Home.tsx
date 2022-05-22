@@ -5,9 +5,8 @@ import { toast } from "react-toastify";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { SERVER_URL } from "../constants/values";
 import styles from "./Home.module.css";
-
-const SERVER_URL: string = process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
 
 type Inputs = {
   roomName: string;

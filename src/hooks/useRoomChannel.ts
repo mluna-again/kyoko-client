@@ -1,13 +1,6 @@
 import { Socket, Channel, Presence } from "phoenix";
 import { useState, useEffect } from "react";
-
-type RoomType = {
-  code: string;
-  name: string;
-};
-type UserType = {
-  name: string;
-};
+import { RoomType, UserType } from '../constants/types'
 
 const useRoomChannel = (
   socket: Socket,

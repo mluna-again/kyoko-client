@@ -5,12 +5,10 @@ import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
 import useRoomChannel from "../hooks/useRoomChannel";
+import Board from "./Board";
+import { RoomType } from "../constants/types";
+import { SERVER_URL, SERVER_SOCKET_URL } from "../constants/values";
 import styles from "./Room.module.css";
-
-const SERVER_URL: string =
-  process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
-const SERVER_SOCKET_URL: string =
-  process.env.REACT_APP_SERVER_SOCKET_URL ?? "ws://localhost:4000/socket";
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
@@ -18,22 +16,16 @@ socket.connect();
 // socket.onClose(() => console.log("Socket disconnected"));
 // socket.onError(console.error);
 
-type UserType = {
-  name: string;
-};
-type RoomType = {
-  code: string;
-  name: string;
-  users: UserType[];
-};
-
 const Room = () => {
   const { state } = useLocation();
   const [playerName, setPlayerName] = useState((state as any)?.player);
-  const shouldPromptForName = !Boolean(playerName);
 
   const [room, setRoom] = useState<RoomType>();
-  const { users, error: channelError } = useRoomChannel(socket, room, playerName);
+  const { users, error: channelError } = useRoomChannel(
+    socket,
+    room,
+    playerName
+  );
 
   const params = useParams();
   useEffect(() => {
@@ -63,7 +55,7 @@ const Room = () => {
   };
 
   if (!room) return <h1>Loading...</h1>;
-	if (channelError) return <h1>Invalid room...</h1>
+  if (channelError) return <h1>Invalid room...</h1>;
 
   return (
     <div className={styles.container}>
@@ -80,12 +72,7 @@ const Room = () => {
       </CopyToClipboard>
 
       <div>
-        <h3>Players</h3>
-        <ul>
-          {users.map((user) => (
-            <li key={user.name}>{user.name}</li>
-          ))}
-        </ul>
+        <Board users={users} />
       </div>
     </div>
   );
