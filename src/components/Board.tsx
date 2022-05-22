@@ -61,7 +61,11 @@ const Board = ({ users, channel, playerName }: Props) => {
       </div>
 
       <div className={styles.revealContainer}>
-        <button onClick={revealHandler} className={styles.revealBtn}>
+        <button
+          disabled={!users.every((user) => Boolean(user.selection))}
+          onClick={revealHandler}
+          className={styles.revealBtn}
+        >
           Reveal cards
         </button>
       </div>
