@@ -20,7 +20,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     return () => {
       channel.off("reveal_cards");
     };
-  }, []);
+  }, [channel]);
   useEffect(() => {
     if (!users.every((user) => Boolean(user.selection))) {
       setShowCards(false);
