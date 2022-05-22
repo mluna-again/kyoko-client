@@ -1,0 +1,15 @@
+.revealContainer {
+  display: flex;
+  justify-content: center;
+  margin: 3rem;
+}
+
+.revealBtn {
+  border-radius: 5px;
+  border: none;
+  background-color: var(--primary);
+  color: var(--white);
+	font-size: 30px;
+	padding: 1rem 2rem;
+	cursor: pointer;
+}
