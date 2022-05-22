@@ -36,6 +36,10 @@ const Board = ({ users, channel, playerName }: Props) => {
     channel.push("reveal_cards", {});
   };
 
+  const resetHandler = () => {
+    channel.push("reset_room", {});
+  };
+
   const selectionSum = users
     .map((user) => user.selection)
     .filter((sel) => !Number.isNaN(sel))
@@ -67,6 +71,12 @@ const Board = ({ users, channel, playerName }: Props) => {
           />
         ))}
         <Option label="None" value={undefined} onChange={selectionHandler} />
+      </div>
+
+      <div className={styles.resetContainer}>
+        <button className={styles.resetBtn} onClick={resetHandler}>
+          Reset game
+        </button>
       </div>
 
       <div className={styles.revealContainer}>

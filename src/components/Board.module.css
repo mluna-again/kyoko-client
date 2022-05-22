@@ -1,7 +1,7 @@
 .revealContainer {
   display: flex;
   justify-content: center;
-  margin: 3rem;
+  margin: 1rem;
 }
 
 .revealBtn {
@@ -9,7 +9,23 @@
   border: none;
   background-color: var(--primary);
   color: var(--white);
-	font-size: 30px;
-	padding: 1rem 2rem;
-	cursor: pointer;
+  font-size: 30px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+
+.resetContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.resetBtn {
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  padding: 1rem 2rem;
+  font-size: 18px;
+  margin-top: 2rem;
+  cursor: pointer;
+  text-decoration: underline;
 }
