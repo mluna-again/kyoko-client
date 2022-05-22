@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
 import Card from "./Card";
@@ -70,13 +71,12 @@ const Board = ({ users, channel, playerName }: Props) => {
         </button>
       </div>
 
-      {showCards && (
-        <div>
-          <h1>
-            Average: {Math.round((selectionSum as number) / users.length)}
-          </h1>
-        </div>
-      )}
+      <motion.div
+        animate={{ opacity: showCards ? 1 : 0 }}
+        transition={{ delay: 0.5 }}
+      >
+        <h1>Average: {Math.round((selectionSum as number) / users.length)}</h1>
+      </motion.div>
     </div>
   );
 };
