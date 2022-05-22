@@ -1,0 +1,11 @@
+.container {
+  border: none;
+  border-radius: 5px;
+  height: 100px;
+  width: 60px;
+  background-color: var(--primary);
+	color: var(--white);
+	font-size: 20px;
+	margin: 0 1rem;
+	cursor: pointer;
+}

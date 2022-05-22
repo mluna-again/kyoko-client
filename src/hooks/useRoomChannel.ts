@@ -1,6 +1,6 @@
 import { Socket, Channel, Presence } from "phoenix";
 import { useState, useEffect } from "react";
-import { RoomType, UserType } from '../constants/types'
+import { RoomType, UserType } from "../constants/types";
 
 const useRoomChannel = (
   socket: Socket,
@@ -37,7 +37,20 @@ const useRoomChannel = (
       const users = presence.list().map((user) => user.metas.at(-1));
       setUsers(users);
     });
-  }, [channel, player]);
+    channel.on("user_selection", (data) => {
+      const updatedUsers = users.map((user) => {
+        if (user.name === data.player)
+          return { ...user, selection: data.selection };
+        return user;
+      });
+
+      setUsers(updatedUsers);
+    });
+
+    return () => {
+      channel.off("user_selection");
+    };
+  }, [channel, player, users]);
 
   return { channel, users, error };
 };

@@ -21,11 +21,11 @@ const Room = () => {
   const [playerName, setPlayerName] = useState((state as any)?.player);
 
   const [room, setRoom] = useState<RoomType>();
-  const { users, error: channelError } = useRoomChannel(
-    socket,
-    room,
-    playerName
-  );
+  const {
+    channel,
+    users,
+    error: channelError,
+  } = useRoomChannel(socket, room, playerName);
 
   const params = useParams();
   useEffect(() => {
@@ -54,7 +54,7 @@ const Room = () => {
     toast("Link copied!", { type: "success" });
   };
 
-  if (!room) return <h1>Loading...</h1>;
+  if (!room || !channel) return <h1>Loading...</h1>;
   if (channelError) return <h1>Invalid room...</h1>;
 
   return (
@@ -72,7 +72,7 @@ const Room = () => {
       </CopyToClipboard>
 
       <div>
-        <Board users={users} />
+        <Board playerName={playerName} channel={channel} users={users} />
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ const Card = ({ user }: Props) => {
             [styles.selected]: Boolean(user.selection),
           })}
         >
-          {user.selection}
+          {user.selection && "?"}
         </div>
         <h1>{user.name}</h1>
       </div>
