@@ -1,0 +1,10 @@
+.nav {
+	background-color: var(--primary);
+	padding: 1rem;
+}
+
+.homeLink {
+	font-size: 25px;
+	color: var(--white);
+	text-decoration: none;
+}
