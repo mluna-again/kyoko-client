@@ -14,6 +14,8 @@ const useRoomChannel = (
   room: RoomType | undefined,
   player: string | null
 ) => {
+  const [error, setError] = useState<String>();
+
   const [channel, setChannel] = useState<Channel>();
   useEffect(() => {
     if (!room) return;
@@ -22,10 +24,14 @@ const useRoomChannel = (
     const chan = socket.channel(`room:${room.code}`, { player });
     chan
       .join()
-      .receive("ok", () => console.log("Room entered"))
-      .receive("error", console.error);
+      .receive("ok", () => () => setError(undefined))
+      .receive("error", ({ reason }) => setError(reason));
 
     setChannel(chan);
+
+    return () => {
+      chan.leave();
+    };
   }, [room, player, socket]);
 
   const [users, setUsers] = useState<UserType[]>([]);
@@ -40,6 +46,6 @@ const useRoomChannel = (
     });
   }, [channel, player]);
 
-  return { channel, users };
+  return { channel, users, error };
 };
 export default useRoomChannel;

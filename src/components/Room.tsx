@@ -7,7 +7,8 @@ import { toast } from "react-toastify";
 import useRoomChannel from "../hooks/useRoomChannel";
 import styles from "./Room.module.css";
 
-const SERVER_URL: string = process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
+const SERVER_URL: string =
+  process.env.REACT_APP_SERVER_URL ?? "http://localhost:4000";
 const SERVER_SOCKET_URL: string =
   process.env.REACT_APP_SERVER_SOCKET_URL ?? "ws://localhost:4000/socket";
 
@@ -30,26 +31,28 @@ const Room = () => {
   const { state } = useLocation();
   const [playerName, setPlayerName] = useState((state as any)?.player);
   const shouldPromptForName = !Boolean(playerName);
-  useEffect(() => {
-    if (!shouldPromptForName) return;
-
-    const name = prompt("What's your name? :)");
-    if (name) {
-      setPlayerName(name);
-    }
-  }, [shouldPromptForName]);
 
   const [room, setRoom] = useState<RoomType>();
-  const { users } = useRoomChannel(socket, room, playerName);
+  const { users, error: channelError } = useRoomChannel(socket, room, playerName);
 
   const params = useParams();
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `${SERVER_URL}/api/rooms/${params.roomId}`
-      );
+      try {
+        const response = await axios.get(
+          `${SERVER_URL}/api/rooms/${params.roomId}`
+        );
 
-      setRoom(response.data.data);
+        setRoom(response.data.data);
+        let pName = playerName;
+        while (!Boolean(pName)) {
+          pName = prompt("What's your name? :)");
+        }
+        setPlayerName(pName);
+      } catch (error) {
+        console.error(error);
+        alert("Invalid room!");
+      }
     };
 
     fetchData();
@@ -60,6 +63,7 @@ const Room = () => {
   };
 
   if (!room) return <h1>Loading...</h1>;
+	if (channelError) return <h1>Invalid room...</h1>
 
   return (
     <div className={styles.container}>
