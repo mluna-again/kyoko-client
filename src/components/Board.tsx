@@ -12,7 +12,12 @@ type Props = {
   playerName: string;
 };
 
-const OPTIONS = [0, 1, 2, 3, 5, 8, 13, 21, 34];
+const FIBONACCI = [0, 1, 2, 3, 5, 8, 13, 21, 34];
+const LINEAR = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const OPTIONS: any = {
+  fibonacci: FIBONACCI,
+  linear: LINEAR,
+};
 
 const Board = ({ users, channel, playerName }: Props) => {
   const [showCards, setShowCards] = useState(false);
@@ -45,6 +50,14 @@ const Board = ({ users, channel, playerName }: Props) => {
     .filter((sel) => !Number.isNaN(sel))
     .reduce((acc, val) => acc! + val!, 0);
 
+  const [optionsType, setOptionsType] = useState<string>("fibonacci");
+  const changeOptionsHandler = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setOptionsType(event.target.value);
+    selectionHandler(undefined);
+  };
+
   const userPlaying = users.find((user) => user.name === playerName);
   const selectedOption = userPlaying?.selection;
 
@@ -61,8 +74,15 @@ const Board = ({ users, channel, playerName }: Props) => {
         ))}
       </div>
 
+      <div>
+        <select defaultValue={optionsType} onChange={changeOptionsHandler}>
+          <option value="fibonacci">Fibonacci</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+
       <div className={styles.optionsContainer}>
-        {OPTIONS.map((opt) => (
+        {OPTIONS[optionsType].map((opt: any) => (
           <Option
             selected={opt === selectedOption}
             key={opt}
