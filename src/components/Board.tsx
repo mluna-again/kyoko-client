@@ -4,6 +4,7 @@ import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
 import Card from "./Card";
 import Option from "./Option";
+import Clock from "./Clock";
 import styles from "./Board.module.css";
 
 type Props = {
@@ -21,8 +22,15 @@ const OPTIONS: any = {
 
 const Board = ({ users, channel, playerName }: Props) => {
   const [showCards, setShowCards] = useState(false);
+  const [showingCards, setShowingCards] = useState(false);
   useEffect(() => {
-    channel.on("reveal_cards", () => setShowCards(true));
+    channel.on("reveal_cards", () => {
+      setShowingCards(true);
+      setTimeout(() => {
+        setShowingCards(false);
+        setShowCards(true);
+      }, 1700);
+    });
     return () => {
       channel.off("reveal_cards");
     };
@@ -63,6 +71,7 @@ const Board = ({ users, channel, playerName }: Props) => {
 
   return (
     <div>
+      <Clock show={showingCards} />
       <div className={styles.cardsContainer}>
         {users.map((user) => (
           <Card
@@ -101,7 +110,10 @@ const Board = ({ users, channel, playerName }: Props) => {
 
       <div className={styles.revealContainer}>
         <button
-          disabled={!users.every((user) => Number.isInteger(user.selection))}
+          disabled={
+            !users.every((user) => Number.isInteger(user.selection)) ||
+            showCards
+          }
           onClick={revealHandler}
           className={styles.revealBtn}
         >
