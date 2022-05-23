@@ -40,3 +40,10 @@
 .optionsContainer > * {
   margin: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  .optionsSelectorContainer {
+    display: flex;
+    justify-content: center;
+  }
+}

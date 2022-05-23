@@ -74,7 +74,7 @@ const Board = ({ users, channel, playerName }: Props) => {
         ))}
       </div>
 
-      <div>
+      <div className={styles.optionsSelectorContainer}>
         <select defaultValue={optionsType} onChange={changeOptionsHandler}>
           <option value="fibonacci">Fibonacci</option>
           <option value="linear">Linear</option>
