@@ -50,7 +50,7 @@ const Board = ({ users, channel, playerName }: Props) => {
 
   return (
     <div>
-      <div style={{ display: "flex" }}>
+      <div className={styles.cardsContainer}>
         {users.map((user) => (
           <Card
             key={user.name}
@@ -61,7 +61,7 @@ const Board = ({ users, channel, playerName }: Props) => {
         ))}
       </div>
 
-      <div style={{ display: "flex" }}>
+      <div className={styles.optionsContainer}>
         {OPTIONS.map((opt) => (
           <Option
             selected={opt === selectedOption}

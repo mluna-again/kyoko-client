@@ -33,7 +33,7 @@ const Card = ({ user, playerName, show }: Props) => {
             })()}
           </motion.span>
         </motion.div>
-        <h1>
+        <h1 className={styles.title}>
           {user.name}
           {user.name === playerName ? " (Me)" : ""}
         </h1>

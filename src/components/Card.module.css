@@ -12,8 +12,17 @@
   align-items: center;
 }
 
-.card span {
+.title {
   font-size: 25px;
+}
+@media screen and (max-width: 600px) {
+  .title {
+    font-size: 15px;
+    width: 70px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 
 .card.selected {
