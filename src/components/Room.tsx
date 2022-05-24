@@ -1,5 +1,6 @@
 import { useParams, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 import { Socket } from "phoenix";
 import axios from "axios";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -38,7 +39,22 @@ const Room = () => {
         setRoom(response.data.data);
         let pName = playerName;
         while (!Boolean(pName)) {
-          pName = prompt("What's your name? :) (name should be at least 4 characters long or you'll break the game)");
+          const { value } = await (Swal.fire as any)({
+            title: "Enter your name",
+            input: "text",
+            inputLabel:
+              "Only characters and spaces (and at least 4 characters)!",
+            inputValue: "",
+            inputValidator: (value: string) => {
+              if (!value) {
+                return "Invalid username!";
+              }
+              if (value.length < 4) {
+                return "Invalid username!";
+              }
+            },
+          });
+          pName = value;
         }
         setPlayerName(pName);
       } catch (error) {
