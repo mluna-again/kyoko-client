@@ -43,13 +43,10 @@ const Room = () => {
             title: "Enter your name",
             input: "text",
             inputLabel:
-              "Only characters and spaces (and at least 4 characters)!",
+              "Your name",
             inputValue: "",
             inputValidator: (value: string) => {
               if (!value) {
-                return "Invalid username!";
-              }
-              if (value.length < 4) {
                 return "Invalid username!";
               }
             },

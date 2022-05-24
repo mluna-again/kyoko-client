@@ -18,15 +18,11 @@ const schema = yup
     roomName: yup
       .string()
       .required("Required")
-      .matches(/^[A-Z ]+$/i, "Should only contain letters and spaces")
-      .max(30, "Should be at most 30 characters long")
-      .min(4, "Should be at least 4 characters long"),
+      .max(30, "Should be at most 30 characters long"),
     playerName: yup
       .string()
       .required("Required")
-      .matches(/^[A-Z ]+$/i, "Should only contain letters and spaces")
       .max(30, "Should be at most 30 characters long")
-      .min(4, "Should be at least 4 characters long"),
   })
   .required();
 
