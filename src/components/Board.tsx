@@ -43,14 +43,10 @@ const Board = ({ users, channel, playerName }: Props) => {
       channel.off("reset_room");
     };
   }, [channel]);
-  useEffect(() => {
-    if (!users.every((user) => Boolean(user.selection))) {
-      setShowCards(false);
-    }
-  }, [users, channel]);
   // restart game when someone enters
   useEffect(() => {
     setGameOver(false);
+		setShowCards(false)
   }, [users]);
 
   const userPlaying = users.find((user) => user.name === playerName);
