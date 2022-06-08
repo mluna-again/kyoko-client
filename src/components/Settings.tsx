@@ -1,3 +1,6 @@
+import { useState } from "react";
+import cx from "classnames";
+import { motion } from "framer-motion";
 import Switch from "react-switch";
 import styles from "./Settings.module.css";
 
@@ -14,35 +17,66 @@ const Settings = ({
   setShowAnimation,
   setShowClock,
 }: Props) => {
-  return (
-    <div className={styles.container}>
-      <h1>Settings</h1>
-      <div>
-        <label>
-          <p>Show clock</p>
-          <Switch
-            checked={showClock}
-            onChange={setShowClock}
-            onColor="#3993ff"
-            checkedIcon={false}
-            uncheckedIcon={false}
-          />
-        </label>
-      </div>
+  const [showMenu, setShowMenu] = useState(true);
+  const toggleMenu = () => setShowMenu(!showMenu);
 
-      <div>
-        <label>
-          <p>Same answer animation</p>
-          <Switch
-            checked={showAnimation}
-            onChange={setShowAnimation}
-            onColor="#3993ff"
-            checkedIcon={false}
-            uncheckedIcon={false}
-          />
-        </label>
-      </div>
-    </div>
+  const menuStates = {
+    visible: {
+      height: "300px",
+      width: "300px",
+      borderRadius: "15px",
+      backgroundColor: "var(--secondary)",
+    },
+    hidden: {
+      height: "100px",
+      width: "100px",
+      borderRadius: "150px",
+      backgroundColor: "var(--primary)",
+    },
+  };
+
+  return (
+    <motion.div
+      className={cx(styles.container, { [styles.active]: showMenu })}
+      variants={menuStates}
+      initial="hidden"
+      animate={showMenu ? "visible" : "hidden"}
+    >
+      {showMenu ? (
+        <>
+          <h1 onClick={toggleMenu}>Settings</h1>
+          <div>
+            <label>
+              <p>Show clock</p>
+              <Switch
+                checked={showClock}
+                onChange={setShowClock}
+                onColor="#3993ff"
+                checkedIcon={false}
+                uncheckedIcon={false}
+              />
+            </label>
+          </div>
+
+          <div>
+            <label>
+              <p>Same answer animation</p>
+              <Switch
+                checked={showAnimation}
+                onChange={setShowAnimation}
+                onColor="#3993ff"
+                checkedIcon={false}
+                uncheckedIcon={false}
+              />
+            </label>
+          </div>
+        </>
+      ) : (
+        <button onClick={toggleMenu} className={styles.showBtn}>
+          ⚙
+        </button>
+      )}
+    </motion.div>
   );
 };
 
