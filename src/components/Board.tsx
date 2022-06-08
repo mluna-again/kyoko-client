@@ -41,8 +41,12 @@ const Board = ({ users, channel, playerName }: Props) => {
     }
   }, [users, channel]);
 
+  const userPlaying = users.find((user) => user.name === playerName);
+  const selectedOption = userPlaying?.selection;
+
   const selectionHandler = (num?: number) => {
-    channel.push("user_selection", { selection: num, player: playerName });
+		const selection = num === selectedOption ? null : num;
+    channel.push("user_selection", { selection, player: playerName });
   };
 
   const revealHandler = () => {
@@ -65,9 +69,6 @@ const Board = ({ users, channel, playerName }: Props) => {
     setOptionsType(event.target.value);
     selectionHandler(undefined);
   };
-
-  const userPlaying = users.find((user) => user.name === playerName);
-  const selectedOption = userPlaying?.selection;
 
   return (
     <div>
@@ -99,7 +100,6 @@ const Board = ({ users, channel, playerName }: Props) => {
             onChange={selectionHandler}
           />
         ))}
-        <Option label="None" value={undefined} onChange={selectionHandler} />
       </div>
 
       <div className={styles.resetContainer}>

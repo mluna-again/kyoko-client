@@ -1,15 +1,16 @@
 .container {
-  border: none;
+  border: 2px solid var(--primary);
   border-radius: 5px;
   height: 100px;
   width: 60px;
-  background-color: var(--primary);
-	color: var(--white);
+  background-color: white;
+	color: var(--primary);
 	font-size: 20px;
 	margin: 0 1rem;
 	cursor: pointer;
 }
 
 .container.selected {
-	outline: 10px crimson solid;
+	background-color: var(--primary);
+	color: white;
 }

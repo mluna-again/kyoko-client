@@ -16,7 +16,7 @@ const Card = ({ user, playerName, show }: Props) => {
         <motion.div
           animate={{
             rotateY: show ? [0, 180] : 0,
-            backgroundColor: Number.isInteger(user.selection) ? "crimson" : "transparent",
+            backgroundColor: Number.isInteger(user.selection) ? "var(--primary)" : "transparent",
           }}
           className={cx(styles.card, {
             [styles.selected]: Number.isInteger(user.selection),
