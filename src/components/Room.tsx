@@ -72,14 +72,14 @@ const Room = () => {
 
   return (
     <div className={styles.container}>
-      <h1>{`Room \`${room.name}\``}</h1>
       <CopyToClipboard
         text={`${window.origin}/${room.code}`}
         onCopy={copyLinkHandler}
       >
         <button className={styles.inviteContainer}>
-          <h3>
-            Invite your friends with <span>this</span> link
+					<h3>Feeling lonely?😴</h3>
+          <h3 className={styles.inviteLink}>
+            Invite your friends
           </h3>
         </button>
       </CopyToClipboard>

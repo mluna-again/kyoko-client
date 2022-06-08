@@ -5,13 +5,17 @@
 }
 
 .inviteContainer {
-	background-color: var(--primary);
-	color: var(--white);
+	background-color: white;
+	color: black;
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
 	border: none;
-	cursor: pointer;
 	font-size: 18px;
+}
+
+.inviteLink {
+	color: var(--primary);
+	cursor: pointer;
 }
 
 .inviteContainer span {
