@@ -5,6 +5,10 @@
 	z-index: 999999;
 }
 
+.container h1 {
+	cursor: pointer;
+}
+
 .container.active {
 	padding: 6px 9px;
 }
@@ -16,4 +20,5 @@
 	height: 100%;
 	width: 100%;
 	border-radius: 100%;
+	color: white;
 }
