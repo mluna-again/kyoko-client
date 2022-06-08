@@ -86,7 +86,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     <div>
       <div
         className={cx(styles.revealContainer, {
-          [styles.active]: canShowCards,
+          [styles.active]: canShowCards && !gameOver && !showingCards,
         })}
       >
         <Clock show={showingCards} />
