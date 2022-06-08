@@ -19,7 +19,7 @@ const Clock = ({ show = false, allUsersSameAnswer }: Props) => {
       if (!allUsersSameAnswer) return;
       toast("Great! Everyone has the same answer :D", { type: "success" });
     }, 1500);
-  }, [show]);
+  }, [show, allUsersSameAnswer]);
 
   if (!show) return null;
   return (
