@@ -34,7 +34,7 @@ const Clock = ({
       },
       showClock ? 1500 : 0
     );
-  }, [show, allUsersSameAnswer]);
+  }, [show, allUsersSameAnswer, showClock, showAnimation]);
 
   if (!show) return null;
   if (!showClock) return null;

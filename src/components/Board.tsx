@@ -57,6 +57,29 @@ const Board = ({ users, channel, playerName }: Props) => {
     setShowCards(false);
   }, [users]);
 
+  // sync settings
+  // TODO: refactor to a hook
+  useEffect(() => {
+    if (!channel) return;
+    channel.push("toggle_clock", { active: showClock });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showClock, channel]);
+  useEffect(() => {
+    if (!channel) return;
+    channel.push("toggle_animation", { active: showAnimation });
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAnimation, channel]);
+  useEffect(() => {
+    channel.on("toggle_clock", ({ active }) => setShowClock(active));
+    channel.on("toggle_animation", ({ active }) => setShowAnimation(active));
+
+    return () => {
+      channel.off("toggle_clock");
+      channel.off("toggle_animation");
+    };
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [channel]);
+
   const userPlaying = users.find((user) => user.name === playerName);
   const selectedOption = userPlaying?.selection;
 
@@ -141,7 +164,7 @@ const Board = ({ users, channel, playerName }: Props) => {
             user={user}
             playerName={playerName}
             show={showCards}
-						showClock={showClock}
+            showClock={showClock}
           />
         ))}
       </div>
