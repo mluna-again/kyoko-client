@@ -2,10 +2,10 @@ bugs:
   * cuando recargas la página ya no te deja entrar de nuevo
 
 mejoras:
-  * mensaje cuando todos tienen la misma respuesta
-  * dejar poner respuesta personalizada
+  * mejorar mensaje cuando todos tienen la misma respuesta
   * activar/desactivar cuenta regresiva
   * spinner en botón al cargar
   * indicador de carta seleccionada
   * bloquear cartas cuando juego termina
   * arreglar animaciones feas (?)
+  * dejar poner respuesta personalizada

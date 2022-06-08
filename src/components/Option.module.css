@@ -8,9 +8,12 @@
 	font-size: 20px;
 	margin: 0 1rem;
 	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .container.selected {
 	background-color: var(--primary);
 	color: white;
+	transform: translateY(-20px);
+	box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
 }
