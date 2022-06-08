@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { toast } from "react-toastify";
+import JSConfetti from "js-confetti";
+
+const jsConfetti = new JSConfetti();
 
 type Props = {
   show?: boolean;
@@ -17,7 +19,9 @@ const Clock = ({ show = false, allUsersSameAnswer }: Props) => {
     setTimeout(() => setNum(3), 1000);
     setTimeout(() => {
       if (!allUsersSameAnswer) return;
-      toast("Great! Everyone has the same answer :D", { type: "success" });
+      jsConfetti.addConfetti({
+        emojis: ["🂡", "🂧", "🂴", "🂼", "🂿", "🃈", "🃏", "🃝"],
+      });
     }, 1500);
   }, [show, allUsersSameAnswer]);
 

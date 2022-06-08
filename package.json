@@ -16,6 +16,7 @@
     "axios": "^0.27.2",
     "classnames": "^2.3.1",
     "framer-motion": "^6.3.3",
+    "js-confetti": "^0.10.2",
     "phoenix": "^1.6.9",
     "react": "^18.1.0",
     "react-copy-to-clipboard": "^5.1.0",
