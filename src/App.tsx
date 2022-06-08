@@ -12,7 +12,7 @@ function App() {
       <div>
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">
-            Home
+            <span>🃖</span> Kyoko
           </Link>
         </nav>
         <Routes>

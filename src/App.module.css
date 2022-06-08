@@ -1,10 +1,14 @@
 .nav {
-	background-color: var(--primary);
+	background-color: white;
 	padding: 1rem;
 }
 
 .homeLink {
 	font-size: 25px;
-	color: var(--white);
+	color: black;
 	text-decoration: none;
+}
+
+.homeLink span {
+	color: var(--primary)
 }
