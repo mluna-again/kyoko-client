@@ -8,7 +8,7 @@ import styles from "./App.module.css";
 function App() {
   return (
     <>
-      <ToastContainer position="top-center" pauseOnHover theme="colored" />
+      <ToastContainer position="top-right" pauseOnHover theme="colored" />
       <div>
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">

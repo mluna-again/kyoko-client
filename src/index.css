@@ -6,6 +6,7 @@
   --secondary-light: #d27e99;
   --secondary-dark: #e46876;
   --white: #dcd7ba;
+	--toastify-color-success: var(--primary) !important;
 }
 
 body {
