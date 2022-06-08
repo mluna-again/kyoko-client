@@ -49,6 +49,13 @@
   margin: 1rem;
 }
 
+.optionsSelectorContainer select {
+	background-color: var(--primary);
+	border: none;
+	color: white;
+	padding: 0.7rem 2rem;
+	border-radius: 5px;
+}
 @media screen and (max-width: 600px) {
   .optionsSelectorContainer {
     display: flex;
