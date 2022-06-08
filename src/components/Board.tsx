@@ -82,6 +82,9 @@ const Board = ({ users, channel, playerName }: Props) => {
   const canShowCards =
     users.every((user) => Number.isInteger(user.selection)) || showCards;
 
+  const allUsersSameAnswer =
+    new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
+
   return (
     <div>
       <div
@@ -89,7 +92,7 @@ const Board = ({ users, channel, playerName }: Props) => {
           [styles.active]: canShowCards && !gameOver && !showingCards,
         })}
       >
-        <Clock show={showingCards} />
+        <Clock show={showingCards} allUsersSameAnswer={allUsersSameAnswer} />
         {(() => {
           if (showingCards) return null;
           if (gameOver)

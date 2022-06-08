@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   show?: boolean;
+  allUsersSameAnswer: boolean;
 };
 
-const Clock = ({ show = false }: Props) => {
+const Clock = ({ show = false, allUsersSameAnswer }: Props) => {
   const [num, setNum] = useState(1);
   useEffect(() => {
     if (!show) {
@@ -13,6 +15,10 @@ const Clock = ({ show = false }: Props) => {
     }
     setTimeout(() => setNum(2), 500);
     setTimeout(() => setNum(3), 1000);
+    setTimeout(() => {
+      if (!allUsersSameAnswer) return;
+      toast("Great! Everyone has the same answer :D", { type: "success" });
+    }, 1500);
   }, [show]);
 
   if (!show) return null;
