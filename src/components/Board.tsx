@@ -6,6 +6,7 @@ import { UserType } from "../constants/types";
 import Card from "./Card";
 import Option from "./Option";
 import Clock from "./Clock";
+import Settings from "./Settings";
 import styles from "./Board.module.css";
 
 type Props = {
@@ -22,17 +23,23 @@ const OPTIONS: any = {
 };
 
 const Board = ({ users, channel, playerName }: Props) => {
+  const [showClock, setShowClock] = useState(true);
+  const [showAnimation, setShowAnimation] = useState(true);
+
   const [showCards, setShowCards] = useState(false);
   const [showingCards, setShowingCards] = useState(false);
   const [gameOver, setGameOver] = useState(false);
   useEffect(() => {
     channel.on("reveal_cards", () => {
       setShowingCards(true);
-      setTimeout(() => {
-        setShowingCards(false);
-        setShowCards(true);
-        setGameOver(true);
-      }, 1700);
+      setTimeout(
+        () => {
+          setShowingCards(false);
+          setShowCards(true);
+          setGameOver(true);
+        },
+        showClock ? 1700 : 0
+      );
     });
 
     channel.on("reset_room", () => {
@@ -43,7 +50,7 @@ const Board = ({ users, channel, playerName }: Props) => {
       channel.off("reveal_cards");
       channel.off("reset_room");
     };
-  }, [channel]);
+  }, [channel, showClock]);
   // restart game when someone enters
   useEffect(() => {
     setGameOver(false);
@@ -87,12 +94,23 @@ const Board = ({ users, channel, playerName }: Props) => {
 
   return (
     <div>
+      <Settings
+        showClock={showClock}
+        showAnimation={showAnimation}
+        setShowAnimation={setShowAnimation}
+        setShowClock={setShowClock}
+      />
       <div
         className={cx(styles.revealContainer, {
           [styles.active]: canShowCards && !gameOver && !showingCards,
         })}
       >
-        <Clock show={showingCards} allUsersSameAnswer={allUsersSameAnswer} />
+        <Clock
+          show={showingCards}
+          allUsersSameAnswer={allUsersSameAnswer}
+          showClock={showClock}
+          showAnimation={showAnimation}
+        />
         {(() => {
           if (showingCards) return null;
           if (gameOver)
@@ -123,6 +141,7 @@ const Board = ({ users, channel, playerName }: Props) => {
             user={user}
             playerName={playerName}
             show={showCards}
+						showClock={showClock}
           />
         ))}
       </div>
@@ -147,7 +166,7 @@ const Board = ({ users, channel, playerName }: Props) => {
 
       <motion.div
         animate={{ opacity: showCards ? 1 : 0 }}
-        transition={{ delay: 0.5 }}
+        transition={{ delay: showClock ? 0.5 : 0 }}
       >
         <h1>Average: {Math.round((selectionSum as number) / users.length)}</h1>
       </motion.div>

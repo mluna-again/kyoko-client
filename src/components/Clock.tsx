@@ -6,9 +6,16 @@ const jsConfetti = new JSConfetti();
 type Props = {
   show?: boolean;
   allUsersSameAnswer: boolean;
+  showClock: boolean;
+  showAnimation: boolean;
 };
 
-const Clock = ({ show = false, allUsersSameAnswer }: Props) => {
+const Clock = ({
+  show = false,
+  allUsersSameAnswer,
+  showClock,
+  showAnimation,
+}: Props) => {
   const [num, setNum] = useState(1);
   useEffect(() => {
     if (!show) {
@@ -17,15 +24,20 @@ const Clock = ({ show = false, allUsersSameAnswer }: Props) => {
     }
     setTimeout(() => setNum(2), 500);
     setTimeout(() => setNum(3), 1000);
-    setTimeout(() => {
-      if (!allUsersSameAnswer) return;
-      jsConfetti.addConfetti({
-        emojis: ["🂡", "🂧", "🂴", "🂼", "🂿", "🃈", "🃏", "🃝"],
-      });
-    }, 1500);
+    setTimeout(
+      () => {
+        if (!allUsersSameAnswer) return;
+        if (!showAnimation) return;
+        jsConfetti.addConfetti({
+          emojis: ["🂡", "🂧", "🂴", "🂼", "🂿", "🃈", "🃏", "🃝"],
+        });
+      },
+      showClock ? 1500 : 0
+    );
   }, [show, allUsersSameAnswer]);
 
   if (!show) return null;
+  if (!showClock) return null;
   return (
     <div>
       <h1
