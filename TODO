@@ -5,7 +5,6 @@ mejoras:
   * mejorar mensaje cuando todos tienen la misma respuesta
   * activar/desactivar cuenta regresiva
   * spinner en botón al cargar
-  * indicador de carta seleccionada
   * bloquear cartas cuando juego termina
   * arreglar animaciones feas (?)
   * dejar poner respuesta personalizada

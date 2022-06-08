@@ -30,7 +30,14 @@
 	border: 2px solid var(--primary);
 }
 
+.playContainer {
+	display: flex;
+	justify-content: center;
+}
+
 .playContainer button {
+	display: flex;
+	justify-content: center;
 	background-color: var(--primary);
 	color: white;
 	font-size: 25px;
