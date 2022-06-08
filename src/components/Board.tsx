@@ -45,7 +45,7 @@ const Board = ({ users, channel, playerName }: Props) => {
   const selectedOption = userPlaying?.selection;
 
   const selectionHandler = (num?: number) => {
-		const selection = num === selectedOption ? null : num;
+    const selection = num === selectedOption ? null : num;
     channel.push("user_selection", { selection, player: playerName });
   };
 
@@ -70,9 +70,25 @@ const Board = ({ users, channel, playerName }: Props) => {
     selectionHandler(undefined);
   };
 
+  const canShowCards =
+    users.every((user) => Number.isInteger(user.selection)) || showCards;
+
   return (
     <div>
       <Clock show={showingCards} />
+      <div className={styles.revealContainer}>
+        {canShowCards ? (
+          <button
+            disabled={!canShowCards}
+            onClick={revealHandler}
+            className={styles.revealBtn}
+          >
+            Reveal cards
+          </button>
+        ) : (
+          <h3>Pick your cards!</h3>
+        )}
+      </div>
       <div className={styles.cardsContainer}>
         {users.map((user) => (
           <Card
@@ -105,19 +121,6 @@ const Board = ({ users, channel, playerName }: Props) => {
       <div className={styles.resetContainer}>
         <button className={styles.resetBtn} onClick={resetHandler}>
           Reset game
-        </button>
-      </div>
-
-      <div className={styles.revealContainer}>
-        <button
-          disabled={
-            !users.every((user) => Number.isInteger(user.selection)) ||
-            showCards
-          }
-          onClick={revealHandler}
-          className={styles.revealBtn}
-        >
-          Reveal cards
         </button>
       </div>
 
