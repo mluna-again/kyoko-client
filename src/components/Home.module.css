@@ -7,37 +7,36 @@
   width: calc(100% - 10rem);
   height: 80vh;
   border-radius: 5px;
-  padding: 0.5rem 2rem;
-  color: var(--white);
-  background-color: var(--primary);
+  padding: 5rem 2rem 0.5rem 2rem;
+  color: black;
+  background-color: white;
 	text-align: center;
 }
 
 .inputGroup {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-bottom: 4rem;
-}
-
-.inputGroup label {
-	font-size: 26px;
+	margin-bottom: 2rem;
 }
 
 .inputGroup input {
-	min-width: 250px;
+	box-sizing: border-box;
+	width: 80%;
 	margin-top: 10px;
 	border-radius: 5px;
-	border: none;
-	padding: 0.4rem;
+	padding: 0.8rem;
+	border: 2px solid var(--secondary);
+}
+
+.inputGroup input:focus {
+	border: 2px solid var(--primary);
 }
 
 .playContainer button {
-	background-color: var(--white);
-	color: var(--primary);
+	background-color: var(--primary);
+	color: white;
 	font-size: 25px;
 	border-radius: 5px;
 	border: none;
 	padding: 1rem 2rem;
 	cursor: pointer;
+	width: 80%;
 }

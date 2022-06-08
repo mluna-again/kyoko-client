@@ -56,14 +56,14 @@ const Home = () => {
 
   return (
     <motion.div animate={{ margin: "3rem" }} className={styles.container}>
-      <h1>Welcome!</h1>
+      <h3>Choose a name for the room and one for yourself.</h3>
 
       <form onSubmit={handleSubmit(startGameHandler)}>
         <div className={styles.inputGroup}>
-          <label htmlFor="room-name">Room name</label>
           <input
             type="text"
             id="room-name"
+						placeholder="Room's name"
             {...register("roomName", {
               required: true,
               maxLength: 30,
@@ -75,10 +75,10 @@ const Home = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="player-name">Player name</label>
           <input
             type="text"
             id="player-name"
+						placeholder="Your name"
             {...register("playerName", {
               required: true,
               maxLength: 30,
@@ -90,7 +90,7 @@ const Home = () => {
         </div>
 
         <div className={styles.playContainer}>
-          <button disabled={isSubmitting}>Play</button>
+          <button disabled={isSubmitting}>Create game</button>
         </div>
       </form>
     </motion.div>

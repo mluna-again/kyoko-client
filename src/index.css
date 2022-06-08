@@ -2,14 +2,14 @@
   --primary: #3993ff;
   --primary-light: #2d4f67;
   --primary-dark: #363646;
-  --secondary: #ff5e74;
+  --secondary: #e8e9ea;
   --secondary-light: #d27e99;
   --secondary-dark: #e46876;
   --white: #dcd7ba;
 }
 
 body {
-  background-color: var(--white);
+  background-color: white;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
