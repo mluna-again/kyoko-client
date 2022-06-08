@@ -1,15 +1,37 @@
+@keyframes glow {
+  from {
+    box-shadow: 0 0 0px #fff;
+  }
+  to {
+    box-shadow: 0 0 10px #fff, 0 0 50px #2564b0, 0 0 30px white;
+  }
+}
+
 .revealContainer {
   display: flex;
   justify-content: center;
-  margin: auto;
-	background-color: #d7e9ff;
-	padding: 3rem 0;
-	width: 50%;
+  margin: 3rem auto;
+  background-color: #d7e9ff;
+  padding: 3rem 0;
+  width: 50%;
+  border-radius: 35px;
+  position: relative;
+}
+
+.active.revealContainer::before {
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  animation: glow 0.5s ease-in-out infinite alternate;
 	border-radius: 35px;
 }
 
 .revealContainer h3 {
-	font-weight: normal;
+  font-weight: normal;
 }
 
 .revealBtn {
@@ -34,8 +56,8 @@
   padding: 1rem 2rem;
   font-size: 18px;
   cursor: pointer;
-	color: white;
-	font-weight: bold;
+  color: white;
+  font-weight: bold;
 }
 
 .optionsContainer,
@@ -50,11 +72,11 @@
 }
 
 .optionsSelectorContainer select {
-	background-color: var(--primary);
-	border: none;
-	color: white;
-	padding: 0.7rem 2rem;
-	border-radius: 5px;
+  background-color: var(--primary);
+  border: none;
+  color: white;
+  padding: 0.7rem 2rem;
+  border-radius: 5px;
 }
 @media screen and (max-width: 600px) {
   .optionsSelectorContainer {

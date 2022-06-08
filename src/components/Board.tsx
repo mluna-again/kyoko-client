@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import cx from "classnames";
 import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
 import Card from "./Card";
@@ -46,7 +47,7 @@ const Board = ({ users, channel, playerName }: Props) => {
   // restart game when someone enters
   useEffect(() => {
     setGameOver(false);
-		setShowCards(false)
+    setShowCards(false);
   }, [users]);
 
   const userPlaying = users.find((user) => user.name === playerName);
@@ -83,7 +84,11 @@ const Board = ({ users, channel, playerName }: Props) => {
 
   return (
     <div>
-      <div className={styles.revealContainer}>
+      <div
+        className={cx(styles.revealContainer, {
+          [styles.active]: canShowCards,
+        })}
+      >
         <Clock show={showingCards} />
         {(() => {
           if (showingCards) return null;
