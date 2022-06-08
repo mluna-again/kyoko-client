@@ -1,2 +1,7 @@
 bugs:
-	* cuando recargas la página ya no te deja entrar de nuevo
+  * cuando recargas la página ya no te deja entrar de nuevo
+
+mejoras:
+  * mensaje cuando todos tienen la misma respuesta
+  * dejar poner respuesta personalizada
+  * activar/desactivar cuenta regresiva
