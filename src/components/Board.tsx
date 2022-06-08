@@ -23,16 +23,24 @@ const OPTIONS: any = {
 const Board = ({ users, channel, playerName }: Props) => {
   const [showCards, setShowCards] = useState(false);
   const [showingCards, setShowingCards] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
   useEffect(() => {
     channel.on("reveal_cards", () => {
       setShowingCards(true);
       setTimeout(() => {
         setShowingCards(false);
         setShowCards(true);
+        setGameOver(true);
       }, 1700);
+    });
+
+    channel.on("reset_room", () => {
+      channel.push("reset_user", {});
+      setGameOver(false);
     });
     return () => {
       channel.off("reveal_cards");
+      channel.off("reset_room");
     };
   }, [channel]);
   useEffect(() => {
@@ -40,6 +48,10 @@ const Board = ({ users, channel, playerName }: Props) => {
       setShowCards(false);
     }
   }, [users, channel]);
+  // restart game when someone enters
+  useEffect(() => {
+    setGameOver(false);
+  }, [users]);
 
   const userPlaying = users.find((user) => user.name === playerName);
   const selectedOption = userPlaying?.selection;
@@ -75,19 +87,30 @@ const Board = ({ users, channel, playerName }: Props) => {
 
   return (
     <div>
-      <Clock show={showingCards} />
       <div className={styles.revealContainer}>
-        {canShowCards ? (
-          <button
-            disabled={!canShowCards}
-            onClick={revealHandler}
-            className={styles.revealBtn}
-          >
-            Reveal cards
-          </button>
-        ) : (
-          <h3>Pick your cards!</h3>
-        )}
+        <Clock show={showingCards} />
+        {(() => {
+          if (showingCards) return null;
+          if (gameOver)
+            return (
+              <div className={styles.resetContainer}>
+                <button className={styles.resetBtn} onClick={resetHandler}>
+                  Reset game
+                </button>
+              </div>
+            );
+          if (canShowCards)
+            return (
+              <button
+                disabled={!canShowCards}
+                onClick={revealHandler}
+                className={styles.revealBtn}
+              >
+                Reveal cards
+              </button>
+            );
+          else return <h3>Pick your cards!</h3>;
+        })()}
       </div>
       <div className={styles.cardsContainer}>
         {users.map((user) => (
@@ -116,12 +139,6 @@ const Board = ({ users, channel, playerName }: Props) => {
             onChange={selectionHandler}
           />
         ))}
-      </div>
-
-      <div className={styles.resetContainer}>
-        <button className={styles.resetBtn} onClick={resetHandler}>
-          Reset game
-        </button>
       </div>
 
       <motion.div

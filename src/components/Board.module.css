@@ -30,12 +30,12 @@
 .resetBtn {
   border: none;
   border-radius: 5px;
-  background-color: transparent;
+  background-color: #48545d;
   padding: 1rem 2rem;
   font-size: 18px;
-  margin-top: 2rem;
   cursor: pointer;
-  text-decoration: underline;
+	color: white;
+	font-weight: bold;
 }
 
 .optionsContainer,

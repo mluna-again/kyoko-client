@@ -17,24 +17,11 @@ const Clock = ({ show = false }: Props) => {
 
   if (!show) return null;
   return (
-    <div
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        height: "100vh",
-        width: "100%",
-        backgroundColor: "rgba(0, 0, 0, 0.5)",
-      }}
-    >
+    <div>
       <h1
         style={{
-          position: "fixed",
-          top: "40%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          color: "var(--white)",
-          fontSize: "80px",
+          color: "var(--primary)",
+          fontSize: "30px",
         }}
       >
         {num}

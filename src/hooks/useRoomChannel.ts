@@ -38,11 +38,6 @@ const useRoomChannel = (
       setUsers(users);
     };
     presence.onSync(syncUsers);
-    channel.on("reset_room", () => channel.push("reset_user", {}));
-
-    return () => {
-      channel.off("reset_room");
-    };
   }, [channel, player, users]);
 
   return { channel, users, error };
