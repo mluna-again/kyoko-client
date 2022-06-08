@@ -2,8 +2,7 @@ bugs:
   * cuando recargas la página ya no te deja entrar de nuevo
 
 mejoras:
-  * activar/desactivar cuenta regresiva
-  * activar/desactivar mensaje cuando todos ponen la misma respuesta
   * bloquear cartas cuando juego termina
-  * arreglar animaciones feas (?)
+  * arreglar animaciones feas
   * dejar poner respuesta personalizada
+  * refactor (?
