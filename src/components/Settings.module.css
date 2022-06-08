@@ -5,6 +5,13 @@
 	z-index: 999999;
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+		top: unset;
+		bottom: 5%;
+  }
+}
+
 .container h1 {
 	cursor: pointer;
 }
