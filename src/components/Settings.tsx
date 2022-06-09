@@ -28,8 +28,8 @@ const Settings = ({
       backgroundColor: "var(--secondary)",
     },
     hidden: {
-      height: "100px",
-      width: "100px",
+      height: "80px",
+      width: "80px",
       borderRadius: "150px",
       backgroundColor: "var(--primary)",
     },
