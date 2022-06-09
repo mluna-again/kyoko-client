@@ -62,12 +62,12 @@ const Board = ({ users, channel, playerName }: Props) => {
   useEffect(() => {
     if (!channel) return;
     channel.push("toggle_clock", { active: showClock });
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showClock, channel]);
   useEffect(() => {
     if (!channel) return;
     channel.push("toggle_animation", { active: showAnimation });
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showAnimation, channel]);
   useEffect(() => {
     channel.on("toggle_clock", ({ active }) => setShowClock(active));
@@ -77,7 +77,7 @@ const Board = ({ users, channel, playerName }: Props) => {
       channel.off("toggle_clock");
       channel.off("toggle_animation");
     };
-		// eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
 
   const userPlaying = users.find((user) => user.name === playerName);
@@ -183,6 +183,7 @@ const Board = ({ users, channel, playerName }: Props) => {
             key={opt}
             value={opt}
             onChange={selectionHandler}
+            gameOver={gameOver}
           />
         ))}
       </div>
@@ -191,7 +192,7 @@ const Board = ({ users, channel, playerName }: Props) => {
         animate={{ opacity: showCards ? 1 : 0 }}
         transition={{ delay: showClock ? 0.5 : 0 }}
       >
-				{allUsersSameAnswer && <h1>Everone chose the same answer!</h1>}
+        {allUsersSameAnswer && <h1>Everone chose the same answer!</h1>}
         <h1>Average: {Math.round((selectionSum as number) / users.length)}</h1>
       </motion.div>
     </div>
