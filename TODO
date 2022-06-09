@@ -2,7 +2,12 @@ bugs:
   * cuando recargas la página ya no te deja entrar de nuevo
 
 mejoras:
+  * hacer que burbuja de settings pueda arrastrarse *1
   * bloquear cartas cuando juego termina
   * arreglar animaciones feas
   * dejar poner respuesta personalizada
   * refactor (?
+
+
+notas:
+	1: probablemente no vale la pena

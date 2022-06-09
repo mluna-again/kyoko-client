@@ -191,6 +191,7 @@ const Board = ({ users, channel, playerName }: Props) => {
         animate={{ opacity: showCards ? 1 : 0 }}
         transition={{ delay: showClock ? 0.5 : 0 }}
       >
+				{allUsersSameAnswer && <h1>Everone chose the same answer!</h1>}
         <h1>Average: {Math.round((selectionSum as number) / users.length)}</h1>
       </motion.div>
     </div>
