@@ -3,6 +3,13 @@
 	top: 10%;
 	left: 2%;
 	z-index: 999999;
+	transition: box-shadow 0.2s ease;
+	transition: transform 0.2s ease;
+}
+
+.container:hover {
+	transform: translateY(-10px);
+	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 600px) {
