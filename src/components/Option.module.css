@@ -11,9 +11,15 @@
 	transition: all 0.2s ease;
 }
 
-.container.selected {
+.container.selected,
+.container:hover.selected {
 	background-color: var(--primary);
 	color: white;
 	transform: translateY(-20px);
 	box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+.container:hover {
+	transform: translateY(-10px);
+	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
