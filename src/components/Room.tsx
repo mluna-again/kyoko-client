@@ -42,6 +42,7 @@ const Room = () => {
         let pName = playerName;
         while (!Boolean(pName)) {
           const { value } = await (Swal.fire as any)({
+            confirmButtonColor: "var(--primary)",
             title: "Enter your name",
             input: "text",
             inputLabel: "Your name",
