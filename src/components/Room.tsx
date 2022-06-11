@@ -50,6 +50,9 @@ const Room = () => {
               if (!value) {
                 return "Invalid username!";
               }
+              if (value.length > 30) {
+                return "Username must not be longer than 30 characters!";
+              }
             },
           });
           pName = value;
