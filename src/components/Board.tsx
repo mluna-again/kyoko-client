@@ -17,9 +17,13 @@ type Props = {
 
 const FIBONACCI = [0, 1, 2, 3, 5, 8, 13, 21, 34];
 const LINEAR = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const POWER_OF_TWO = [2, 4, 8, 16, 32, 64, 128, 256, 512];
+const MULTIPLES_OF_TWO = [2, 4, 6, 8, 10, 12, 14, 16, 18];
 const OPTIONS: any = {
   fibonacci: FIBONACCI,
   linear: LINEAR,
+	power_of_two: POWER_OF_TWO,
+	multiples_of_two: MULTIPLES_OF_TWO
 };
 
 const Board = ({ users, channel, playerName }: Props) => {
@@ -173,6 +177,8 @@ const Board = ({ users, channel, playerName }: Props) => {
         <select defaultValue={optionsType} onChange={changeOptionsHandler}>
           <option value="fibonacci">Fibonacci</option>
           <option value="linear">Linear</option>
+          <option value="multiples_of_two">Multiples of 2</option>
+          <option value="power_of_two">Power of 2</option>
         </select>
       </div>
 
