@@ -4,9 +4,5 @@ bugs:
 mejoras:
   * hacer que burbuja de settings pueda arrastrarse *1
   * arreglar animaciones feas
-  * ---dejar poner respuesta personalizada---
   * refactor (?
-
-
-notas:
-	1: probablemente no vale la pena
+	* guardar sesión en localstorage
