@@ -33,9 +33,13 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
             })()}
           </motion.span>
         </motion.div>
-        <h1 className={styles.title}>
+        <h1
+          className={cx(styles.title, {
+            [styles.active]: user.name === playerName,
+          })}
+        >
           {user.name}
-          {user.name === playerName ? " (Me)" : ""}
+          {user.name === playerName && <span className={styles.you}>(You)</span>}
         </h1>
       </div>
     </div>

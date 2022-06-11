@@ -15,8 +15,19 @@
 }
 
 .title {
-  font-size: 25px;
+  font-size: 28px;
+	text-align: center;
 }
+
+.title.active {
+	color: var(--primary);
+}
+
+.you {
+	display: block;
+	font-size: 14px;
+}
+
 @media screen and (max-width: 600px) {
   .title {
     font-size: 15px;
