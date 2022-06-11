@@ -2,6 +2,13 @@
   margin: 3rem;
 }
 
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+	justify-content: center;
+}
+
 .card {
   height: 100px;
   width: 60px;
@@ -11,21 +18,25 @@
   justify-content: center;
   align-items: center;
   color: white;
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .title {
-  font-size: 28px;
-	text-align: center;
+  font-size: 24px;
+  text-align: center;
+  width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .title.active {
-	color: var(--primary);
+  color: var(--primary);
 }
 
 .you {
-	display: block;
-	font-size: 14px;
+  display: block;
+  font-size: 14px;
 }
 
 @media screen and (max-width: 600px) {
