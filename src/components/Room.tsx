@@ -45,7 +45,6 @@ const Room = () => {
             confirmButtonColor: "var(--primary)",
             title: "Enter your name",
             input: "text",
-            inputLabel: "Your name",
             inputValue: "",
             inputValidator: (value: string) => {
               if (!value) {
