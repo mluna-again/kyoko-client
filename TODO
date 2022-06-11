@@ -2,6 +2,5 @@ bugs:
   * cuando recargas la página ya no te deja entrar de nuevo
 
 mejoras:
-  * hacer que burbuja de settings pueda arrastrarse *1
-  * arreglar animaciones feas
+  * hacer que burbuja de settings pueda arrastrarse
   * refactor (?
