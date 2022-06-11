@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { TailSpin } from "react-loader-spinner";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -29,6 +29,11 @@ const schema = yup
   .required();
 
 const Home = () => {
+  // clear localstorage
+  useEffect(() => {
+    localStorage.removeItem("user");
+  }, []);
+
   const {
     register,
     handleSubmit,

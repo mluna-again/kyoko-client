@@ -19,7 +19,9 @@ socket.connect();
 
 const Room = () => {
   const { state } = useLocation();
-  const [playerName, setPlayerName] = useState((state as any)?.player);
+  const [playerName, setPlayerName] = useState(
+    (state as any)?.player || localStorage.getItem("user")
+  );
 
   const [room, setRoom] = useState<RoomType>();
   const {
@@ -42,8 +44,7 @@ const Room = () => {
           const { value } = await (Swal.fire as any)({
             title: "Enter your name",
             input: "text",
-            inputLabel:
-              "Your name",
+            inputLabel: "Your name",
             inputValue: "",
             inputValidator: (value: string) => {
               if (!value) {
@@ -53,6 +54,7 @@ const Room = () => {
           });
           pName = value;
         }
+        localStorage.setItem("user", pName);
         setPlayerName(pName);
       } catch (error) {
         console.error(error);
@@ -77,10 +79,8 @@ const Room = () => {
         onCopy={copyLinkHandler}
       >
         <button className={styles.inviteContainer}>
-					<h3>Feeling lonely?😴</h3>
-          <h3 className={styles.inviteLink}>
-            Invite your friends
-          </h3>
+          <h3>Feeling lonely?😴</h3>
+          <h3 className={styles.inviteLink}>Invite your friends</h3>
         </button>
       </CopyToClipboard>
 
