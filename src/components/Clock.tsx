@@ -29,7 +29,7 @@ const Clock = ({
         if (!allUsersSameAnswer) return;
         if (!showAnimation) return;
         jsConfetti.addConfetti({
-          emojis: ["🂡", "🂧", "🂴", "🂼", "🂿", "🃈", "🃏", "🃝"],
+          emojis: ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"],
         });
       },
       showClock ? 1500 : 0
