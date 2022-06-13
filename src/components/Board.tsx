@@ -22,8 +22,8 @@ const MULTIPLES_OF_TWO = [2, 4, 6, 8, 10, 12, 14, 16, 18];
 const OPTIONS: any = {
   fibonacci: FIBONACCI,
   linear: LINEAR,
-	power_of_two: POWER_OF_TWO,
-	multiples_of_two: MULTIPLES_OF_TWO
+  power_of_two: POWER_OF_TWO,
+  multiples_of_two: MULTIPLES_OF_TWO,
 };
 
 const Board = ({ users, channel, playerName }: Props) => {
@@ -174,7 +174,11 @@ const Board = ({ users, channel, playerName }: Props) => {
       </div>
 
       <div className={styles.optionsSelectorContainer}>
-        <select defaultValue={optionsType} onChange={changeOptionsHandler}>
+        <select
+          disabled={gameOver}
+          defaultValue={optionsType}
+          onChange={changeOptionsHandler}
+        >
           <option value="fibonacci">Fibonacci</option>
           <option value="linear">Linear</option>
           <option value="multiples_of_two">Multiples of 2</option>
