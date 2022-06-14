@@ -31,7 +31,7 @@ const Clock = ({
         if (!allUsersSameAnswer) return;
         if (!showAnimation) return;
         jsConfetti.addConfetti({
-          emojis: emojis.split(""),
+          emojis: [...Array.from(emojis)],
         });
       },
       showClock ? 1500 : 0
