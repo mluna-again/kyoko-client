@@ -1,13 +1,21 @@
 import { test, expect } from "@playwright/test";
 
-test("homepage", async ({ page }) => {
-  await page.goto("http://localhost:3000");
+const PLAYER_NAME = "Kanna";
 
-  await expect(page.locator('text=Choose').first()).toBeVisible()
+test.describe("whole app", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto("http://localhost:3000");
 
-	await page.type('#room-name', "Secret Base")
-	await page.type('#player-name', "Kanna")
-	await page.click('text=Create game')
+    await expect(page.locator("text=Choose").first()).toBeVisible();
 
-  await expect(page.locator('text=Feeling lonely?').first()).toBeVisible()
+    await page.type("#room-name", "Secret Base");
+    await page.type("#player-name", PLAYER_NAME);
+    await page.click("text=Create game");
+
+    await expect(page.locator("text=Feeling lonely?").first()).toBeVisible();
+  });
+
+  test("user can create room", async ({ page }) => {
+    await expect(page.locator(`text=${PLAYER_NAME}`)).toBeVisible();
+  });
 });
