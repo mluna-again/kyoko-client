@@ -11,18 +11,19 @@ type Props = {
 };
 
 const Card = ({ user, playerName, show, showClock }: Props) => {
+	const selected = Number.isInteger(user.selection)
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
         <motion.div
           animate={{
             rotateY: show ? [0, 180] : 0,
-            backgroundColor: show ? "white" : "var(--primary)",
+            backgroundColor: selected && !show ? "var(--primary)" : "white",
             color: show ? "var(--primary)" : "white",
-						border: show ? "2px solid var(--primary)" : "none"
+						border: selected && !show ? "2px solid white" : "2px solid var(--primary)"
           }}
           className={cx(styles.card, {
-            [styles.selected]: Number.isInteger(user.selection),
+            [styles.selected]: selected
           })}
         >
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
