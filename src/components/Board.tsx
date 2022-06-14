@@ -121,37 +121,19 @@ const Board = ({ users, channel, playerName }: Props) => {
   const allUsersSameAnswer =
     new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
 
-  const [emojis, setEmojis] = useState([
-    "🂡",
-    "🂧",
-    "🂼",
-    "🃈",
-    "🃝",
-    "🦄",
-    "😑",
-    "😳",
-    "😑",
-    "👀",
-    "🤨",
-  ]);
+  const [emojis, setEmojis] = useState(
+    ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"].join("")
+  );
   const [enableEmojis, setEnableEmojis] = useState(true);
   useEffect(() => {
     channel.on("change_emojis", ({ emojis }) => {
-      setEmojis(emojis.split(""));
+      setEmojis(emojis);
     });
-    channel.push("change_emojis", { emojis: emojis.join("") });
+    channel.push("change_emojis", { emojis: emojis });
 
     return () => channel.off("change_emojis");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {
-    if (!channel) return;
-    channel.push("toggle_emojis", { active: enableEmojis });
-
-    return () => {
-      channel.off("toggle_emojis");
-    };
-  }, [enableEmojis, channel]);
 
   return (
     <div>
@@ -165,7 +147,9 @@ const Board = ({ users, channel, playerName }: Props) => {
           channel.push("change_emojis", { emojis })
         }
         enableEmojis={enableEmojis}
-        setEnableEmojis={setEnableEmojis}
+        setEnableEmojis={(active: boolean) =>
+          channel.push("toggle_emojis", { active })
+        }
       />
       <div
         className={cx(styles.revealContainer, {

@@ -9,7 +9,7 @@ type Props = {
   showAnimation: boolean;
   setShowClock: any;
   setShowAnimation: any;
-  emojis: string[];
+  emojis: string;
   setEmojis: any;
 	enableEmojis: boolean;
 	setEnableEmojis: any;
@@ -95,7 +95,7 @@ const Settings = ({
               className={cx({ [styles.active]: enableEmojis })}
               disabled={!enableEmojis}
               type="text"
-              value={emojis.join("")}
+              value={emojis}
 							onChange={(e) => setEmojis(e.target.value)}
             />
           </div>

@@ -8,7 +8,7 @@ type Props = {
   allUsersSameAnswer: boolean;
   showClock: boolean;
   showAnimation: boolean;
-  emojis: string[];
+  emojis: string;
 };
 
 const Clock = ({
@@ -31,7 +31,7 @@ const Clock = ({
         if (!allUsersSameAnswer) return;
         if (!showAnimation) return;
         jsConfetti.addConfetti({
-          emojis,
+          emojis: emojis.split(""),
         });
       },
       showClock ? 1500 : 0
