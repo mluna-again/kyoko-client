@@ -8,7 +8,7 @@ type Props = {
   allUsersSameAnswer: boolean;
   showClock: boolean;
   showAnimation: boolean;
-	emojis: string[]
+  emojis: string[];
 };
 
 const Clock = ({
@@ -16,7 +16,7 @@ const Clock = ({
   allUsersSameAnswer,
   showClock,
   showAnimation,
-	emojis
+  emojis,
 }: Props) => {
   const [num, setNum] = useState(1);
   useEffect(() => {
@@ -36,6 +36,8 @@ const Clock = ({
       },
       showClock ? 1500 : 0
     );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [show, allUsersSameAnswer, showClock, showAnimation]);
 
   if (!show) return null;
