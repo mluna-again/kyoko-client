@@ -126,14 +126,15 @@ const Board = ({ users, channel, playerName }: Props) => {
   );
   const [enableEmojis, setEnableEmojis] = useState(true);
   useEffect(() => {
+    if (!channel) return;
     channel.on("change_emojis", ({ emojis }) => {
       setEmojis(emojis);
     });
-    channel.push("change_emojis", { emojis: emojis });
+    channel.push("change_emojis", { emojis });
 
     return () => channel.off("change_emojis");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [channel]);
 
   return (
     <div>
