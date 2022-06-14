@@ -76,10 +76,12 @@ const Board = ({ users, channel, playerName }: Props) => {
   useEffect(() => {
     channel.on("toggle_clock", ({ active }) => setShowClock(active));
     channel.on("toggle_animation", ({ active }) => setShowAnimation(active));
+    channel.on("toggle_emojis", ({ active }) => setEnableEmojis(active));
 
     return () => {
       channel.off("toggle_clock");
       channel.off("toggle_animation");
+      channel.off("toggle_emojis");
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
@@ -119,6 +121,36 @@ const Board = ({ users, channel, playerName }: Props) => {
   const allUsersSameAnswer =
     new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
 
+  const [emojis, setEmojis] = useState([
+    "🂡",
+    "🂧",
+    "🂼",
+    "🃈",
+    "🃝",
+    "🦄",
+    "😑",
+    "😳",
+    "😑",
+    "👀",
+    "🤨",
+  ]);
+  const [enableEmojis, setEnableEmojis] = useState(true);
+  useEffect(() => {
+    channel.on("change_emojis", ({ emojis }) => {
+      setEmojis(emojis.split(""));
+    });
+    channel.push("change_emojis", { emojis: emojis.join("") });
+
+    return () => channel.off("change_emojis");
+  }, []);
+  useEffect(() => {
+    channel.push("toggle_emojis", { active: enableEmojis });
+
+    return () => {
+      channel.off("toggle_emojis");
+    };
+  }, [enableEmojis]);
+
   return (
     <div>
       <Settings
@@ -126,6 +158,12 @@ const Board = ({ users, channel, playerName }: Props) => {
         showAnimation={showAnimation}
         setShowAnimation={setShowAnimation}
         setShowClock={setShowClock}
+        emojis={emojis}
+        setEmojis={(emojis: string) =>
+          channel.push("change_emojis", { emojis })
+        }
+        enableEmojis={enableEmojis}
+        setEnableEmojis={setEnableEmojis}
       />
       <div
         className={cx(styles.revealContainer, {
@@ -137,6 +175,7 @@ const Board = ({ users, channel, playerName }: Props) => {
           allUsersSameAnswer={allUsersSameAnswer}
           showClock={showClock}
           showAnimation={showAnimation}
+          emojis={emojis}
         />
         {(() => {
           if (showingCards) return null;

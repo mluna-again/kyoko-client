@@ -39,3 +39,35 @@
 	color: white;
 	cursor: pointer;
 }
+
+.emojisContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.emojisContainer input {
+	margin-top: 10px;
+	padding: 5px;
+	border: none;
+	background-color: white;
+	border-radius: 5px;
+	color: var(--primary);
+	transition: all 0.2s;
+	font-size: 20px;
+	transform: translateY(-10px);
+	opacity: 0;
+}
+
+.emojisContainer input:focus {
+	outline: 2px solid var(--primary);
+}
+
+.emojisContainer input:disabled {
+	background-color: gray;
+	color: white;
+}
+
+.emojisContainer input.active {
+	transform: translateY(0);
+	opacity: 1;
+}
