@@ -17,13 +17,22 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
         <motion.div
           animate={{
             rotateY: show ? [0, 180] : 0,
+            backgroundColor: show ? "white" : "var(--primary)",
+            color: show ? "var(--primary)" : "white",
+						border: show ? "2px solid var(--primary)" : "none"
           }}
           className={cx(styles.card, {
             [styles.selected]: Number.isInteger(user.selection),
           })}
         >
+          <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
+            {user.emoji}
+          </span>
           <motion.span
-            animate={{ opacity: show ? 1 : 0, rotateY: 180 }}
+            animate={{
+              opacity: show ? 1 : 0,
+              rotateY: 180,
+            }}
             transition={{ delay: showClock ? 0.5 : 0 }}
           >
             {(() => {
@@ -32,6 +41,9 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
               if (user.selection) return "?";
             })()}
           </motion.span>
+          <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
+            {user.emoji}
+          </span>
         </motion.div>
         <h1
           className={cx(styles.title, {
@@ -39,7 +51,9 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
           })}
         >
           {user.name}
-          {user.name === playerName && <span className={styles.you}>(You)</span>}
+          {user.name === playerName && (
+            <span className={styles.you}>(You)</span>
+          )}
         </h1>
       </div>
     </div>

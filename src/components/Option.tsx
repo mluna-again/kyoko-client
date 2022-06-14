@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import cx from "classnames";
 import styles from "./Option.module.css";
 
@@ -9,17 +9,6 @@ type Props = {
   selected?: boolean;
   gameOver?: boolean;
 };
-
-// const EMOJIS_MAPPINGS = {
-// 	hearth: "🂲",
-// 	spade: "🂡",
-// 	clover: "🃓",
-// 	diamond: "🃇",
-// 	hearth2: "🂺",
-// 	spade2: "🂨",
-// 	clover2: "🃗",
-// 	diamond2: "🃆"
-// }
 const EMOJIS = ["♥", "🍀", "♦️", "👑"];
 const randomEmoji = () => EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 
