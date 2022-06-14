@@ -4,12 +4,22 @@ import styles from "./Option.module.css";
 
 type Props = {
   value?: number;
-  onChange: (value?: number) => void;
+  onChange: (emoji: string, value?: number) => void;
   label?: string;
   selected?: boolean;
   gameOver?: boolean;
 };
 
+// const EMOJIS_MAPPINGS = {
+// 	hearth: "🂲",
+// 	spade: "🂡",
+// 	clover: "🃓",
+// 	diamond: "🃇",
+// 	hearth2: "🂺",
+// 	spade2: "🂨",
+// 	clover2: "🃗",
+// 	diamond2: "🃆"
+// }
 const EMOJIS = ["♥", "🍀", "♦️", "👑"];
 const randomEmoji = () => EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
 
@@ -19,7 +29,7 @@ const Option = ({ value, onChange, label, selected, gameOver }: Props) => {
   return (
     <button
       className={cx(styles.container, { [styles.selected]: selected })}
-      onClick={() => onChange(value)}
+      onClick={() => onChange(emoji, value)}
       disabled={gameOver}
     >
       <span className={styles.firstEmoji}>{emoji}</span>

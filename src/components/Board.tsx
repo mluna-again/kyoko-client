@@ -89,9 +89,9 @@ const Board = ({ users, channel, playerName }: Props) => {
   const userPlaying = users.find((user) => user.name === playerName);
   const selectedOption = userPlaying?.selection;
 
-  const selectionHandler = (num?: number) => {
+  const selectionHandler = (emoji: string, num?: number) => {
     const selection = num === selectedOption ? null : num;
-    channel.push("user_selection", { selection, player: playerName });
+    channel.push("user_selection", { selection, player: playerName, emoji });
   };
 
   const revealHandler = () => {
@@ -112,7 +112,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
     setOptionsType(event.target.value);
-    selectionHandler(undefined);
+    selectionHandler("", undefined);
   };
 
   const canShowCards =
@@ -135,6 +135,8 @@ const Board = ({ users, channel, playerName }: Props) => {
     return () => channel.off("change_emojis");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
+
+  console.log(users);
 
   return (
     <div>
