@@ -9,6 +9,10 @@ type Props = {
   showAnimation: boolean;
   setShowClock: any;
   setShowAnimation: any;
+  emojis: string[];
+  setEmojis: any;
+	enableEmojis: boolean;
+	setEnableEmojis: any;
 };
 
 const Settings = ({
@@ -16,13 +20,18 @@ const Settings = ({
   showAnimation,
   setShowAnimation,
   setShowClock,
+  emojis,
+  setEmojis,
+	enableEmojis,
+	setEnableEmojis
 }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => setShowMenu(!showMenu);
 
+
   const menuStates = {
     visible: {
-      height: "300px",
+      height: "400px",
       width: "300px",
       borderRadius: "15px",
       backgroundColor: "var(--secondary)",
@@ -69,6 +78,26 @@ const Settings = ({
                 uncheckedIcon={false}
               />
             </label>
+          </div>
+
+          <div className={styles.emojisContainer}>
+            <label>
+              <p>Custom animation emojis</p>
+              <Switch
+                checked={enableEmojis}
+                onChange={setEnableEmojis}
+                onColor="#3993ff"
+                checkedIcon={false}
+                uncheckedIcon={false}
+              />
+            </label>
+            <input
+              className={cx({ [styles.active]: enableEmojis })}
+              disabled={!enableEmojis}
+              type="text"
+              value={emojis.join("")}
+							onChange={(e) => setEmojis(e.target.value)}
+            />
           </div>
         </>
       ) : (

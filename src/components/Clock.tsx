@@ -8,6 +8,7 @@ type Props = {
   allUsersSameAnswer: boolean;
   showClock: boolean;
   showAnimation: boolean;
+	emojis: string[]
 };
 
 const Clock = ({
@@ -15,6 +16,7 @@ const Clock = ({
   allUsersSameAnswer,
   showClock,
   showAnimation,
+	emojis
 }: Props) => {
   const [num, setNum] = useState(1);
   useEffect(() => {
@@ -29,7 +31,7 @@ const Clock = ({
         if (!allUsersSameAnswer) return;
         if (!showAnimation) return;
         jsConfetti.addConfetti({
-          emojis: ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"],
+          emojis,
         });
       },
       showClock ? 1500 : 0
