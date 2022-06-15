@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import cx from "classnames";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,22 +8,14 @@ import Room from "./components/Room";
 import styles from "./App.module.css";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
-
   return (
     <>
       <ToastContainer position="top-right" pauseOnHover theme="colored" />
-      <div className={cx(styles.container, { [styles.dark]: darkMode })}>
+      <div className={cx(styles.container)}>
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">
             <span>🃖</span> Kyoko
           </Link>
-          <button
-            className={styles.darkMode}
-            onClick={() => setDarkMode(!darkMode)}
-          >
-            🌕
-          </button>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
