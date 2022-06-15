@@ -1,14 +1,54 @@
+:root {
+  --primary: #3993ff;
+  --primary-light: #2d4f67;
+  --primary-dark: #363646;
+  --secondary: #e8e9ea;
+  --secondary-light: #d27e99;
+  --secondary-dark: #e46876;
+  --white: #dcd7ba;
+  --toastify-color-success: var(--primary) !important;
+}
+
+.container {
+  --primary: #3993ff;
+  --primary-light: #2d4f67;
+  --primary-dark: #363646;
+  --secondary: #e8e9ea;
+  --secondary-light: #d27e99;
+  --secondary-dark: #e46876;
+  --white: #ffffff;
+  --toastify-color-success: var(--primary) !important;
+}
+
+.container.dark {
+  --primary: crimson;
+  --primary-light: #2d4f67;
+  --primary-dark: #363646;
+  --secondary: #e8e9ea;
+  --secondary-light: #d27e99;
+  --secondary-dark: #e46876;
+  --white: #dcd7ba;
+  --toastify-color-success: var(--primary) !important;
+}
+
 .nav {
-	background-color: white;
-	padding: 1rem;
+  background-color: white;
+  padding: 1rem;
 }
 
 .homeLink {
-	font-size: 25px;
-	color: black;
-	text-decoration: none;
+  font-size: 25px;
+  color: black;
+  text-decoration: none;
 }
 
 .homeLink span {
-	color: var(--primary)
+  color: var(--primary);
+}
+
+.darkMode {
+  font-size: 35px;
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
 }
