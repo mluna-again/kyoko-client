@@ -9,7 +9,7 @@
   border-radius: 5px;
   padding: 5rem 2rem 0.5rem 2rem;
   color: black;
-  background-color: white;
+  background-color: var(--white);
 	text-align: center;
 }
 
@@ -39,7 +39,7 @@
 	display: flex;
 	justify-content: center;
 	background-color: var(--primary);
-	color: white;
+	color: var(--white);
 	font-size: 25px;
 	border-radius: 5px;
 	border: none;

@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white);
   transition: all 0.2s ease;
 }
 

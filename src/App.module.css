@@ -32,7 +32,7 @@
 }
 
 .nav {
-  background-color: white;
+  background-color: var(--white);
   padding: 1rem;
 }
 
