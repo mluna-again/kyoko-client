@@ -11,13 +11,14 @@ const ThemeSwitch = () => {
   return (
     <div className={styles.container}>
       <label>
-        <span>Theme</span>
         <Switch
           checked={dark}
           onChange={setDark}
           onColor="#3993ff"
           checkedIcon={false}
           uncheckedIcon={false}
+          checkedHandleIcon={<span className={styles.icon}>🌜</span>}
+          uncheckedHandleIcon={<span className={styles.icon}>🌞</span>}
         />
       </label>
     </div>
