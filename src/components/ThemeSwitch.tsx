@@ -3,7 +3,7 @@ import Switch from "react-switch";
 import styles from "./ThemeSwitch.module.css";
 
 const ThemeSwitch = () => {
-  const [dark, setDark] = useState(localStorage.getItem("theme") == "dark");
+  const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
   useEffect(() => {
     const theme = dark ? "dark" : "light";
     document.body.className = theme;
