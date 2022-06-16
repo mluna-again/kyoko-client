@@ -1,5 +1,6 @@
 body {
   background-color: var(--background);
+	transition: background-color 0.2s ease;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

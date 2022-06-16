@@ -5,7 +5,7 @@
 }
 
 .inviteContainer {
-	background-color: var(--background);
+	background-color: transparent;
 	color: var(--text-dark);
 	padding: 0.5rem 2rem;
 	border-radius: 5px;
