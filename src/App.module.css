@@ -1,49 +1,16 @@
-:root {
-  --primary: #3993ff;
-  --primary-light: #2d4f67;
-  --primary-dark: #363646;
-  --secondary: #e8e9ea;
-  --secondary-light: #d27e99;
-  --secondary-dark: #e46876;
-  --white: #ffffff;
-  --toastify-color-success: var(--primary) !important;
-}
-
-.container {
-  --primary: #3993ff;
-  --primary-light: #2d4f67;
-  --primary-dark: #363646;
-  --secondary: #e8e9ea;
-  --secondary-light: #d27e99;
-  --secondary-dark: #e46876;
-  --white: #ffffff;
-  --toastify-color-success: var(--primary) !important;
-}
-
-.container.dark {
-  --primary: crimson;
-  --primary-light: #2d4f67;
-  --primary-dark: #363646;
-  --secondary: #e8e9ea;
-  --secondary-light: #d27e99;
-  --secondary-dark: #e46876;
-  --white: #dcd7ba;
-  --toastify-color-success: var(--primary) !important;
-}
-
 .nav {
-  background-color: var(--white);
+  background-color: var(--background);
   padding: 1rem;
 }
 
 .homeLink {
   font-size: 25px;
-  color: black;
+  color: var(--text-dark);
   text-decoration: none;
 }
 
 .homeLink span {
-  color: var(--primary);
+  color: var(--text-dark);
 }
 
 .darkMode {

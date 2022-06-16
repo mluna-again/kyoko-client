@@ -1,19 +1,26 @@
+import { useEffect, useState } from "react";
 import Switch from "react-switch";
+import styles from "./ThemeSwitch.module.css";
 
-type Props = {
-  value: boolean;
-  onChange: any;
-};
+const ThemeSwitch = () => {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    document.body.className = dark ? "dark" : "light";
+  }, [dark]);
 
-const ThemeSwitch = ({ value, onChange }: Props) => {
   return (
-    <Switch
-      checked={value}
-      onChange={onChange}
-      onColor="#3993ff"
-      checkedIcon={false}
-      uncheckedIcon={false}
-    />
+    <div className={styles.container}>
+      <label>
+        <span>Theme</span>
+        <Switch
+          checked={dark}
+          onChange={setDark}
+          onColor="#3993ff"
+          checkedIcon={false}
+          uncheckedIcon={false}
+        />
+      </label>
+    </div>
   );
 };
 

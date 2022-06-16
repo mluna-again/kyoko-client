@@ -8,8 +8,8 @@
   height: 80vh;
   border-radius: 5px;
   padding: 5rem 2rem 0.5rem 2rem;
-  color: black;
-  background-color: var(--white);
+  color: var(--text-dark);
+  background-color: var(--background);
 	text-align: center;
 }
 
