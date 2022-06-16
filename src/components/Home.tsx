@@ -83,7 +83,7 @@ const Home = () => {
               minLength: 4,
             })}
           />
-          {errors.roomName && <span>{errors.roomName?.message}</span>}
+          {errors.roomName && <p>{errors.roomName?.message}</p>}
         </div>
 
         <div className={styles.inputGroup}>
@@ -98,7 +98,7 @@ const Home = () => {
               minLength: 4,
             })}
           />
-          {errors.playerName && <span>{errors.playerName?.message}</span>}
+          {errors.playerName && <p>{errors.playerName?.message}</p>}
         </div>
 
         <div className={styles.playContainer}>

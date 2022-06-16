@@ -9,7 +9,7 @@
   border-radius: 5px;
   padding: 5rem 2rem 0.5rem 2rem;
   color: var(--text-dark);
-  background-color: var(--background);
+  background-color: transparent;
 	text-align: center;
 }
 
