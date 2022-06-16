@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: var(--white);
+  color: var(--text-dark);
   transition: all 0.2s ease;
 }
 
@@ -29,6 +29,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: var(--text-dark);
 }
 
 .title.active {
