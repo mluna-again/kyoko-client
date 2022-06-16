@@ -3,9 +3,11 @@ import Switch from "react-switch";
 import styles from "./ThemeSwitch.module.css";
 
 const ThemeSwitch = () => {
-  const [dark, setDark] = useState(false);
+  const [dark, setDark] = useState(localStorage.getItem("theme") == "dark");
   useEffect(() => {
-    document.body.className = dark ? "dark" : "light";
+    const theme = dark ? "dark" : "light";
+    document.body.className = theme;
+    localStorage.setItem("theme", theme);
   }, [dark]);
 
   return (
