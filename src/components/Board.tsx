@@ -105,6 +105,7 @@ const Board = ({ users, channel, playerName }: Props) => {
   const selectionSum = users
     .map((user) => user.selection)
     .filter((sel) => !Number.isNaN(sel))
+    .filter((sel) => Boolean(sel))
     .reduce((acc, val) => acc! + val!, 0);
 
   const [optionsType, setOptionsType] = useState<string>("fibonacci");
@@ -115,7 +116,9 @@ const Board = ({ users, channel, playerName }: Props) => {
     selectionHandler("", undefined);
   };
 
-	const atLeastOneUserSelected = users.some((user: UserType) => Number.isInteger(user.selection))
+  const atLeastOneUserSelected = users.some((user: UserType) =>
+    Number.isInteger(user.selection)
+  );
 
   const allUsersSameAnswer =
     new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
@@ -134,8 +137,6 @@ const Board = ({ users, channel, playerName }: Props) => {
     return () => channel.off("change_emojis");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
-
-  console.log(users);
 
   return (
     <div>
