@@ -1,2 +1,3 @@
 mejoras:
   * tests
+  * debounce en input de emojis
