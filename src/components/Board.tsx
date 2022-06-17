@@ -115,8 +115,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     selectionHandler("", undefined);
   };
 
-  const canShowCards =
-    users.every((user) => Number.isInteger(user.selection)) || showCards;
+	const atLeastOneUserSelected = users.some((user: UserType) => Number.isInteger(user.selection))
 
   const allUsersSameAnswer =
     new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
@@ -156,7 +155,7 @@ const Board = ({ users, channel, playerName }: Props) => {
       />
       <div
         className={cx(styles.revealContainer, {
-          [styles.active]: canShowCards && !gameOver && !showingCards,
+          [styles.active]: atLeastOneUserSelected && !gameOver && !showingCards,
         })}
       >
         <Clock
@@ -176,10 +175,10 @@ const Board = ({ users, channel, playerName }: Props) => {
                 </button>
               </div>
             );
-          if (canShowCards)
+          if (atLeastOneUserSelected)
             return (
               <button
-                disabled={!canShowCards}
+                disabled={!atLeastOneUserSelected}
                 onClick={revealHandler}
                 className={styles.revealBtn}
               >
