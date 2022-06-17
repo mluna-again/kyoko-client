@@ -121,8 +121,10 @@ const Board = ({ users, channel, playerName }: Props) => {
     Number.isInteger(user.selection)
   );
 
+  const usersWithSelection = users.filter((user) => Boolean(user.selection));
   const allUsersSameAnswer =
-    new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
+    new Set(usersWithSelection.map((user) => user.selection)).size === 1 &&
+    users.length > 1;
 
   const [emojis, setEmojis] = useState(
     ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"].join("")
