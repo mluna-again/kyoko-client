@@ -102,7 +102,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     channel.push("reset_room", {});
   };
 
-	const usersSelected = users.filter(sel => Boolean(sel)).length;
+  const usersSelected = users.filter((user) => Boolean(user.selection)).length;
   const selectionSum = users
     .map((user) => user.selection)
     .filter((sel) => !Number.isNaN(sel))
