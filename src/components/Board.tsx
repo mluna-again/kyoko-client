@@ -102,6 +102,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     channel.push("reset_room", {});
   };
 
+	const usersSelected = users.filter(sel => Boolean(sel)).length;
   const selectionSum = users
     .map((user) => user.selection)
     .filter((sel) => !Number.isNaN(sel))
@@ -234,7 +235,7 @@ const Board = ({ users, channel, playerName }: Props) => {
           <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
         )}
         <h1 className={styles.avg}>
-          Average: {Math.round((selectionSum as number) / users.length)}
+          Average: {Math.round((selectionSum as number) / usersSelected)}
         </h1>
       </motion.div>
     </div>
