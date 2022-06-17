@@ -88,7 +88,12 @@ const Room = () => {
       </CopyToClipboard>
 
       <div>
-        <Board playerName={playerName} channel={channel} users={users} />
+        <Board
+          initialState={room}
+          playerName={playerName}
+          channel={channel}
+          users={users}
+        />
       </div>
     </div>
   );

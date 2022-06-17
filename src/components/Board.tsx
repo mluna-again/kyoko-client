@@ -13,8 +13,22 @@ type Props = {
   users: UserType[];
   channel: Channel;
   playerName: string;
+  initialState: any;
 };
 
+const DEFAULT_EMOJIS = [
+  "🂡",
+  "🂧",
+  "🂼",
+  "🃈",
+  "🃝",
+  "🦄",
+  "😑",
+  "😳",
+  "😑",
+  "👀",
+  "🤨",
+];
 const FIBONACCI = [0, 1, 2, 3, 5, 8, 13, 21, 34];
 const LINEAR = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const POWER_OF_TWO = [2, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -26,9 +40,14 @@ const OPTIONS: any = {
   multiples_of_two: MULTIPLES_OF_TWO,
 };
 
-const Board = ({ users, channel, playerName }: Props) => {
-  const [showClock, setShowClock] = useState(true);
-  const [showAnimation, setShowAnimation] = useState(true);
+const Board = ({ users, channel, playerName, initialState }: Props) => {
+  console.log(initialState);
+  const [showClock, setShowClock] = useState(
+    initialState?.settings?.clock ?? false
+  );
+  const [showAnimation, setShowAnimation] = useState(
+    initialState?.settings?.animation
+  );
 
   const [showCards, setShowCards] = useState(false);
   const [showingCards, setShowingCards] = useState(false);
@@ -127,7 +146,7 @@ const Board = ({ users, channel, playerName }: Props) => {
     users.length > 1;
 
   const [emojis, setEmojis] = useState(
-    ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"].join("")
+    initialState?.settings?.emojis ?? DEFAULT_EMOJIS.join("")
   );
   const [enableEmojis, setEnableEmojis] = useState(true);
   useEffect(() => {
