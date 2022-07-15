@@ -3,27 +3,27 @@
     box-shadow: 0 0 0px #fff;
   }
   to {
-    box-shadow: 0 0 10px #fff, 0 0 50px #2564b0, 0 0 30px white;
+    box-shadow: 0 0 10px #fff, 0 0 50px #2564b0, 0 0 30px var(--white);
   }
 }
 
 @keyframes pulse {
-	0% {
-		transform: scale(0.90);
-		box-shadow: 0 0 0 0 var(--primary);
-		opacity: 0.7;
-	}
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 var(--primary);
+    opacity: 0.7;
+  }
 
-	70% {
-		transform: scale(1.15);
-		box-shadow: 0 0 0 10px var(--primary);
-	}
+  70% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 10px var(--primary);
+  }
 
-	100% {
-		transform: scale(0.90);
-		box-shadow: 0 0 0 0 var(--primary);
-		opacity: 0;
-	}
+  100% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 0 var(--primary);
+    opacity: 0;
+  }
 }
 
 .revealContainer {
@@ -46,8 +46,8 @@
   width: 100%;
   height: 100%;
   animation: pulse 0.8s infinite;
-	background-color: var(--primary);
-	border-radius: 35px;
+  background-color: var(--primary);
+  border-radius: 35px;
 }
 
 .revealContainer h3 {
@@ -58,7 +58,7 @@
   border-radius: 5px;
   border: none;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   font-size: 24px;
   padding: 0.8rem 1.4rem;
   cursor: pointer;
@@ -76,7 +76,7 @@
   padding: 1rem 2rem;
   font-size: 18px;
   cursor: pointer;
-  color: white;
+  color: var(--white);
   font-weight: bold;
 }
 
@@ -85,7 +85,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .optionsContainer > * {
@@ -95,7 +95,7 @@
 .optionsSelectorContainer select {
   background-color: var(--primary);
   border: none;
-  color: white;
+  color: var(--white);
   padding: 0.7rem 2rem;
   border-radius: 5px;
 }
@@ -104,4 +104,9 @@
     display: flex;
     justify-content: center;
   }
+}
+
+.sameAnswer,
+.avg {
+  color: var(--text-dark);
 }

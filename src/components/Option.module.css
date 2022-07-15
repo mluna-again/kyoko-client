@@ -4,7 +4,7 @@
   border-radius: 5px;
   height: 100px;
   width: 60px;
-  background-color: white;
+  background-color: var(--white);
 	color: var(--primary);
 	font-size: 20px;
 	margin: 0 1rem;
@@ -15,7 +15,7 @@
 .container.selected,
 .container:hover.selected {
 	background-color: var(--primary);
-	color: white;
+	color: var(--white);
 	transform: translateY(-20px);
 	box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
 }

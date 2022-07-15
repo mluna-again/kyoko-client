@@ -13,8 +13,22 @@ type Props = {
   users: UserType[];
   channel: Channel;
   playerName: string;
+  initialState: any;
 };
 
+const DEFAULT_EMOJIS = [
+  "🂡",
+  "🂧",
+  "🂼",
+  "🃈",
+  "🃝",
+  "🦄",
+  "😑",
+  "😳",
+  "😑",
+  "👀",
+  "🤨",
+];
 const FIBONACCI = [0, 1, 2, 3, 5, 8, 13, 21, 34];
 const LINEAR = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const POWER_OF_TWO = [2, 4, 8, 16, 32, 64, 128, 256, 512];
@@ -26,9 +40,14 @@ const OPTIONS: any = {
   multiples_of_two: MULTIPLES_OF_TWO,
 };
 
-const Board = ({ users, channel, playerName }: Props) => {
-  const [showClock, setShowClock] = useState(true);
-  const [showAnimation, setShowAnimation] = useState(true);
+const Board = ({ users, channel, playerName, initialState }: Props) => {
+  console.log(initialState);
+  const [showClock, setShowClock] = useState(
+    initialState?.settings?.clock ?? false
+  );
+  const [showAnimation, setShowAnimation] = useState(
+    initialState?.settings?.animation
+  );
 
   const [showCards, setShowCards] = useState(false);
   const [showingCards, setShowingCards] = useState(false);
@@ -102,9 +121,11 @@ const Board = ({ users, channel, playerName }: Props) => {
     channel.push("reset_room", {});
   };
 
+  const usersSelected = users.filter((user) => Boolean(user.selection)).length;
   const selectionSum = users
     .map((user) => user.selection)
     .filter((sel) => !Number.isNaN(sel))
+    .filter((sel) => Boolean(sel))
     .reduce((acc, val) => acc! + val!, 0);
 
   const [optionsType, setOptionsType] = useState<string>("fibonacci");
@@ -115,14 +136,17 @@ const Board = ({ users, channel, playerName }: Props) => {
     selectionHandler("", undefined);
   };
 
-  const canShowCards =
-    users.every((user) => Number.isInteger(user.selection)) || showCards;
+  const atLeastOneUserSelected = users.some((user: UserType) =>
+    Number.isInteger(user.selection)
+  );
 
+  const usersWithSelection = users.filter((user) => Boolean(user.selection));
   const allUsersSameAnswer =
-    new Set(users.map((user) => user.selection)).size === 1 && users.length > 1;
+    new Set(usersWithSelection.map((user) => user.selection)).size === 1 &&
+    users.length > 1;
 
   const [emojis, setEmojis] = useState(
-    ["🂡", "🂧", "🂼", "🃈", "🃝", "🦄", "😑", "😳", "😑", "👀", "🤨"].join("")
+    initialState?.settings?.emojis ?? DEFAULT_EMOJIS.join("")
   );
   const [enableEmojis, setEnableEmojis] = useState(true);
   useEffect(() => {
@@ -135,8 +159,6 @@ const Board = ({ users, channel, playerName }: Props) => {
     return () => channel.off("change_emojis");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
-
-  console.log(users);
 
   return (
     <div>
@@ -156,7 +178,7 @@ const Board = ({ users, channel, playerName }: Props) => {
       />
       <div
         className={cx(styles.revealContainer, {
-          [styles.active]: canShowCards && !gameOver && !showingCards,
+          [styles.active]: atLeastOneUserSelected && !gameOver && !showingCards,
         })}
       >
         <Clock
@@ -176,10 +198,10 @@ const Board = ({ users, channel, playerName }: Props) => {
                 </button>
               </div>
             );
-          if (canShowCards)
+          if (atLeastOneUserSelected)
             return (
               <button
-                disabled={!canShowCards}
+                disabled={!atLeastOneUserSelected}
                 onClick={revealHandler}
                 className={styles.revealBtn}
               >
@@ -230,8 +252,12 @@ const Board = ({ users, channel, playerName }: Props) => {
         animate={{ opacity: showCards ? 1 : 0 }}
         transition={{ delay: showClock ? 0.5 : 0 }}
       >
-        {allUsersSameAnswer && <h1>Everyone chose the same answer!</h1>}
-        <h1>Average: {Math.round((selectionSum as number) / users.length)}</h1>
+        {allUsersSameAnswer && (
+          <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
+        )}
+        <h1 className={styles.avg}>
+          Average: {Math.round((selectionSum as number) / usersSelected)}
+        </h1>
       </motion.div>
     </div>
   );

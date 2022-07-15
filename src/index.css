@@ -9,8 +9,10 @@
 	--toastify-color-success: var(--primary) !important;
 }
 
+
 body {
-  background-color: white;
+  background-color: var(--background);
+	transition: background-color 0.2s ease;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -19,6 +21,31 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --background: var(--white);
+  --primary: #3993ff;
+  --primary-light: #2d4f67;
+  --primary-dark: #363646;
+  --secondary: #e8e9ea;
+  --secondary-light: #d27e99;
+  --secondary-dark: #e46876;
+  --white: #ffffff;
+	--text-light: #ffffff;
+	--text-dark: #000000;
+  --toastify-color-success: var(--primary) !important;
+}
+
+body.dark {
+  --background: #383837;
+  --primary: #3993ff;
+  --primary-light: #2d4f67;
+  --primary-dark: #363646;
+  --secondary: #e8e9ea;
+  --secondary-light: #d27e99;
+  --secondary-dark: #e46876;
+  --white: #ffffff;
+	--text-light: #ffffff;
+	--text-dark: #ffffff;
+  --toastify-color-success: var(--primary) !important;
 }
 
 code {

@@ -1,0 +1,22 @@
+.container {
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.container span {
+	font-size: 18px;
+	display: block;
+	margin-bottom: 5px;
+}
+
+.icon {
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	font-size: 24px;
+}
