@@ -42,7 +42,6 @@ const OPTIONS: any = {
 };
 
 const Board = ({ users, channel, playerName, initialState }: Props) => {
-  console.log(initialState);
   const [showClock, setShowClock] = useState(
     initialState?.settings?.clock ?? false
   );
