@@ -226,7 +226,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
 
       <div className={styles.optionsSelectorContainer}>
         <select
-          disabled={gameOver}
+          disabled={gameOver || showingCards}
           defaultValue={optionsType}
           onChange={changeOptionsHandler}
         >
@@ -246,12 +246,12 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
               key={opt}
               value={opt}
               onChange={selectionHandler}
-              gameOver={gameOver}
+              gameOver={gameOver || showingCards}
             />
           ))
         ) : (
           <CustomValue
-            gameOver={gameOver}
+            gameOver={gameOver || showingCards}
             onConfirm={(value) => selectionHandler("😤", value)}
           />
         )}
