@@ -1,0 +1,23 @@
+.container {
+	height: 50px;
+	min-width: 800px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.container input {
+	border: 2px solid var(--primary);
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.container button {
+	padding: 5px;
+	background-color: var(--primary);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+}

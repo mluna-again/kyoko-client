@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from './CustomValue.module.css';
 
 type Props = {
   onConfirm: (value: number) => void;
@@ -21,7 +22,7 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <form onSubmit={submitHandler}>
         <input
           type="text"
