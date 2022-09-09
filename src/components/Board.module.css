@@ -88,6 +88,10 @@
   margin-top: 1rem;
 }
 
+.optionsContainer {
+	min-width: 800px;
+}
+
 .optionsContainer > * {
   margin: 1rem;
 }
@@ -109,4 +113,12 @@
 .sameAnswer,
 .avg {
   color: var(--text-dark);
+}
+
+.customValueBtn {
+	font-size: 16px;
+	border: none;
+	background-color: transparent;
+	text-decoration: underline;
+	cursor: pointer;
 }

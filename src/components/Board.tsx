@@ -6,6 +6,7 @@ import { UserType } from "../constants/types";
 import Card from "./Card";
 import Option from "./Option";
 import Clock from "./Clock";
+import CustomValue from "./CustomValue";
 import Settings from "./Settings";
 import styles from "./Board.module.css";
 
@@ -233,19 +234,27 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
           <option value="linear">Linear</option>
           <option value="multiples_of_two">Multiples of 2</option>
           <option value="power_of_two">Power of 2</option>
+          <option value="custom">Custom</option>
         </select>
       </div>
 
       <div className={styles.optionsContainer}>
-        {OPTIONS[optionsType].map((opt: any) => (
-          <Option
-            selected={opt === selectedOption}
-            key={opt}
-            value={opt}
-            onChange={selectionHandler}
+        {optionsType !== "custom" ? (
+          OPTIONS[optionsType].map((opt: any) => (
+            <Option
+              selected={opt === selectedOption}
+              key={opt}
+              value={opt}
+              onChange={selectionHandler}
+              gameOver={gameOver}
+            />
+          ))
+        ) : (
+          <CustomValue
             gameOver={gameOver}
+            onConfirm={(value) => selectionHandler("😤", value)}
           />
-        ))}
+        )}
       </div>
 
       <motion.div
