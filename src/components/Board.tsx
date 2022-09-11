@@ -223,20 +223,6 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
         ))}
       </div>
 
-      <div className={styles.optionsSelectorContainer}>
-        <select
-          disabled={gameOver || showingCards}
-          defaultValue={optionsType}
-          onChange={changeOptionsHandler}
-        >
-          <option value="fibonacci">Fibonacci</option>
-          <option value="linear">Linear</option>
-          <option value="multiples_of_two">Multiples of 2</option>
-          <option value="power_of_two">Power of 2</option>
-          <option value="custom">Custom</option>
-        </select>
-      </div>
-
       <div className={styles.optionsContainer}>
         {optionsType !== "custom" ? (
           OPTIONS[optionsType].map((opt: any) => (
@@ -249,11 +235,26 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
             />
           ))
         ) : (
-          <CustomValue
-            gameOver={gameOver || showingCards}
-            onConfirm={(value) => selectionHandler("😤", value)}
-          />
+          <div className={styles.custom}>
+            <CustomValue
+              gameOver={gameOver || showingCards}
+              onConfirm={(value) => selectionHandler("😤", value)}
+            />
+          </div>
         )}
+        <div className={styles.optionsSelectorContainer}>
+          <select
+            disabled={gameOver || showingCards}
+            defaultValue={optionsType}
+            onChange={changeOptionsHandler}
+          >
+            <option value="fibonacci">Fibonacci</option>
+            <option value="linear">Linear</option>
+            <option value="multiples_of_two">Multiples of 2</option>
+            <option value="power_of_two">Power of 2</option>
+            <option value="custom">Custom</option>
+          </select>
+        </div>
       </div>
 
       <motion.div

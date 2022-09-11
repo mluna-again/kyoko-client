@@ -89,15 +89,33 @@
 }
 
 .cardsContainer > * {
-	flex-basis: 20%;
+  flex-basis: 20%;
 }
 
 .optionsContainer {
-	min-width: 800px;
+  min-width: 900px;
+  position: relative;
+  width: min-content;
+  margin: auto;
+  margin-top: 3rem;
 }
 
 .optionsContainer > * {
   margin: 1rem;
+}
+
+.optionsContainer .custom {
+  min-width: 900px;
+	max-width: 400px;
+}
+
+.optionsSelectorContainer {
+  width: min-content;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  top: -65px;
+  left: 0;
 }
 
 .optionsSelectorContainer select {
@@ -107,10 +125,17 @@
   padding: 0.7rem 2rem;
   border-radius: 5px;
 }
+
+@media screen and (max-width: 800px) {
+  .optionsContainer,
+  .optionsContainer .custom {
+    min-width: 600px;
+  }
+}
 @media screen and (max-width: 600px) {
-  .optionsSelectorContainer {
-    display: flex;
-    justify-content: center;
+  .optionsContainer,
+  .optionsContainer .custom {
+    min-width: 400px;
   }
 }
 
@@ -120,9 +145,9 @@
 }
 
 .customValueBtn {
-	font-size: 16px;
-	border: none;
-	background-color: transparent;
-	text-decoration: underline;
-	cursor: pointer;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  cursor: pointer;
 }
