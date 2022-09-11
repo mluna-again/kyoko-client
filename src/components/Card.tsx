@@ -11,7 +11,7 @@ type Props = {
 };
 
 const Card = ({ user, playerName, show, showClock }: Props) => {
-	const selected = Number.isInteger(user.selection)
+  const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
       <div className={styles.cardContainer}>
@@ -20,10 +20,13 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
             rotateY: show ? [0, 180] : 0,
             backgroundColor: selected && !show ? "var(--primary)" : "white",
             color: show ? "var(--primary)" : "white",
-						border: selected && !show ? "2px solid white" : "2px solid var(--primary)"
+            border:
+              selected && !show
+                ? "2px solid white"
+                : "2px solid var(--primary)",
           }}
           className={cx(styles.card, {
-            [styles.selected]: selected
+            [styles.selected]: selected,
           })}
         >
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>

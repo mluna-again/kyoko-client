@@ -1,73 +1,73 @@
 .container {
-	position: fixed;
-	top: 10%;
-	left: 2%;
-	z-index: 999999;
-	transition: box-shadow 0.2s ease;
-	transition: transform 0.2s ease;
+  position: fixed;
+  top: 10%;
+  left: 2%;
+  z-index: 999999;
+  transition: box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .container:hover {
-	transform: translateY(-10px);
-	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 600px) {
   .container {
-		top: unset;
-		left: unset;
-		bottom: 5%;
-		right: 2%;
+    top: unset;
+    left: unset;
+    bottom: 5%;
+    right: 2%;
   }
 }
 
 .container h1 {
-	cursor: pointer;
+  cursor: pointer;
 }
 
 .container.active {
-	padding: 6px 9px;
+  padding: 6px 9px;
 }
 
 .showBtn {
-	font-size: 30px;
-	border: none;
-	background-color: transparent;
-	height: 100%;
-	width: 100%;
-	border-radius: 100%;
-	color: var(--white);
-	cursor: pointer;
+  font-size: 30px;
+  border: none;
+  background-color: transparent;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  color: var(--white);
+  cursor: pointer;
 }
 
 .emojisContainer {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .emojisContainer input {
-	margin-top: 10px;
-	padding: 5px;
-	border: none;
-	background-color: var(--white);
-	border-radius: 5px;
-	color: var(--primary);
-	transition: all 0.2s;
-	font-size: 20px;
-	transform: translateY(-10px);
-	opacity: 0;
+  margin-top: 10px;
+  padding: 5px;
+  border: none;
+  background-color: var(--white);
+  border-radius: 5px;
+  color: var(--primary);
+  transition: all 0.2s;
+  font-size: 20px;
+  transform: translateY(-10px);
+  opacity: 0;
 }
 
 .emojisContainer input:focus {
-	outline: 2px solid var(--primary);
+  outline: 2px solid var(--primary);
 }
 
 .emojisContainer input:disabled {
-	background-color: gray;
-	color: var(--white);
+  background-color: gray;
+  color: var(--white);
 }
 
 .emojisContainer input.active {
-	transform: translateY(0);
-	opacity: 1;
+  transform: translateY(0);
+  opacity: 1;
 }

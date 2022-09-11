@@ -1,42 +1,42 @@
 .container {
-	position: relative;
+  position: relative;
   border: 2px solid var(--primary);
   border-radius: 5px;
   height: 100px;
   width: 60px;
   background-color: var(--white);
-	color: var(--primary);
-	font-size: 20px;
-	margin: 0 1rem;
-	cursor: pointer;
-	transition: all 0.2s ease;
+  color: var(--primary);
+  font-size: 20px;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .container.selected,
 .container:hover.selected {
-	background-color: var(--primary);
-	color: var(--white);
-	transform: translateY(-20px);
-	box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-20px);
+  box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
 .container:hover {
-	transform: translateY(-10px);
-	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 
 .firstEmoji,
 .secondEmoji {
-	position: absolute;
-	font-size: 14px;
+  position: absolute;
+  font-size: 14px;
 }
 
 .firstEmoji {
-	top: 2px;
-	left: 2px;
+  top: 2px;
+  left: 2px;
 }
 
 .secondEmoji {
-	bottom: 2px;
-	right: 2px;
+  bottom: 2px;
+  right: 2px;
 }

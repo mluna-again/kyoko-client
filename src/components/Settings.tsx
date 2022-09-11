@@ -11,8 +11,8 @@ type Props = {
   setShowAnimation: any;
   emojis: string;
   setEmojis: any;
-	enableEmojis: boolean;
-	setEnableEmojis: any;
+  enableEmojis: boolean;
+  setEnableEmojis: any;
 };
 
 const Settings = ({
@@ -22,12 +22,11 @@ const Settings = ({
   setShowClock,
   emojis,
   setEmojis,
-	enableEmojis,
-	setEnableEmojis
+  enableEmojis,
+  setEnableEmojis,
 }: Props) => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => setShowMenu(!showMenu);
-
 
   const menuStates = {
     visible: {
@@ -96,7 +95,7 @@ const Settings = ({
               disabled={!enableEmojis}
               type="text"
               value={emojis}
-							onChange={(e) => setEmojis(e.target.value)}
+              onChange={(e) => setEmojis(e.target.value)}
             />
           </div>
         </>

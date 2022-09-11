@@ -10,40 +10,40 @@
   padding: 5rem 2rem 0.5rem 2rem;
   color: var(--text-dark);
   background-color: transparent;
-	text-align: center;
+  text-align: center;
 }
 
 .inputGroup {
-	margin-bottom: 2rem;
+  margin-bottom: 2rem;
 }
 
 .inputGroup input {
-	box-sizing: border-box;
-	width: 80%;
-	margin-top: 10px;
-	border-radius: 5px;
-	padding: 0.8rem;
-	border: 2px solid var(--secondary);
+  box-sizing: border-box;
+  width: 80%;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 0.8rem;
+  border: 2px solid var(--secondary);
 }
 
 .inputGroup input:focus {
-	border: 2px solid var(--primary);
+  border: 2px solid var(--primary);
 }
 
 .playContainer {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .playContainer button {
-	display: flex;
-	justify-content: center;
-	background-color: var(--primary);
-	color: var(--white);
-	font-size: 25px;
-	border-radius: 5px;
-	border: none;
-	padding: 1rem 2rem;
-	cursor: pointer;
-	width: 80%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary);
+  color: var(--white);
+  font-size: 25px;
+  border-radius: 5px;
+  border: none;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  width: 80%;
 }
