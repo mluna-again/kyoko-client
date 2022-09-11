@@ -160,6 +160,8 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
 
+  const average = Math.round((selectionSum as number) / usersSelected);
+
   return (
     <div>
       <Settings
@@ -264,9 +266,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
         {allUsersSameAnswer && (
           <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
         )}
-        <h1 className={styles.avg}>
-          Average: {Math.round((selectionSum as number) / usersSelected)}
-        </h1>
+        {Boolean(average) && <h1 className={styles.avg}>Average: {average}</h1>}
       </motion.div>
     </div>
   );
