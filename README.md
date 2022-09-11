@@ -1,6 +1,6 @@
 # Kyoko client
 
-Simple (as fuck) planning poker clone.
+Simple planning poker clone.
 
 Made with React.
 
