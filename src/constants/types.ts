@@ -3,6 +3,7 @@ export type UserType = {
   selection?: number;
   emoji?: string;
 };
+
 export type RoomType = {
   code: string;
   name: string;

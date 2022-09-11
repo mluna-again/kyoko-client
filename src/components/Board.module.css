@@ -88,6 +88,10 @@
   margin-top: 1rem;
 }
 
+.cardsContainer > * {
+	flex-basis: 20%;
+}
+
 .optionsContainer {
 	min-width: 800px;
 }
