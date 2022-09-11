@@ -238,7 +238,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
           <div className={styles.custom}>
             <CustomValue
               gameOver={gameOver || showingCards}
-              onConfirm={(value) => selectionHandler("😤", value)}
+              onConfirm={selectionHandler}
             />
           </div>
         )}

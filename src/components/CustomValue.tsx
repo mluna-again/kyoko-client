@@ -2,7 +2,7 @@ import { useState } from "react";
 import styles from "./CustomValue.module.css";
 
 type Props = {
-  onConfirm: (value: number) => void;
+  onConfirm: (emoji: string, value: number) => void;
   gameOver: boolean;
 };
 
@@ -20,7 +20,7 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (gameOver) return;
-    onConfirm(value);
+    onConfirm("❓", value);
   };
 
   return (
