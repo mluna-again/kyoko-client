@@ -143,7 +143,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
   const usersWithSelection = users.filter((user) => Boolean(user.selection));
   const allUsersSameAnswer =
     new Set(usersWithSelection.map((user) => user.selection)).size === 1 &&
-    users.length > 1;
+    usersWithSelection.length > 1;
 
   const [emojis, setEmojis] = useState(
     initialState?.settings?.emojis ?? DEFAULT_EMOJIS.join("")
