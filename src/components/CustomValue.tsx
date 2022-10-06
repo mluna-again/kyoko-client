@@ -1,8 +1,8 @@
 import { useState } from "react";
-import styles from './CustomValue.module.css';
+import styles from "./CustomValue.module.css";
 
 type Props = {
-  onConfirm: (value: number) => void;
+  onConfirm: (emoji: string, value: number) => void;
   gameOver: boolean;
 };
 
@@ -12,15 +12,15 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
     const value = Number(event.currentTarget.value);
     if (event.currentTarget.value === "") return setValue(0);
     if (!value) return;
-		if (gameOver) return;
+    if (gameOver) return;
 
     setValue(value);
   };
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-		if (gameOver) return;
-    onConfirm(value);
+    if (gameOver) return;
+    onConfirm("❓", value);
   };
 
   return (

@@ -6,13 +6,12 @@
   --secondary-light: #d27e99;
   --secondary-dark: #e46876;
   --white: #ffffff;
-	--toastify-color-success: var(--primary) !important;
+  --toastify-color-success: var(--primary) !important;
 }
-
 
 body {
   background-color: var(--background);
-	transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -29,8 +28,8 @@ body {
   --secondary-light: #d27e99;
   --secondary-dark: #e46876;
   --white: #ffffff;
-	--text-light: #ffffff;
-	--text-dark: #000000;
+  --text-light: #ffffff;
+  --text-dark: #000000;
   --toastify-color-success: var(--primary) !important;
 }
 
@@ -43,8 +42,8 @@ body.dark {
   --secondary-light: #d27e99;
   --secondary-dark: #e46876;
   --white: #ffffff;
-	--text-light: #ffffff;
-	--text-dark: #ffffff;
+  --text-light: #ffffff;
+  --text-dark: #ffffff;
   --toastify-color-success: var(--primary) !important;
 }
 

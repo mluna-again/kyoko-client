@@ -50,14 +50,14 @@ test.describe("play game", () => {
     await expect(secondaryPage.locator("text=Kanna")).toBeVisible();
     await expect(secondaryPage.locator("text=Yukiji")).toBeVisible();
 
-		await expect(page.locator("text=Pick your cards!")).toBeVisible()
-		await expect(secondaryPage.locator("text=Pick your cards!")).toBeVisible()
+    await expect(page.locator("text=Pick your cards!")).toBeVisible();
+    await expect(secondaryPage.locator("text=Pick your cards!")).toBeVisible();
 
     await secondaryPage.click("text=34");
-		await page.click("text=0")
+    await page.click("text=0");
 
-		await expect(page.locator("text=Reveal cards")).toBeVisible()
-		await expect(secondaryPage.locator("text=Reveal cards")).toBeVisible()
+    await expect(page.locator("text=Reveal cards")).toBeVisible();
+    await expect(secondaryPage.locator("text=Reveal cards")).toBeVisible();
 
     await page.pause();
   });
