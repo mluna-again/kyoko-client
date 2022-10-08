@@ -213,6 +213,15 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
           else return <h3>Pick your cards!</h3>;
         })()}
       </div>
+
+      {!gameOver && (
+        <div className={styles.resetSecondBtnContainer}>
+          <button className={styles.resetSecondBtn} onClick={resetHandler}>
+            Reset cards
+          </button>
+        </div>
+      )}
+
       <div className={styles.cardsContainer}>
         {users.map((user) => (
           <Card

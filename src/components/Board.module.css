@@ -30,6 +30,7 @@
   display: flex;
   justify-content: center;
   margin: 3rem auto;
+  margin-bottom: 0;
   background-color: #d7e9ff;
   padding: 3rem 0;
   width: 50%;
@@ -78,6 +79,18 @@
   cursor: pointer;
   color: var(--white);
   font-weight: bold;
+}
+
+.resetSecondBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.resetSecondBtn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .optionsContainer,
