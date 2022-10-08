@@ -24,7 +24,7 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (gameOver) return;
-    if (!isValidNumber || isNegative) return;
+    if (!isValidNumber) return;
     onConfirm("❓", Number(value));
   };
 
@@ -40,7 +40,7 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
             disabled={gameOver}
           />
         </div>
-        <button>Confirm</button>
+        <button disabled={!isValidNumber} className={`${!isValidNumber && styles.disabled}`}>Confirm</button>
       </form>
     </div>
   );
