@@ -25,7 +25,7 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
     event.preventDefault();
     if (gameOver) return;
     if (!isValidNumber) return;
-    onConfirm("❓", Number(value));
+    onConfirm("🕵️", Number(value));
   };
 
   return (
