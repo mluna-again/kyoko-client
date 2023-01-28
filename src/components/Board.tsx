@@ -49,9 +49,9 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
     initialState?.settings?.animation
   );
 
-  const [showCards, setShowCards] = useState(false);
   const [showingCards, setShowingCards] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameOver, setGameOver] = useState(initialState?.status === "game_over" || false);
+  const [showCards, setShowCards] = useState(gameOver);
   useEffect(() => {
     channel.on("reveal_cards", () => {
       setShowingCards(true);
@@ -68,17 +68,13 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
     channel.on("reset_room", () => {
       channel.push("reset_user", {});
       setGameOver(false);
+			setShowCards(false);
     });
     return () => {
       channel.off("reveal_cards");
       channel.off("reset_room");
     };
   }, [channel, showClock]);
-  // restart game when someone enters
-  useEffect(() => {
-    setGameOver(false);
-    setShowCards(false);
-  }, [users]);
 
   // sync settings
   // TODO: refactor to a hook
