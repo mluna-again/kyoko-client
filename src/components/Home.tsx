@@ -13,6 +13,7 @@ import styles from "./Home.module.css";
 type Inputs = {
   roomName: string;
   playerName: string;
+  teams: boolean;
 };
 
 const schema = yup
@@ -25,6 +26,7 @@ const schema = yup
       .string()
       .required("Required")
       .max(30, "Should be at most 30 characters long"),
+    teams: yup.boolean(),
   })
   .required();
 
@@ -51,6 +53,7 @@ const Home = () => {
         room: {
           name: data.roomName,
           first: { name: data.playerName },
+          teams_enabled: data.teams,
         },
       });
 
@@ -68,7 +71,7 @@ const Home = () => {
 
   return (
     <motion.div animate={{ margin: "3rem" }} className={styles.container}>
-      <h3>Choose a name for the room and one for yourself.</h3>
+      <h1>Create a new game</h1>
 
       <form onSubmit={handleSubmit(startGameHandler)}>
         <div className={styles.inputGroup}>
@@ -99,6 +102,16 @@ const Home = () => {
             })}
           />
           {errors.playerName && <p>{errors.playerName?.message}</p>}
+        </div>
+
+        <div className={styles.checkbox}>
+          <label htmlFor="teams">Enable teams</label>
+          <input
+            id="teams"
+            type="checkbox"
+            defaultChecked
+            {...register("teams")}
+          />
         </div>
 
         <div className={styles.playContainer}>
