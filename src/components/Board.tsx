@@ -160,6 +160,12 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
 
   const average = Math.round((selectionSum as number) / usersSelected);
 
+	const blackTeam = users.filter(user => user.team === "black");
+	const whiteTeam = users.filter(user => user.team === "white");
+
+  const blackTeamReady = blackTeam.every((user) => Boolean(user.selection)) && blackTeam.length > 0;
+  const whiteTeamReady = whiteTeam.every((user) => Boolean(user.selection)) && whiteTeam.length > 0;
+
   return (
     <div>
       <Settings
@@ -219,6 +225,17 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
           </button>
         </div>
       )}
+
+      <div className={styles.banners}>
+        {(() => {
+          if (!initialState.teamsEnabled) return;
+
+          if (blackTeamReady && whiteTeamReady)
+            return <h3>Both teams are ready</h3>;
+          if (blackTeamReady) return <h3>Black team is ready</h3>;
+          if (whiteTeamReady) return <h3>White team is ready</h3>;
+        })()}
+      </div>
 
       <div className={styles.cardsContainer}>
         <Cards

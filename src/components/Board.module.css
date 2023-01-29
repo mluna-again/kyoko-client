@@ -165,3 +165,7 @@
   text-decoration: underline;
   cursor: pointer;
 }
+
+.banners {
+	text-align: center;
+}
