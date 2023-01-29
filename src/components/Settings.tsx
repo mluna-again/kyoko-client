@@ -2,6 +2,8 @@ import { useState } from "react";
 import cx from "classnames";
 import { motion } from "framer-motion";
 import Switch from "react-switch";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGear } from '@fortawesome/free-solid-svg-icons'
 import styles from "./Settings.module.css";
 
 type Props = {
@@ -101,7 +103,7 @@ const Settings = ({
         </>
       ) : (
         <button onClick={toggleMenu} className={styles.showBtn}>
-          ⚙
+					<FontAwesomeIcon icon={faGear} />
         </button>
       )}
     </motion.div>
