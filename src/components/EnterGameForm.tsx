@@ -42,7 +42,7 @@ const EnterGameForm = ({ onSave, teams }: Props) => {
     <form className={styles.formContainer} onSubmit={handleSubmit(enterGame)}>
       <h1>Select a username</h1>
 
-      <div>
+      <div className={styles.input}>
         <label htmlFor="username">Username</label>
         <input id="username" type="text" {...register("username")} />
         {errors.username && <p>{errors.username?.message}</p>}
@@ -50,7 +50,9 @@ const EnterGameForm = ({ onSave, teams }: Props) => {
 
       {teams && <Teams setTeam={setTeam} team={team} />}
 
-      <button disabled={isSubmitting}>Go</button>
+      <button disabled={isSubmitting} className={styles.go}>
+        Go
+      </button>
     </form>
   );
 };
