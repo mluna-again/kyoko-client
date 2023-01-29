@@ -84,7 +84,7 @@ const Board = ({
       channel.off("reveal_cards");
       channel.off("reset_room");
     };
-  }, [channel, showClock]);
+  }, [channel, showClock, resetUsers]);
 
   // sync settings
   // TODO: refactor to a hook
