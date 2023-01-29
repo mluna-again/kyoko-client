@@ -82,6 +82,10 @@
   opacity: 1;
 }
 
+.offline {
+	color: gray;
+}
+
 .user {
   display: flex;
   justify-content: center;

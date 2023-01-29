@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { UserType } from "../constants/types";
 import UserBadge from "./UserBadge";
 import styles from "./Card.module.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuestion } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
   user: UserType;
@@ -34,7 +36,7 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
           })}
         >
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
-            {user.emoji}
+            {user.emoji || <FontAwesomeIcon icon={faQuestion} />}
           </span>
           <motion.span
             animate={{
@@ -50,13 +52,14 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
             })()}
           </motion.span>
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
-            {user.emoji}
+            {user.emoji || <FontAwesomeIcon icon={faQuestion} />}
           </span>
         </motion.div>
         <div className={styles.user}>
           <h1
             className={cx(styles.title, {
               [styles.active]: user.name === playerName,
+							[styles.offline]: user.offline
             })}
           >
             {user.name}

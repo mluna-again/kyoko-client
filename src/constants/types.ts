@@ -3,6 +3,7 @@ export type UserType = {
   selection?: number;
   emoji?: string;
   team?: string;
+	offline?: boolean;
 };
 
 export type RoomType = {
