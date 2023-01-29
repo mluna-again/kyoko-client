@@ -5,6 +5,12 @@
   text-align: center;
 }
 
+@media screen and (max-width: 800px) {
+  .container {
+    padding: 5rem 1rem 0.5rem 1rem;
+  }
+}
+
 .inputGroup {
   margin-bottom: 2rem;
 }
