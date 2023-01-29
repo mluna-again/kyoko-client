@@ -88,3 +88,9 @@
   align-items: center;
   min-width: 200px;
 }
+
+@media screen and (max-width: 600px) {
+	.user {
+		min-width: unset;
+	}
+}

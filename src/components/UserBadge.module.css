@@ -3,6 +3,13 @@ img {
   width: 30px;
 }
 
+@media screen and (max-width: 600px) {
+	img {
+		height: 25px;
+		width: 25px;
+	}
+}
+
 .white {
   filter: invert(1);
 }
