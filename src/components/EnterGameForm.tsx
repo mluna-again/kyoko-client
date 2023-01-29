@@ -35,7 +35,10 @@ const EnterGameForm = ({ onSave, teams }: Props) => {
     const username = data.username;
     onSave(username, team);
 
-    localStorage.setItem("user", JSON.stringify({ username, forUrl: window.location.href }));
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ username, forUrl: window.location.href })
+    );
   };
 
   return (

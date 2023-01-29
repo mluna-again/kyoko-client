@@ -14,21 +14,21 @@ const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
 
 const getUserFromLocalStorage = () => {
-	const data = localStorage.getItem("user");
-	if (!data) return null;
+  const data = localStorage.getItem("user");
+  if (!data) return null;
 
-	try {
-		const parsed = JSON.parse(data);
+  try {
+    const parsed = JSON.parse(data);
 
-		if (window.location.href === parsed.forUrl) {
-			return parsed.username;
-		}
+    if (window.location.href === parsed.forUrl) {
+      return parsed.username;
+    }
 
-		return null;
-	} catch(_error) {
-		return null;
-	}
-}
+    return null;
+  } catch (_error) {
+    return null;
+  }
+};
 
 const Room = () => {
   const { state } = useLocation();

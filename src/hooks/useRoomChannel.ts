@@ -8,18 +8,18 @@ type Player = {
 };
 
 const diffUsers = (existingUsers: any[], newUsers: any[]) => {
-	const nextState = newUsers;
+  const nextState = newUsers;
 
-	existingUsers.forEach(user => {
-		const offline = !Boolean(newUsers.find(u => u.name === user.name));
+  existingUsers.forEach((user) => {
+    const offline = !Boolean(newUsers.find((u) => u.name === user.name));
 
-		if (!offline) return;
+    if (!offline) return;
 
-		nextState.push({...user, offline});
-	});
+    nextState.push({ ...user, offline });
+  });
 
-	return nextState;
-}
+  return nextState;
+};
 
 const useRoomChannel = (
   socket: Socket,
@@ -59,7 +59,7 @@ const useRoomChannel = (
     const syncUsers = () => {
       const newUsers = presence.list().map((user) => user.metas.at(-1));
 
-      setUsers(users => diffUsers(users, newUsers));
+      setUsers((users) => diffUsers(users, newUsers));
     };
     presence.onSync(syncUsers);
   }, [channel, player.username]);

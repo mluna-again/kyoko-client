@@ -83,7 +83,7 @@
 }
 
 .offline {
-	color: gray;
+  color: gray;
 }
 
 .user {
@@ -94,7 +94,7 @@
 }
 
 @media screen and (max-width: 600px) {
-	.user {
-		min-width: unset;
-	}
+  .user {
+    min-width: unset;
+  }
 }

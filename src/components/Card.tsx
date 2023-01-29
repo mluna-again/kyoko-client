@@ -59,7 +59,7 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
           <h1
             className={cx(styles.title, {
               [styles.active]: user.name === playerName,
-							[styles.offline]: user.offline
+              [styles.offline]: user.offline,
             })}
           >
             {user.name}
