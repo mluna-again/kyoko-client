@@ -2,19 +2,27 @@ import { Socket, Channel, Presence } from "phoenix";
 import { useState, useEffect } from "react";
 import { RoomType, UserType } from "../constants/types";
 
+type Player = {
+  username: string | null;
+  team?: string;
+};
+
 const useRoomChannel = (
   socket: Socket,
   room: RoomType | undefined,
-  player: string | null
+  player: Player
 ) => {
   const [error, setError] = useState<String>();
 
   const [channel, setChannel] = useState<Channel>();
   useEffect(() => {
     if (!room) return;
-    if (!player) return;
+    if (!player.username) return;
 
-    const chan = socket.channel(`room:${room.code}`, { player });
+    const chan = socket.channel(`room:${room.code}`, {
+      player: player.username,
+      team: player.team ?? null,
+    });
     chan
       .join()
       .receive("ok", () => () => setError(undefined))
@@ -25,12 +33,12 @@ const useRoomChannel = (
     return () => {
       chan.leave();
     };
-  }, [room, player, socket]);
+  }, [room, player.username, socket]);
 
   const [users, setUsers] = useState<UserType[]>([]);
   useEffect(() => {
     if (!channel) return;
-    if (!player) return;
+    if (!player.username) return;
 
     const presence = new Presence(channel);
     const syncUsers = () => {
@@ -38,7 +46,7 @@ const useRoomChannel = (
       setUsers(users);
     };
     presence.onSync(syncUsers);
-  }, [channel, player, users]);
+  }, [channel, player.username, users]);
 
   return { channel, users, error };
 };

@@ -26,6 +26,14 @@
   transition: all 0.2s ease;
 }
 
+.card.white {
+	border: 3px solid crimson !important;
+}
+
+.card.black {
+	border: 3px solid green !important;
+}
+
 .title {
   font-size: 24px;
   text-align: center;

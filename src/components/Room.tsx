@@ -1,5 +1,5 @@
 import { useParams, useLocation } from "react-router-dom";
-import { useRef } from "react";
+import { useState } from "react";
 import { Socket } from "phoenix";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
@@ -8,15 +8,18 @@ import Board from "./Board";
 import { SERVER_SOCKET_URL } from "../constants/values";
 import { useRoomInfo } from "../hooks/useRoomInfo";
 import styles from "./Room.module.css";
+import EnterGameForm from "./EnterGameForm";
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
 
 const Room = () => {
   const { state } = useLocation();
-  const playerName = useRef(
+  const [playerName, setPlayerName] = useState(
     (state as any)?.player || localStorage.getItem("user")
   );
+
+  const [team, setTeam] = useState<string | undefined>();
 
   const params = useParams();
   const { room, error: roomError } = useRoomInfo(params.roomId!);
@@ -24,7 +27,7 @@ const Room = () => {
     channel,
     users,
     error: channelError,
-  } = useRoomChannel(socket, room, playerName.current);
+  } = useRoomChannel(socket, room, { username: playerName, team });
 
   const copyLinkHandler = () => {
     toast("Link copied!", { type: "success" });
@@ -36,9 +39,13 @@ const Room = () => {
   // no username selected
   if (!room || !channel)
     return (
-      <div>
-        <h1>Select a username</h1>
-      </div>
+      <EnterGameForm
+        teams={room?.teamsEnabled}
+        onSave={(username, team) => {
+          setPlayerName(username);
+          setTeam(team);
+        }}
+      />
     );
 
   return (
@@ -56,7 +63,7 @@ const Room = () => {
       <div>
         <Board
           initialState={room}
-          playerName={playerName.current}
+          playerName={playerName}
           channel={channel}
           users={users}
         />

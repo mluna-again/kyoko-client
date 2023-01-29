@@ -14,7 +14,11 @@ export const useRoomInfo: useRoomInfo = (roomId: string) => {
   useEffect(() => {
     axios
       .get(`${SERVER_URL}/api/rooms/${roomId}`)
-      .then((response) => setRoom(response.data.data))
+      .then((response) => {
+        const data = response.data.data;
+
+        setRoom({ ...data, teamsEnabled: data.teams_enabled });
+      })
       .catch(() => setError("Server says: No"));
   }, [roomId]);
 

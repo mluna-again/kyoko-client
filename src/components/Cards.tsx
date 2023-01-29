@@ -25,6 +25,7 @@ const Cards = ({ users, showCards, showClock, playerName }: Options) => {
             playerName={playerName}
             show={showCards}
             showClock={showClock}
+						team={user.team}
           />
         </motion.div>
       ))}

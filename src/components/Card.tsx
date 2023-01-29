@@ -8,9 +8,10 @@ type Props = {
   playerName: string;
   show?: boolean;
   showClock: boolean;
+	team?: string;
 };
 
-const Card = ({ user, playerName, show, showClock }: Props) => {
+const Card = ({ user, playerName, show, showClock, team }: Props) => {
   const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
@@ -27,6 +28,8 @@ const Card = ({ user, playerName, show, showClock }: Props) => {
           }}
           className={cx(styles.card, {
             [styles.selected]: selected,
+						[styles.white]: team === "white",
+						[styles.black]: team === "black"
           })}
         >
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
