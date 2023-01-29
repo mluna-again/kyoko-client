@@ -194,7 +194,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
           allUsersSameAnswer={allUsersSameAnswer}
           showClock={showClock}
           showAnimation={showAnimation}
-          emojis={emojis}
+          emojis={enableEmojis ? emojis : DEFAULT_EMOJIS}
         />
         {(() => {
           if (showingCards) return null;
