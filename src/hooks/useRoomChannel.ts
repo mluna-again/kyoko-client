@@ -64,10 +64,10 @@ const useRoomChannel = (
     presence.onSync(syncUsers);
   }, [channel, player.username]);
 
-	const resetUserSelections = () => {
-		const resetter = (user: UserType) => ({...user, selection: undefined});
-		setUsers(users => users.map(resetter));
-	}
+  const resetUserSelections = () => {
+    const resetter = (user: UserType) => ({ ...user, selection: undefined });
+    setUsers((users) => users.map(resetter));
+  };
 
   return { channel, users, error, resetUserSelections };
 };
