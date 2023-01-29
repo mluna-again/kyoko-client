@@ -16,12 +16,17 @@
 .container:hover.selected {
   background-color: var(--primary);
   color: var(--white);
-  transform: translateY(-20px);
+  transform: translateY(-20px) rotate3d(0deg);
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
-.container:hover {
-  transform: translateY(-10px);
+.container:nth-of-type(even):hover {
+  transform: translateY(-10px) rotate3d(1, 1, -1, -15deg) skew(2deg);
+  box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.container:nth-of-type(odd):hover {
+  transform: translateY(-10px) rotate3d(1, 1, -1, 15deg) skew(-2deg);
   box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.3);
 }
 

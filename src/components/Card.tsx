@@ -46,7 +46,7 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
             {(() => {
               if (Number.isInteger(user.selection) && show)
                 return user.selection;
-              if (user.selection) return "?";
+              if (user.selection) return "";
             })()}
           </motion.span>
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
