@@ -38,9 +38,9 @@
   border-radius: 100%;
   color: var(--white);
   cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .emojisContainer {

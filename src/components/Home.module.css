@@ -23,9 +23,9 @@
 }
 
 .checkbox {
-	display: flex;
-	justify-content: space-between;
-	margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
 .playContainer {
@@ -47,6 +47,6 @@
 }
 
 .playContainer button:disabled {
-	background-color: gray;
-	cursor: none;
+  background-color: gray;
+  cursor: none;
 }
