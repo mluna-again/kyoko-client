@@ -9,6 +9,7 @@ import Clock from "./Clock";
 import CustomValue from "./CustomValue";
 import Settings from "./Settings";
 import styles from "./Board.module.css";
+import Cards from "./Cards";
 
 type Props = {
   users: UserType[];
@@ -50,7 +51,9 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
   );
 
   const [showingCards, setShowingCards] = useState(false);
-  const [gameOver, setGameOver] = useState(initialState?.status === "game_over" || false);
+  const [gameOver, setGameOver] = useState(
+    initialState?.status === "game_over" || false
+  );
   const [showCards, setShowCards] = useState(gameOver);
   useEffect(() => {
     channel.on("reveal_cards", () => {
@@ -68,7 +71,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
     channel.on("reset_room", () => {
       channel.push("reset_user", {});
       setGameOver(false);
-			setShowCards(false);
+      setShowCards(false);
     });
     return () => {
       channel.off("reveal_cards");
@@ -219,15 +222,12 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
       )}
 
       <div className={styles.cardsContainer}>
-        {users.map((user) => (
-          <Card
-            key={user.name}
-            user={user}
-            playerName={playerName}
-            show={showCards}
-            showClock={showClock}
-          />
-        ))}
+        <Cards
+          playerName={playerName}
+          users={users}
+          showCards={showCards}
+          showClock={showClock}
+        />
       </div>
 
       <div className={styles.optionsContainer}>
