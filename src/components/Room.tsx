@@ -41,6 +41,7 @@ const Room = () => {
   const params = useParams();
   const { room, error: roomError } = useRoomInfo(params.roomId!);
   const {
+		resetUserSelections,
     channel,
     users,
     error: channelError,
@@ -83,6 +84,7 @@ const Room = () => {
           playerName={playerName}
           channel={channel}
           users={users}
+					resetUsers={resetUserSelections}
         />
       </div>
     </div>

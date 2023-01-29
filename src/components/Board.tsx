@@ -15,6 +15,7 @@ type Props = {
   channel: Channel;
   playerName: string;
   initialState: any;
+	resetUsers: () => void
 };
 
 const DEFAULT_EMOJIS = [
@@ -41,7 +42,7 @@ const OPTIONS: any = {
   multiples_of_two: MULTIPLES_OF_TWO,
 };
 
-const Board = ({ users, channel, playerName, initialState }: Props) => {
+const Board = ({ users, channel, playerName, initialState, resetUsers }: Props) => {
   const [showClock, setShowClock] = useState(
     initialState?.settings?.clock ?? false
   );
@@ -71,6 +72,7 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
       channel.push("reset_user", {});
       setGameOver(false);
       setShowCards(false);
+			resetUsers();
     });
     return () => {
       channel.off("reveal_cards");
