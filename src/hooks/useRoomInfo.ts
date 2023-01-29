@@ -3,11 +3,11 @@ import axios from "axios";
 import { SERVER_URL } from "../constants/values";
 import { RoomType } from "../constants/types";
 
-type useRoomInfo = (roomId: string) => {
+type useRoomInfoType = (roomId: string) => {
   room: RoomType | undefined;
   error: string | null;
 };
-export const useRoomInfo: useRoomInfo = (roomId: string) => {
+export const useRoomInfo: useRoomInfoType = (roomId: string) => {
   const [room, setRoom] = useState<RoomType>();
   const [error, setError] = useState<string | null>(null);
 

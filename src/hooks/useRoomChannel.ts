@@ -33,6 +33,7 @@ const useRoomChannel = (
     return () => {
       chan.leave();
     };
+		// eslint-disable-next-line
   }, [room, player.username, socket]);
 
   const [users, setUsers] = useState<UserType[]>([]);
