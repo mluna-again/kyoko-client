@@ -1,0 +1,39 @@
+.container {
+	margin-bottom: 2rem;
+}
+
+.buttons {
+	display: flex;
+	justify-content: center;
+}
+
+.teamButton {
+	margin: 0 1rem;
+	border-radius: 100%;
+	border: none;
+	height: 100px;
+	width: 100px;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: all 0.2s ease;
+	background: transparent;
+}
+
+.teamButton:hover {
+	background-color: gray;
+}
+
+.teamButton img {
+	height: 60px;
+	width: 60px;
+}
+
+.teamButton.white img {
+	filter: invert(1);
+}
+
+.teamButton.selected {
+	background-color: gray;
+}
