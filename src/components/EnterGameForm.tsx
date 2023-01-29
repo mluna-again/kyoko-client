@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import styles from "./EnterGameForm.module.css";
+import Teams from "./Teams";
 
 type Inputs = {
   username: string;
@@ -17,7 +18,10 @@ const schema = yup
   })
   .required();
 
-type Props = { onSave: (username: string, team?: string) => void; teams?: boolean };
+type Props = {
+  onSave: (username: string, team?: string) => void;
+  teams?: boolean;
+};
 const EnterGameForm = ({ onSave, teams }: Props) => {
   const [team, setTeam] = useState("black");
 
@@ -44,33 +48,7 @@ const EnterGameForm = ({ onSave, teams }: Props) => {
         {errors.username && <p>{errors.username?.message}</p>}
       </div>
 
-      {teams && (
-        <div>
-          <h2>Select a team!</h2>
-
-          <div>
-            <button
-              type="button"
-              onClick={() => setTeam("white")}
-              className={`${styles.teamButton} ${
-                team === "white" ? "selected" : ""
-              }`}
-            >
-              White
-            </button>
-
-            <button
-              type="button"
-              onClick={() => setTeam("black")}
-              className={`${styles.teamButton} ${
-                team === "black" ? "selected" : ""
-              }`}
-            >
-              Black
-            </button>
-          </div>
-        </div>
-      )}
+      {teams && <Teams setTeam={setTeam} team={team} />}
 
       <button disabled={isSubmitting}>Go</button>
     </form>

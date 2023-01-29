@@ -45,3 +45,8 @@
   cursor: pointer;
   width: 80%;
 }
+
+.playContainer button:disabled {
+	background-color: gray;
+	cursor: none;
+}

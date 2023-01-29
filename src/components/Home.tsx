@@ -9,6 +9,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { SERVER_URL } from "../constants/values";
 import styles from "./Home.module.css";
+import Teams from "./Teams";
+
+// enabled by default
+const DEFAULT_TEAMS_OPTION = true;
 
 type Inputs = {
   roomName: string;
@@ -36,11 +40,16 @@ const Home = () => {
     localStorage.removeItem("user");
   }, []);
 
+  const [team, setTeam] = useState<string|undefined>();
+
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
+
+	const teamsEnabled = watch("teams", DEFAULT_TEAMS_OPTION);
 
   const navigate = useNavigate();
 
@@ -52,7 +61,7 @@ const Home = () => {
       const response = await axios.post(`${SERVER_URL}/api/rooms`, {
         room: {
           name: data.roomName,
-          first: { name: data.playerName },
+          first: { name: data.playerName, team },
           teams_enabled: data.teams,
         },
       });
@@ -68,6 +77,9 @@ const Home = () => {
       setLoading(false);
     }
   };
+
+
+	const submitDisabled = isSubmitting || loading || (teamsEnabled && !team);
 
   return (
     <motion.div animate={{ margin: "3rem" }} className={styles.container}>
@@ -109,13 +121,15 @@ const Home = () => {
           <input
             id="teams"
             type="checkbox"
-            defaultChecked
+            defaultChecked={DEFAULT_TEAMS_OPTION}
             {...register("teams")}
           />
         </div>
 
+        {teamsEnabled && <Teams team={team} setTeam={setTeam} />}
+
         <div className={styles.playContainer}>
-          <button disabled={isSubmitting || loading}>
+          <button disabled={submitDisabled}>
             {loading ? (
               <TailSpin
                 height="25"
