@@ -1,6 +1,7 @@
 import cx from "classnames";
 import { motion } from "framer-motion";
 import { UserType } from "../constants/types";
+import UserBadge from "./UserBadge";
 import styles from "./Card.module.css";
 
 type Props = {
@@ -8,7 +9,7 @@ type Props = {
   playerName: string;
   show?: boolean;
   showClock: boolean;
-	team?: string;
+  team?: string;
 };
 
 const Card = ({ user, playerName, show, showClock, team }: Props) => {
@@ -28,8 +29,8 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
           }}
           className={cx(styles.card, {
             [styles.selected]: selected,
-						[styles.white]: team === "white",
-						[styles.black]: team === "black"
+            [styles.white]: team === "white",
+            [styles.black]: team === "black",
           })}
         >
           <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
@@ -52,16 +53,21 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
             {user.emoji}
           </span>
         </motion.div>
-        <h1
-          className={cx(styles.title, {
-            [styles.active]: user.name === playerName,
-          })}
-        >
-          {user.name}
-          {user.name === playerName && (
-            <span className={styles.you}>(You)</span>
-          )}
-        </h1>
+        <div className={styles.user}>
+          <h1
+            className={cx(styles.title, {
+              [styles.active]: user.name === playerName,
+            })}
+          >
+            {user.name}
+            {user.name === playerName && (
+              <span className={styles.you}>(You)</span>
+            )}
+          </h1>
+					<div className={styles.badge}>
+						<UserBadge team={user.team} />
+					</div>
+        </div>
       </div>
     </div>
   );

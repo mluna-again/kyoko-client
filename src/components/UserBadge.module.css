@@ -1,0 +1,8 @@
+img {
+	height: 30px;
+	width: 30px;
+}
+
+.white {
+	filter: invert(1);
+}
