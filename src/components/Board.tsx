@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
-import Card from "./Card";
 import Option from "./Option";
 import Clock from "./Clock";
 import CustomValue from "./CustomValue";
