@@ -64,9 +64,9 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
               <span className={styles.you}>(You)</span>
             )}
           </h1>
-					<div className={styles.badge}>
-						<UserBadge team={user.team} />
-					</div>
+          <div className={styles.badge}>
+            <UserBadge team={user.team} />
+          </div>
         </div>
       </div>
     </div>

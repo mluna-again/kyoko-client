@@ -40,7 +40,12 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
             disabled={gameOver}
           />
         </div>
-        <button disabled={!isValidNumber} className={`${!isValidNumber && styles.disabled}`}>Confirm</button>
+        <button
+          disabled={!isValidNumber}
+          className={`${!isValidNumber && styles.disabled}`}
+        >
+          Confirm
+        </button>
       </form>
     </div>
   );

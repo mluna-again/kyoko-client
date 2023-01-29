@@ -40,7 +40,7 @@ const Home = () => {
     localStorage.removeItem("user");
   }, []);
 
-  const [team, setTeam] = useState<string|undefined>();
+  const [team, setTeam] = useState<string | undefined>();
 
   const {
     register,
@@ -49,7 +49,7 @@ const Home = () => {
     formState: { errors, isSubmitting },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
 
-	const teamsEnabled = watch("teams", DEFAULT_TEAMS_OPTION);
+  const teamsEnabled = watch("teams", DEFAULT_TEAMS_OPTION);
 
   const navigate = useNavigate();
 
@@ -78,8 +78,7 @@ const Home = () => {
     }
   };
 
-
-	const submitDisabled = isSubmitting || loading || (teamsEnabled && !team);
+  const submitDisabled = isSubmitting || loading || (teamsEnabled && !team);
 
   return (
     <motion.div animate={{ margin: "3rem" }} className={styles.container}>

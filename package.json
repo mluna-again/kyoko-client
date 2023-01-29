@@ -40,7 +40,8 @@
     "build": "react-scripts build",
     "test:react": "react-scripts test",
     "test": "yarn playwright test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+		"prettier": "prettier --write \"./src/**/*.(tsx|ts|jsx|js)\""
   },
   "eslintConfig": {
     "extends": [
@@ -61,6 +62,7 @@
     ]
   },
   "devDependencies": {
-    "@playwright/test": "^1.22.2"
+    "@playwright/test": "^1.22.2",
+    "prettier": "^2.8.3"
   }
 }

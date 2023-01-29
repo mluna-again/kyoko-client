@@ -15,7 +15,7 @@ const Cards = ({ users, showCards, showClock, playerName }: Options) => {
       {users.map((user) => (
         <motion.div
           key={user.name}
-					initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.8, opacity: 0 }}
           transition={{ type: "spring", duration: 0.2 }}
@@ -25,7 +25,7 @@ const Cards = ({ users, showCards, showClock, playerName }: Options) => {
             playerName={playerName}
             show={showCards}
             showClock={showClock}
-						team={user.team}
+            team={user.team}
           />
         </motion.div>
       ))}

@@ -160,11 +160,13 @@ const Board = ({ users, channel, playerName, initialState }: Props) => {
 
   const average = Math.round((selectionSum as number) / usersSelected);
 
-	const blackTeam = users.filter(user => user.team === "black");
-	const whiteTeam = users.filter(user => user.team === "white");
+  const blackTeam = users.filter((user) => user.team === "black");
+  const whiteTeam = users.filter((user) => user.team === "white");
 
-  const blackTeamReady = blackTeam.every((user) => Boolean(user.selection)) && blackTeam.length > 0;
-  const whiteTeamReady = whiteTeam.every((user) => Boolean(user.selection)) && whiteTeam.length > 0;
+  const blackTeamReady =
+    blackTeam.every((user) => Boolean(user.selection)) && blackTeam.length > 0;
+  const whiteTeamReady =
+    whiteTeam.every((user) => Boolean(user.selection)) && whiteTeam.length > 0;
 
   return (
     <div>

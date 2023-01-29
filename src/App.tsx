@@ -2,8 +2,8 @@ import { ToastContainer } from "react-toastify";
 import cx from "classnames";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiamond } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiamond } from "@fortawesome/free-solid-svg-icons";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Room from "./components/Room";
@@ -19,8 +19,9 @@ function App() {
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">
             <span>
-							<FontAwesomeIcon icon={faDiamond} />
-						</span> Kyoko
+              <FontAwesomeIcon icon={faDiamond} />
+            </span>{" "}
+            Kyoko
           </Link>
         </nav>
         <Routes>
