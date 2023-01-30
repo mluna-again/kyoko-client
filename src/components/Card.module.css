@@ -79,6 +79,7 @@
 .cardEmoji {
   transition-delay: 0.5s;
   transition: all 1.2;
+	color: white;
 }
 
 .cardEmoji:first-of-type {
