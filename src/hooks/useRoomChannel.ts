@@ -65,7 +65,7 @@ const useRoomChannel = (
   }, [channel, player.username]);
 
   const resetUserSelections = () => {
-    const resetter = (user: UserType) => ({ ...user, selection: undefined });
+    const resetter = (user: UserType) => ({ ...user, selection: undefined, emoji: undefined });
     setUsers((users) => users.map(resetter));
   };
 
