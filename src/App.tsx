@@ -19,9 +19,11 @@ function App() {
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">
             <span>
-              <FontAwesomeIcon icon={faDiamond} />
+              <FontAwesomeIcon className={styles.logo} icon={faDiamond} />
             </span>{" "}
-            Kyoko
+            <span>
+							Kyoko
+						</span>
           </Link>
         </nav>
         <Routes>
