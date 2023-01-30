@@ -20,12 +20,11 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
         <motion.div
           animate={{
             rotateY: show ? [0, 180] : 0,
-            backgroundColor: selected && !show ? "var(--primary)" : "white",
             color: show ? "var(--primary)" : "white",
             border:
               selected && !show
-                ? "2px solid white"
-                : "2px solid var(--primary)",
+                ? "2px solid var(--primary)"
+                : "2px dashed var(--primary)",
           }}
           className={cx(styles.card, {
             [styles.selected]: selected,

@@ -26,6 +26,23 @@
   transition: all 0.2s ease;
 }
 
+@keyframes glow {
+  from {
+    box-shadow: 0px 0px 15px #fff, 0px 0px 15px var(--primary);
+  }
+  to {
+    box-shadow: 0px 0px 30px #fff, 0px 0px 30px var(--primary);
+  }
+}
+
+.card.selected {
+  animation-name: glow;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background-color: var(--primary);
+}
+
 .title {
   font-size: 24px;
   text-align: center;
@@ -52,11 +69,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
-
-.card.selected {
-  border: none;
-  background-color: var(--primary);
 }
 
 .cardEmoji {
