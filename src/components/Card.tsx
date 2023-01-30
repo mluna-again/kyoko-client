@@ -28,6 +28,7 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
           }}
           className={cx(styles.card, {
             [styles.selected]: selected,
+            [styles.selectedOver]: selected && show,
             [styles.white]: team === "white",
             [styles.black]: team === "black",
           })}
@@ -37,6 +38,7 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
           </span>
           <motion.span
             animate={{
+              color: show ? "white" : "transparent",
               opacity: show ? 1 : 0,
               rotateY: 180,
             }}

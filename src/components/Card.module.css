@@ -43,6 +43,11 @@
   background-color: var(--primary);
 }
 
+.card.selectedOver {
+  animation: none;
+  background-color: var(--primary);
+}
+
 .title {
   font-size: 24px;
   text-align: center;

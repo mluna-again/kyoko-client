@@ -21,9 +21,7 @@ function App() {
             <span>
               <FontAwesomeIcon className={styles.logo} icon={faDiamond} />
             </span>{" "}
-            <span>
-							Kyoko
-						</span>
+            <span>Kyoko</span>
           </Link>
         </nav>
         <Routes>

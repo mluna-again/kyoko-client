@@ -24,13 +24,13 @@
 }
 
 .nav .logo {
-	transition: all 0.2s ease;
+  transition: all 0.2s ease;
 }
 
 .nav:hover span {
-	color: var(--primary);
+  color: var(--primary);
 }
 
 .nav:hover .logo {
-	transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
