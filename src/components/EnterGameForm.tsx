@@ -23,7 +23,7 @@ type Props = {
   teams?: boolean;
 };
 const EnterGameForm = ({ onSave, teams }: Props) => {
-  const [team, setTeam] = useState("black");
+  const [team, setTeam] = useState(teams ? "black" : undefined);
 
   const {
     register,
