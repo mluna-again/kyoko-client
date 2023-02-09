@@ -16,7 +16,7 @@
 .container:hover.selected {
   background-color: var(--primary);
   color: var(--white);
-  transform: translateY(-20px) rotate3d(0deg);
+  transform: translateY(-20px);
   box-shadow: 5px 10px 10px rgba(0, 0, 0, 0.3);
 }
 
