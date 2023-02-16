@@ -65,6 +65,7 @@ const Home = () => {
           name: data.roomName,
           first: { name: data.playerName, team },
           teams_enabled: data.teams,
+					rating_type: data.ratingType
         },
       });
 

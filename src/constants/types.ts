@@ -11,4 +11,5 @@ export type RoomType = {
   name: string;
   users: UserType[];
   teamsEnabled: boolean;
+	ratingType: string;
 };
