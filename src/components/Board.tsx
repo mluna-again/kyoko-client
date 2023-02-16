@@ -3,12 +3,13 @@ import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
-import Option from "./Option";
 import Clock from "./Clock";
 import CustomValue from "./CustomValue";
 import Settings from "./Settings";
 import styles from "./Board.module.css";
 import Cards from "./Cards";
+import Rating from "./Rating";
+import { DEFAULT_EMOJIS } from "../constants/emojis";
 
 type Props = {
   users: UserType[];
@@ -16,30 +17,6 @@ type Props = {
   playerName: string;
   initialState: any;
   resetUsers: () => void;
-};
-
-const DEFAULT_EMOJIS = [
-  "🂡",
-  "🂧",
-  "🂼",
-  "🃈",
-  "🃝",
-  "🦄",
-  "😑",
-  "😳",
-  "😑",
-  "👀",
-  "🤨",
-];
-const FIBONACCI = [0, 1, 2, 3, 5, 8, 13, 21, 34];
-const LINEAR = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-const POWER_OF_TWO = [2, 4, 8, 16, 32, 64, 128, 256, 512];
-const MULTIPLES_OF_TWO = [2, 4, 6, 8, 10, 12, 14, 16, 18];
-const OPTIONS: any = {
-  fibonacci: FIBONACCI,
-  linear: LINEAR,
-  power_of_two: POWER_OF_TWO,
-  multiples_of_two: MULTIPLES_OF_TWO,
 };
 
 const Board = ({
@@ -258,15 +235,13 @@ const Board = ({
 
       <div className={styles.optionsContainer}>
         {optionsType !== "custom" ? (
-          OPTIONS[optionsType].map((opt: any) => (
-            <Option
-              selected={opt === selectedOption}
-              key={opt}
-              value={opt}
-              onChange={selectionHandler}
-              gameOver={gameOver || showingCards}
-            />
-          ))
+          <Rating
+						ratingType={initialState?.ratingType}
+            optionsType={optionsType}
+            selectedOption={selectedOption}
+            selectionHandler={selectionHandler}
+            gameOver={gameOver || showingCards}
+          />
         ) : (
           <div className={styles.custom}>
             <CustomValue
