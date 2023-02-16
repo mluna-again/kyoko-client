@@ -28,6 +28,26 @@
   border: 2px solid var(--primary);
 }
 
+.selectContainer {
+	display: flex;
+	flex-direction: column;
+}
+
+.selectLabel {
+	text-align: start;
+	margin-bottom: 8px;
+}
+
+.select {
+	background-color: var(--primary);
+	color: var(--white);
+	padding: 10px;
+	border: none;
+	border-radius: 4px;
+	width: 100%;
+	margin-bottom: 2rem;
+}
+
 .checkbox {
   display: flex;
   justify-content: space-between;

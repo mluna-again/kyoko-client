@@ -18,6 +18,7 @@ type Inputs = {
   roomName: string;
   playerName: string;
   teams: boolean;
+  ratingType: "cards" | "shirts";
 };
 
 const schema = yup
@@ -31,6 +32,7 @@ const schema = yup
       .required("Required")
       .max(30, "Should be at most 30 characters long"),
     teams: yup.boolean(),
+    ratingType: yup.string().required("Required"),
   })
   .required();
 
@@ -114,6 +116,20 @@ const Home = () => {
           />
           {errors.playerName && <p>{errors.playerName?.message}</p>}
         </div>
+
+				<div className={styles.selectContainer}>
+					<label htmlFor="ratingType" className={styles.selectLabel}>
+						Rating System
+					</label>
+					<select
+						id="ratingType"
+						className={styles.select}
+						{...register("ratingType", { required: true })}
+					>
+						<option value="shirts">T-shirt size</option>
+						<option value="cards">Cards</option>
+					</select>
+				</div>
 
         <div className={styles.checkbox}>
           <label htmlFor="teams">Enable teams</label>
