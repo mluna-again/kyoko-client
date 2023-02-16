@@ -56,6 +56,7 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	z-index: 10;
+	fill: var(--text-dark);
 }
 
 .card.shirt span {
@@ -64,7 +65,11 @@
 	left: 50%;
 	transform: translate(-50%, -50%) rotateY(0);
 	z-index: 10;
-	color: black;
+	color: var(--text-dark);
+}
+
+.card.shirt.selected svg {
+	fill: var(--primary);
 }
 
 .card.shirt.selected span {

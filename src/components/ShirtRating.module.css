@@ -19,6 +19,11 @@
 	background: none;
 	border: none;
 	cursor: pointer;
+	color: var(--text-dark);
+}
+
+.shirt svg {
+	fill: var(--text-dark);
 }
 
 .shirt button.selected svg {
