@@ -43,6 +43,42 @@
   background-color: var(--primary);
 }
 
+.card.shirt {
+	border: none !important;
+	background: none;
+	box-shadow: none !important;
+	position: relative;
+}
+
+.card.shirt svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+}
+
+.card.shirt span {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) rotateY(0);
+	z-index: 10;
+	color: black;
+}
+
+.card.shirt.selected span {
+	color: var(--primary) !important;
+	transform: translate(-50%, -50%) rotateY(180deg);
+}
+
+.card.shirt.selected {
+	fill: var(--primary);
+	border: none !important;
+	background: none;
+	box-shadow: none !important;
+}
+
 .card.selectedOver {
   animation: none;
   background-color: var(--primary);

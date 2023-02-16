@@ -10,6 +10,7 @@ import styles from "./Board.module.css";
 import Cards from "./Cards";
 import Rating from "./Rating";
 import { DEFAULT_EMOJIS } from "../constants/emojis";
+import { getShirtMedian } from "../constants/ratings";
 
 type Props = {
   users: UserType[];
@@ -144,6 +145,7 @@ const Board = ({
   }, [channel]);
 
   const average = Math.round((selectionSum as number) / usersSelected);
+	const averageMessage = initialState?.ratingType === "shirts" ? getShirtMedian(usersWithSelection) : average;
 
   const blackTeam = users.filter((user) => user.team === "black");
   const whiteTeam = users.filter((user) => user.team === "white");
@@ -226,6 +228,7 @@ const Board = ({
 
       <div className={styles.cardsContainer}>
         <Cards
+					ratingType={initialState?.ratingType}
           playerName={playerName}
           users={users}
           showCards={showCards}
@@ -236,7 +239,7 @@ const Board = ({
       <div className={styles.optionsContainer}>
         {optionsType !== "custom" ? (
           <Rating
-						ratingType={initialState?.ratingType}
+            ratingType={initialState?.ratingType}
             optionsType={optionsType}
             selectedOption={selectedOption}
             selectionHandler={selectionHandler}
@@ -250,19 +253,22 @@ const Board = ({
             />
           </div>
         )}
-        <div className={styles.optionsSelectorContainer}>
-          <select
-            disabled={gameOver || showingCards}
-            defaultValue={optionsType}
-            onChange={changeOptionsHandler}
-          >
-            <option value="fibonacci">Fibonacci</option>
-            <option value="linear">Linear</option>
-            <option value="multiples_of_two">Multiples of 2</option>
-            <option value="power_of_two">Power of 2</option>
-            <option value="custom">Custom</option>
-          </select>
-        </div>
+
+        {initialState?.ratingType === "cards" && (
+          <div className={styles.optionsSelectorContainer}>
+            <select
+              disabled={gameOver || showingCards}
+              defaultValue={optionsType}
+              onChange={changeOptionsHandler}
+            >
+              <option value="fibonacci">Fibonacci</option>
+              <option value="linear">Linear</option>
+              <option value="multiples_of_two">Multiples of 2</option>
+              <option value="power_of_two">Power of 2</option>
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+        )}
       </div>
 
       <motion.div
@@ -272,7 +278,7 @@ const Board = ({
         {allUsersSameAnswer && (
           <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
         )}
-        {Boolean(average) && <h1 className={styles.avg}>Average: {average}</h1>}
+        {Boolean(average) && <h1 className={styles.avg}>Average: {averageMessage}</h1>}
       </motion.div>
     </div>
   );

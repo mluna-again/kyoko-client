@@ -2,6 +2,8 @@ import cx from "classnames";
 import { motion } from "framer-motion";
 import { UserType } from "../constants/types";
 import UserBadge from "./UserBadge";
+import Shirt from "../svg/Shirt";
+import { SHIRT_SIZES } from "../constants/ratings";
 import styles from "./Card.module.css";
 
 type Props = {
@@ -10,9 +12,17 @@ type Props = {
   show?: boolean;
   showClock: boolean;
   team?: string;
+  ratingType?: string;
 };
 
-const Card = ({ user, playerName, show, showClock, team }: Props) => {
+const Card = ({
+  user,
+  playerName,
+  show,
+  showClock,
+  team,
+  ratingType,
+}: Props) => {
   const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
@@ -31,28 +41,46 @@ const Card = ({ user, playerName, show, showClock, team }: Props) => {
             [styles.selectedOver]: selected && show,
             [styles.white]: team === "white",
             [styles.black]: team === "black",
+            [styles.shirt]: ratingType === "shirts",
           })}
         >
-          <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
-            {user.emoji}
-          </span>
-          <motion.span
-            animate={{
-              color: show ? "white" : "transparent",
-              opacity: show ? 1 : 0,
-              rotateY: 180,
-            }}
-            transition={{ delay: showClock ? 0.5 : 0 }}
-          >
-            {(() => {
-              if (Number.isInteger(user.selection) && show)
-                return user.selection;
-              if (user.selection) return "";
-            })()}
-          </motion.span>
-          <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
-            {user.emoji}
-          </span>
+          {ratingType === "shirts" ? (
+            <div>
+              <Shirt />
+              <motion.span
+                animate={{
+                  color: show ? "white" : "transparent",
+                  opacity: show ? 1 : 0
+                }}
+                transition={{ delay: showClock ? 0.5 : 0 }}
+              >
+                {SHIRT_SIZES.find(({ value }) => value === user.selection)?.label}
+              </motion.span>
+            </div>
+          ) : (
+            <>
+              <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
+                {user.emoji}
+              </span>
+              <motion.span
+                animate={{
+                  color: show ? "white" : "transparent",
+                  opacity: show ? 1 : 0,
+                  rotateY: 180,
+                }}
+                transition={{ delay: showClock ? 0.5 : 0 }}
+              >
+                {(() => {
+                  if (Number.isInteger(user.selection) && show)
+                    return user.selection;
+                  if (user.selection) return "";
+                })()}
+              </motion.span>
+              <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
+                {user.emoji}
+              </span>
+            </>
+          )}
         </motion.div>
         <div className={styles.user}>
           <h1
