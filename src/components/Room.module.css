@@ -21,3 +21,8 @@
 .inviteContainer span {
   text-decoration: underline;
 }
+
+.invalidLink {
+	text-align: center;
+	margin-top: 8rem;
+}

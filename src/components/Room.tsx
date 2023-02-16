@@ -51,8 +51,8 @@ const Room = () => {
     toast("Link copied!", { type: "success" });
   };
 
-  if (channelError) return <h1>Invalid room...</h1>;
-  if (roomError) return <h1>{roomError}</h1>;
+  if (channelError) return <h1 className={styles.invalidLink}>Invalid room...</h1>;
+  if (roomError) return <h1 className={styles.invalidLink}>{roomError}</h1>;
 
   // no username selected
   if (!room || !channel)
