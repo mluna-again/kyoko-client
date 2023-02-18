@@ -63,9 +63,9 @@ const Home = () => {
       const response = await axios.post(`${SERVER_URL}/api/rooms`, {
         room: {
           name: data.roomName,
-          first: { name: data.playerName, team },
+          first: { name: data.playerName, team: data.teams ? team : undefined },
           teams_enabled: data.teams,
-					rating_type: data.ratingType
+          rating_type: data.ratingType,
         },
       });
 
@@ -118,19 +118,19 @@ const Home = () => {
           {errors.playerName && <p>{errors.playerName?.message}</p>}
         </div>
 
-				<div className={styles.selectContainer}>
-					<label htmlFor="ratingType" className={styles.selectLabel}>
-						Rating System
-					</label>
-					<select
-						id="ratingType"
-						className={styles.select}
-						{...register("ratingType", { required: true })}
-					>
-						<option value="shirts">T-shirt size</option>
-						<option value="cards">Cards</option>
-					</select>
-				</div>
+        <div className={styles.selectContainer}>
+          <label htmlFor="ratingType" className={styles.selectLabel}>
+            Rating System
+          </label>
+          <select
+            id="ratingType"
+            className={styles.select}
+            {...register("ratingType", { required: true })}
+          >
+            <option value="shirts">T-shirt size</option>
+            <option value="cards">Cards</option>
+          </select>
+        </div>
 
         <div className={styles.checkbox}>
           <label htmlFor="teams">Enable teams</label>
