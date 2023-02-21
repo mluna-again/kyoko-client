@@ -125,6 +125,7 @@ const Home = () => {
           <select
             id="ratingType"
             className={styles.select}
+						defaultValue="cards"
             {...register("ratingType", { required: true })}
           >
             <option value="shirts">T-shirt size</option>
