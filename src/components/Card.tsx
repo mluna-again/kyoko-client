@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { UserType } from "../constants/types";
 import UserBadge from "./UserBadge";
 import Shirt from "../svg/Shirt";
+import UserActionMenu from "./UserActionMenu";
 import { SHIRT_SIZES } from "../constants/ratings";
 import styles from "./Card.module.css";
 
@@ -26,6 +27,8 @@ const Card = ({
   const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
+			<UserActionMenu />
+
       <div className={styles.cardContainer}>
         <motion.div
           animate={{
