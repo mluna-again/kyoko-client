@@ -9,6 +9,7 @@ import { SERVER_SOCKET_URL } from "../constants/values";
 import { useRoomInfo } from "../hooks/useRoomInfo";
 import styles from "./Room.module.css";
 import EnterGameForm from "./EnterGameForm";
+import RoomContext from "../contexts/RoomContext";
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
@@ -51,7 +52,8 @@ const Room = () => {
     toast("Link copied!", { type: "success" });
   };
 
-  if (channelError) return <h1 className={styles.invalidLink}>Invalid room...</h1>;
+  if (channelError)
+    return <h1 className={styles.invalidLink}>Invalid room...</h1>;
   if (roomError) return <h1 className={styles.invalidLink}>{roomError}</h1>;
 
   // no username selected
@@ -67,27 +69,29 @@ const Room = () => {
     );
 
   return (
-    <div className={styles.container}>
-      <CopyToClipboard
-        text={`${window.origin}/${room.code}`}
-        onCopy={copyLinkHandler}
-      >
-        <button className={styles.inviteContainer}>
-          <h3>Feeling lonely?😴</h3>
-          <h3 className={styles.inviteLink}>Invite your friends</h3>
-        </button>
-      </CopyToClipboard>
+    <RoomContext.Provider value={{ channel }}>
+      <div className={styles.container}>
+        <CopyToClipboard
+          text={`${window.origin}/${room.code}`}
+          onCopy={copyLinkHandler}
+        >
+          <button className={styles.inviteContainer}>
+            <h3>Feeling lonely?😴</h3>
+            <h3 className={styles.inviteLink}>Invite your friends</h3>
+          </button>
+        </CopyToClipboard>
 
-      <div>
-        <Board
-          initialState={room}
-          playerName={playerName}
-          channel={channel}
-          users={users}
-          resetUsers={resetUserSelections}
-        />
+        <div>
+          <Board
+            initialState={room}
+            playerName={playerName}
+            channel={channel}
+            users={users}
+            resetUsers={resetUserSelections}
+          />
+        </div>
       </div>
-    </div>
+    </RoomContext.Provider>
   );
 };
 
