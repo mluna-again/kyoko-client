@@ -1,3 +1,4 @@
+import swal from "sweetalert2";
 import { Socket, Channel, Presence } from "phoenix";
 import { useState, useEffect } from "react";
 import { RoomType, UserType } from "../constants/types";
@@ -22,13 +23,13 @@ const diffUsers = (existingUsers: any[], newUsers: any[]) => {
 };
 
 type Config = {
-	onUserUpdate: (user: UserType) => void;
-}
+  onUserUpdate: (user: UserType) => void;
+};
 const useRoomChannel = (
   socket: Socket,
   room: RoomType | undefined,
   player: Player,
-	config: Config
+  config: Config
 ) => {
   const [error, setError] = useState<String>();
 
@@ -66,9 +67,26 @@ const useRoomChannel = (
         )
       );
 
-			if (player.username === user.old_name) {
-				config.onUserUpdate(user);
-			}
+      if (player.username === user.old_name) {
+        config.onUserUpdate(user);
+      }
+    });
+
+    channel.on("user:kicked", (user: any) => {
+      setUsers((users) => users.filter((u) => u.name !== user.name));
+      if (player.username === user.name) {
+        channel.leave();
+				localStorage.removeItem("user");
+        swal
+          .fire({
+            title: "You have been kicked from the room",
+            icon: "warning",
+            confirmButtonText: "OK",
+          })
+          .then(() => {
+            window.location.href = "/";
+          });
+      }
     });
 
     const presence = new Presence(channel);
@@ -82,6 +100,7 @@ const useRoomChannel = (
 
     return () => {
       channel.off("user:update");
+      channel.off("user:kicked");
     };
   }, [channel, player.username]);
 

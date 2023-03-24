@@ -18,7 +18,7 @@ type Props = {
   user: UserType;
 };
 const UserActionMenu = ({ user }: Props) => {
-  const { loggedUser } = useContext(RoomContext);
+  const { loggedUser, channel } = useContext(RoomContext);
   const isLoggedUser = loggedUser === user.name;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,7 +28,7 @@ const UserActionMenu = ({ user }: Props) => {
     [styles.active]: menuOpen,
   });
 
-	const { roomId } = useParams();
+  const { roomId } = useParams();
   const changeName = ({ value }: any) => {
     if (!value) return;
 
@@ -62,7 +62,20 @@ const UserActionMenu = ({ user }: Props) => {
   };
 
   const kickPlayer = () => {
-    toast(`User ${user.name} kicked`, { type: "warning" });
+    if (!channel) {
+      return toast("Could not kick player...", { type: "error" });
+    }
+    channel
+      .push("user:kick", user)
+      .receive("ok", () =>
+        toast(`User ${user.name} kicked`, { type: "warning" })
+      )
+      .receive("error", () =>
+        toast("Could not kick player...", { type: "error" })
+      )
+      .receive("timeout", () =>
+        toast("Could not kick player...", { type: "error" })
+      );
   };
 
   const kickPlayerHandker = (e: React.MouseEvent<HTMLButtonElement>) => {
