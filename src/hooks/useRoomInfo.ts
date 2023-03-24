@@ -17,7 +17,11 @@ export const useRoomInfo: useRoomInfoType = (roomId: string) => {
       .then((response) => {
         const data = response.data.data;
 
-        setRoom({ ...data, teamsEnabled: data.teams_enabled, ratingType: data.rating_type });
+        setRoom({
+          ...data,
+          teamsEnabled: data.teams_enabled,
+          ratingType: data.rating_type,
+        });
       })
       .catch(() => setError("Server says: No"));
   }, [roomId]);

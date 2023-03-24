@@ -76,7 +76,7 @@ const useRoomChannel = (
       setUsers((users) => users.filter((u) => u.name !== user.name));
       if (player.username === user.name) {
         channel.leave();
-				localStorage.removeItem("user");
+        localStorage.removeItem("user");
         swal
           .fire({
             title: "You have been kicked from the room",

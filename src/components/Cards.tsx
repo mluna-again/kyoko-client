@@ -7,10 +7,16 @@ type Options = {
   showCards: boolean;
   showClock: boolean;
   users: UserType[];
-	ratingType?: string;
+  ratingType?: string;
 };
 
-const Cards = ({ users, showCards, showClock, playerName, ratingType }: Options) => {
+const Cards = ({
+  users,
+  showCards,
+  showClock,
+  playerName,
+  ratingType,
+}: Options) => {
   return (
     <AnimatePresence>
       {users.map((user) => (
@@ -22,7 +28,7 @@ const Cards = ({ users, showCards, showClock, playerName, ratingType }: Options)
           transition={{ type: "spring", duration: 0.2 }}
         >
           <Card
-						ratingType={ratingType}
+            ratingType={ratingType}
             user={user}
             playerName={playerName}
             show={showCards}

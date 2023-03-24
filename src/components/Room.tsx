@@ -29,7 +29,7 @@ const getUserFromLocalStorage = () => {
 
 const Room = () => {
   const [playerName, setPlayerName] = useState(getUserFromLocalStorage());
-	const onUserUpdate = ({ name }: any) => setPlayerName(name);
+  const onUserUpdate = ({ name }: any) => setPlayerName(name);
 
   const [team, setTeam] = useState<string | undefined>();
 
@@ -40,7 +40,12 @@ const Room = () => {
     channel,
     users,
     error: channelError,
-  } = useRoomChannel(socket, room, { username: playerName, team }, { onUserUpdate});
+  } = useRoomChannel(
+    socket,
+    room,
+    { username: playerName, team },
+    { onUserUpdate }
+  );
 
   const copyLinkHandler = () => {
     toast("Link copied!", { type: "success" });
@@ -63,9 +68,7 @@ const Room = () => {
     );
 
   return (
-    <RoomContext.Provider
-      value={{ channel, loggedUser: playerName }}
-    >
+    <RoomContext.Provider value={{ channel, loggedUser: playerName }}>
       <div className={styles.container}>
         <CopyToClipboard
           text={`${window.origin}/${room.code}`}

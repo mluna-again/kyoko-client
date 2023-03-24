@@ -1,52 +1,52 @@
 .shirts {
-	display: flex;
-	width: 90%;
-	height: 80px;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  width: 90%;
+  height: 80px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .shirt {
-	transition: all 0.1s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 .shirt:hover {
-	transform: translateY(-5px);
+  transform: translateY(-5px);
 }
 
 .shirt button {
-	position: relative;
-	background: none;
-	border: none;
-	cursor: pointer;
-	color: var(--text-dark);
+  position: relative;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-dark);
 }
 
 .shirt svg {
-	fill: var(--text-dark);
+  fill: var(--text-dark);
 }
 
 .shirt button.selected svg {
-	fill: var(--primary);
+  fill: var(--primary);
 }
 
 .shirt button.selected {
-	color: var(--primary);
+  color: var(--primary);
 }
 
 .shirt img {
-	width: 80px;
-	height: 80px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .shirt span {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	font-size: 14px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
 }

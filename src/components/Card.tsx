@@ -27,7 +27,7 @@ const Card = ({
   const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
-			<UserActionMenu user={user} />
+      <UserActionMenu user={user} />
 
       <div className={styles.cardContainer}>
         <motion.div
@@ -53,11 +53,14 @@ const Card = ({
               <motion.span
                 animate={{
                   color: show ? "white" : "transparent",
-                  opacity: show ? 1 : 0
+                  opacity: show ? 1 : 0,
                 }}
                 transition={{ delay: showClock ? 0.5 : 0 }}
               >
-                {SHIRT_SIZES.find(({ value }) => value === user.selection)?.label}
+                {
+                  SHIRT_SIZES.find(({ value }) => value === user.selection)
+                    ?.label
+                }
               </motion.span>
             </div>
           ) : (

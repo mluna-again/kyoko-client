@@ -145,7 +145,10 @@ const Board = ({
   }, [channel]);
 
   const average = Math.round((selectionSum as number) / usersSelected);
-	const averageMessage = initialState?.ratingType === "shirts" ? getShirtMedian(usersWithSelection) : average;
+  const averageMessage =
+    initialState?.ratingType === "shirts"
+      ? getShirtMedian(usersWithSelection)
+      : average;
 
   const blackTeam = users.filter((user) => user.team === "black");
   const whiteTeam = users.filter((user) => user.team === "white");
@@ -228,7 +231,7 @@ const Board = ({
 
       <div className={styles.cardsContainer}>
         <Cards
-					ratingType={initialState?.ratingType}
+          ratingType={initialState?.ratingType}
           playerName={playerName}
           users={users}
           showCards={showCards}
@@ -278,7 +281,9 @@ const Board = ({
         {allUsersSameAnswer && (
           <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
         )}
-        {Boolean(average) && <h1 className={styles.avg}>Average: {averageMessage}</h1>}
+        {Boolean(average) && (
+          <h1 className={styles.avg}>Average: {averageMessage}</h1>
+        )}
       </motion.div>
     </div>
   );

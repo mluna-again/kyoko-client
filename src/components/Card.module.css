@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-	position: relative;
+  position: relative;
 }
 
 .cardContainer {
@@ -45,44 +45,44 @@
 }
 
 .card.shirt {
-	border: none !important;
-	background: none;
-	box-shadow: none !important;
-	position: relative;
+  border: none !important;
+  background: none;
+  box-shadow: none !important;
+  position: relative;
 }
 
 .card.shirt svg {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 10;
-	fill: var(--text-dark);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  fill: var(--text-dark);
 }
 
 .card.shirt span {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%) rotateY(0);
-	z-index: 10;
-	color: var(--text-dark);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(0);
+  z-index: 10;
+  color: var(--text-dark);
 }
 
 .card.shirt.selected svg {
-	fill: var(--primary);
+  fill: var(--primary);
 }
 
 .card.shirt.selected span {
-	color: var(--primary) !important;
-	transform: translate(-50%, -50%) rotateY(180deg);
+  color: var(--primary) !important;
+  transform: translate(-50%, -50%) rotateY(180deg);
 }
 
 .card.shirt.selected {
-	fill: var(--primary);
-	border: none !important;
-	background: none;
-	box-shadow: none !important;
+  fill: var(--primary);
+  border: none !important;
+  background: none;
+  box-shadow: none !important;
 }
 
 .card.selectedOver {
@@ -121,7 +121,7 @@
 .cardEmoji {
   transition-delay: 0.5s;
   transition: all 1.2;
-	color: white;
+  color: white;
 }
 
 .cardEmoji:first-of-type {

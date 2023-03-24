@@ -8,7 +8,6 @@ type UpdateNameParams = {
   newName: string;
 };
 export async function updateName({ user, roomId, newName }: UpdateNameParams) {
-
   const url = `${SERVER_URL}/api/users/${user.name}`;
   const response = await axios.patch(url, {
     name: newName,
