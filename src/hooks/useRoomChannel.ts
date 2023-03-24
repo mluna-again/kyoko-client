@@ -66,7 +66,9 @@ const useRoomChannel = (
         )
       );
 
-			config.onUserUpdate(user);
+			if (player.username === user.old_name) {
+				config.onUserUpdate(user);
+			}
     });
 
     const presence = new Presence(channel);
