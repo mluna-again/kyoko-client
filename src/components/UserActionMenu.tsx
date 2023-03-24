@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import cx from "classnames";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +12,7 @@ import {
 import styles from "./UserActionMenu.module.css";
 import { UserType } from "../constants/types";
 import RoomContext from "../contexts/RoomContext";
+import { updateName } from "../api/updateInfo";
 
 type Props = {
   user: UserType;
@@ -26,10 +28,13 @@ const UserActionMenu = ({ user }: Props) => {
     [styles.active]: menuOpen,
   });
 
+	const { roomId } = useParams();
   const changeName = ({ value }: any) => {
     if (!value) return;
 
-    toast(`You are now ${value}!`, { type: "success" });
+    updateName({ roomId: roomId!, newName: value, user })
+      .then(() => toast(`You are now ${value}!`, { type: "success" }))
+      .catch(() => toast("Could not update your name...", { type: "error" }));
   };
 
   const editHandler = (e: React.MouseEvent<HTMLButtonElement>) => {

@@ -1,4 +1,4 @@
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { Socket } from "phoenix";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -21,21 +21,15 @@ const getUserFromLocalStorage = () => {
   try {
     const parsed = JSON.parse(data);
 
-    if (window.location.href === parsed.forUrl) {
-      return parsed.username;
-    }
-
-    return null;
+    return parsed.username;
   } catch (_error) {
     return null;
   }
 };
 
 const Room = () => {
-  const { state } = useLocation();
-  const [playerName, setPlayerName] = useState(
-    (state as any)?.player || getUserFromLocalStorage()
-  );
+  const [playerName, setPlayerName] = useState(getUserFromLocalStorage());
+	const onUserUpdate = ({ name }: any) => setPlayerName(name);
 
   const [team, setTeam] = useState<string | undefined>();
 
@@ -46,7 +40,7 @@ const Room = () => {
     channel,
     users,
     error: channelError,
-  } = useRoomChannel(socket, room, { username: playerName, team });
+  } = useRoomChannel(socket, room, { username: playerName, team }, { onUserUpdate});
 
   const copyLinkHandler = () => {
     toast("Link copied!", { type: "success" });
@@ -69,7 +63,9 @@ const Room = () => {
     );
 
   return (
-    <RoomContext.Provider value={{ channel, loggedUser: playerName }}>
+    <RoomContext.Provider
+      value={{ channel, loggedUser: playerName }}
+    >
       <div className={styles.container}>
         <CopyToClipboard
           text={`${window.origin}/${room.code}`}

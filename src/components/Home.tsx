@@ -70,6 +70,10 @@ const Home = () => {
       });
 
       toast("Game created!", { type: "success" });
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ username: data.playerName })
+      );
       navigate(`/${response.data.data.code}`, {
         state: { player: data.playerName },
       });
@@ -125,7 +129,7 @@ const Home = () => {
           <select
             id="ratingType"
             className={styles.select}
-						defaultValue="cards"
+            defaultValue="cards"
             {...register("ratingType", { required: true })}
           >
             <option value="shirts">T-shirt size</option>

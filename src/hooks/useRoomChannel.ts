@@ -21,10 +21,14 @@ const diffUsers = (existingUsers: any[], newUsers: any[]) => {
   return nextState;
 };
 
+type Config = {
+	onUserUpdate: (user: UserType) => void;
+}
 const useRoomChannel = (
   socket: Socket,
   room: RoomType | undefined,
-  player: Player
+  player: Player,
+	config: Config
 ) => {
   const [error, setError] = useState<String>();
 
@@ -55,13 +59,28 @@ const useRoomChannel = (
     if (!channel) return;
     if (!player.username) return;
 
+    channel.on("user:update", (user: any) => {
+      setUsers((users) =>
+        users.map((u) =>
+          u.name === user.old_name ? { ...u, name: user.name } : u
+        )
+      );
+
+			config.onUserUpdate(user);
+    });
+
     const presence = new Presence(channel);
     const syncUsers = () => {
       const newUsers = presence.list().map((user) => user.metas.at(-1));
 
       setUsers((users) => diffUsers(users, newUsers));
     };
+
     presence.onSync(syncUsers);
+
+    return () => {
+      channel.off("user:update");
+    };
   }, [channel, player.username]);
 
   const resetUserSelections = () => {
