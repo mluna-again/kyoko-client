@@ -102,6 +102,8 @@ const useRoomChannel = (
       channel.off("user:update");
       channel.off("user:kicked");
     };
+
+    // eslint-disable-next-line
   }, [channel, player.username]);
 
   const resetUserSelections = () => {
