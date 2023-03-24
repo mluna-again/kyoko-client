@@ -69,7 +69,7 @@ const Room = () => {
     );
 
   return (
-    <RoomContext.Provider value={{ channel }}>
+    <RoomContext.Provider value={{ channel, loggedUser: playerName }}>
       <div className={styles.container}>
         <CopyToClipboard
           text={`${window.origin}/${room.code}`}

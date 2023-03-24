@@ -50,3 +50,33 @@
 .container .menu button:hover {
 	background-color: var(--primary-dark);
 }
+
+.slideIn {
+	animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateY(50%);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
+
+.slideOut {
+	animation: slideOut 0.3s ease-in-out;
+}
+
+@keyframes slideOut {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(50%);
+		opacity: 0;
+	}
+}

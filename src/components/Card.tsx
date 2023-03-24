@@ -27,7 +27,7 @@ const Card = ({
   const selected = Number.isInteger(user.selection);
   return (
     <div className={styles.container}>
-			<UserActionMenu />
+			<UserActionMenu user={user} />
 
       <div className={styles.cardContainer}>
         <motion.div
