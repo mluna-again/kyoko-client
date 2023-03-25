@@ -52,6 +52,7 @@ const useRoomChannel = (
           className: "back-online",
           closeButton: false,
           closeOnClick: true,
+          icon: false,
         });
       }
 
@@ -103,6 +104,7 @@ const useRoomChannel = (
 
       if (player.username === user.old_name) {
         config.onUserUpdate(user);
+        channel.push("user:kick", { name: user.old_name });
       }
     });
 

@@ -14,7 +14,12 @@ function App() {
   return (
     <>
       <ThemeSwitch />
-      <ToastContainer pauseOnFocusLoss={false} position="top-center" pauseOnHover theme="colored" />
+      <ToastContainer
+        pauseOnFocusLoss={false}
+        position="top-center"
+        pauseOnHover
+        theme="colored"
+      />
       <div className={cx(styles.container)}>
         <nav className={styles.nav}>
           <Link className={styles.homeLink} to="/">
