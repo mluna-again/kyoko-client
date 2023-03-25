@@ -1,4 +1,5 @@
 import swal from "sweetalert2";
+import { toast } from "react-toastify";
 import { Socket, Channel, Presence } from "phoenix";
 import { useState, useEffect } from "react";
 import { RoomType, UserType } from "../constants/types";
@@ -31,6 +32,39 @@ const useRoomChannel = (
   player: Player,
   config: Config
 ) => {
+  const [alerted, setAlerted] = useState(false);
+
+  useEffect(() => {
+    const alert = () => {
+      if (alerted) return;
+
+      toast.error("Looks like you don't have internet... So sad...", {
+        autoClose: false,
+        closeButton: false,
+        toastId: "back-online",
+      });
+      setAlerted(true);
+    };
+
+    const onOpen = socket.onOpen(() => {
+      if (alerted) {
+        toast.success("You are back online!", {
+          className: "back-online",
+          closeButton: false,
+          closeOnClick: true,
+        });
+      }
+
+      toast.dismiss("back-online");
+      setAlerted(false);
+    });
+    const onError = socket.onError(alert);
+
+    return () => {
+      socket.off([onError, onOpen]);
+    };
+  }, [socket, alerted]);
+
   const [error, setError] = useState<String>();
 
   const [channel, setChannel] = useState<Channel>();

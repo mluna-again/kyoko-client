@@ -1,8 +1,8 @@
 .container {
   position: fixed;
-  top: 10%;
+  top: 15%;
   left: 2%;
-  z-index: 999999;
+  z-index: 999;
   transition: box-shadow 0.2s ease;
   transition: transform 0.2s ease;
 }

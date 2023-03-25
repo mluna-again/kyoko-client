@@ -11,8 +11,8 @@ import { SERVER_URL } from "../constants/values";
 import styles from "./Home.module.css";
 import Teams from "./Teams";
 
-// enabled by default
-const DEFAULT_TEAMS_OPTION = true;
+// disabled by default
+const DEFAULT_TEAMS_OPTION = false;
 
 type Inputs = {
   roomName: string;
