@@ -5,15 +5,16 @@
   align-items: center;
 }
 
-.input {
+.input input {
   display: flex;
   flex-direction: column;
+  padding: 1rem;
 }
 
 .go {
   background-color: var(--primary);
   border: none;
-  padding: 1.8rem;
+  padding: 0.8rem;
   border-radius: 8px;
   width: 50%;
   color: var(--white);
@@ -24,10 +25,4 @@
 
 .go:disabled {
   background-color: gray;
-}
-
-@media screen and (max-width: 800px) {
-  .go {
-    padding: 0.8rem;
-  }
 }

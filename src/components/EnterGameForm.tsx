@@ -46,8 +46,12 @@ const EnterGameForm = ({ onSave, teams }: Props) => {
       <h1>Select a username</h1>
 
       <div className={styles.input}>
-        <label htmlFor="username">Username</label>
-        <input id="username" type="text" {...register("username")} />
+        <input
+          id="username"
+          type="text"
+          {...register("username")}
+          placeholder="Username"
+        />
         {errors.username && <p>{errors.username?.message}</p>}
       </div>
 

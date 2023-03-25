@@ -118,6 +118,7 @@ const useRoomChannel = (
             title: "You have been kicked from the room",
             icon: "warning",
             confirmButtonText: "OK",
+            confirmButtonColor: "var(--primary)",
           })
           .then(() => {
             window.location.href = "/";
