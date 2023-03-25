@@ -4,6 +4,12 @@
   right: 25%;
 }
 
+@media screen and (max-width: 600px) {
+  .container {
+		right: -25%;
+  }
+}
+
 .container button {
   background: none;
   border: none;
