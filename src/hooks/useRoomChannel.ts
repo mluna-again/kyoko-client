@@ -79,7 +79,7 @@ const useRoomChannel = (
     });
     chan
       .join()
-      .receive("ok", () => () => setError(undefined))
+      .receive("ok", () => setError(undefined))
       .receive("error", ({ reason }) => setError(reason));
 
     setChannel(chan);
