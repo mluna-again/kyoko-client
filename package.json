@@ -27,7 +27,6 @@
     "react-hook-form": "^7.31.2",
     "react-loader-spinner": "^5.1.5",
     "react-router-dom": "6",
-    "react-scripts": "5.0.1",
     "react-switch": "^6.1.0",
     "react-toastify": "^9.0.1",
     "sweetalert2": "^11.4.16",
@@ -36,11 +35,11 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test:react": "react-scripts test",
+    "start": "vite",
+    "build": "tsc && vite build",
+    "test:react": "vite test",
     "test": "yarn playwright test",
-    "eject": "react-scripts eject",
+		"serve": "vite preview",
     "prettier": "prettier --write \"./src/**/*.(tsx|ts|jsx|js|css)\""
   },
   "eslintConfig": {
@@ -63,6 +62,9 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.22.2",
-    "prettier": "^2.8.3"
+    "@vitejs/plugin-react": "^3.1.0",
+    "prettier": "^2.8.3",
+    "vite": "^4.2.1",
+    "vite-plugin-svgr": "^2.4.0"
   }
 }
