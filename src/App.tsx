@@ -2,6 +2,7 @@ import { ToastContainer } from "react-toastify";
 import cx from "classnames";
 import "react-toastify/dist/ReactToastify.css";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import "sweetalert2/dist/sweetalert2.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiamond } from "@fortawesome/free-solid-svg-icons";
 import { Routes, Route, Link } from "react-router-dom";
