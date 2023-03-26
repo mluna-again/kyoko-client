@@ -134,6 +134,7 @@ const useRoomChannel = (
     };
 
     presence.onSync(syncUsers);
+		channel.push("startup:sync", {});
 
     return () => {
       channel.off("user:update");
