@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   position: relative;
+	width: min-content;
 }
 
 .cardContainer {
