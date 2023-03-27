@@ -23,6 +23,7 @@ const UserActionMenu = ({ user }: Props) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
   const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
 
   const menuClasses = cx(styles.menu, {
     [styles.active]: menuOpen,
@@ -106,8 +107,14 @@ const UserActionMenu = ({ user }: Props) => {
       .finally(toggleMenu);
   };
 
+  const closeOverlayClasses = cx(styles.closeBackground, {
+    [styles.closeBackgroundOpen]: menuOpen,
+  });
+
   return (
     <div className={styles.container}>
+      <div className={closeOverlayClasses} onClick={closeMenu} />
+
       <button className={styles.editButton} onClick={toggleMenu}>
         <FontAwesomeIcon icon={faEllipsisVertical} />
       </button>

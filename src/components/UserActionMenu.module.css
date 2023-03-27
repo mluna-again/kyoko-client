@@ -2,6 +2,7 @@
   position: absolute;
   top: 0;
   right: 25%;
+	z-index: 1000;
 }
 
 @media screen and (max-width: 600px) {
@@ -13,7 +14,7 @@
 .container button {
   background: none;
   border: none;
-  color: rgba(0, 0, 0, 0.6);
+  color: var(--text-dark);
   cursor: pointer;
 }
 
@@ -85,4 +86,21 @@
     transform: translateY(50%);
     opacity: 0;
   }
+}
+
+.closeBackground {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+	transition: all 0.2s ease-in-out;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.closeBackgroundOpen {
+	opacity: 1;
+	pointer-events: all;
 }
