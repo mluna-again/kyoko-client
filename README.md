@@ -12,16 +12,16 @@ git clone git@github.com:mluna-again/kyoko-client.git
 
 The following ENV variables are used:
 
-	REACT_APP_SERVER_URL
-	REACT_APP_SERVER_SOCKET
+	VITE_SERVER_URL
+	VITE_SERVER_SOCKET
 
 > Note:
 	If you are not running the [server](https://github.com/mluna-again/kyoko) locally with the default ports you need to change these variables to reflect your configuration.
 
 If they are not provided they default to:
 
-	REACT_APP_SERVER_URL=http://localhost:4000
-	REACT_APP_SERVER_SOCKET=ws://localhost:4000/socket
+	VITE_SERVER_URL=http://localhost:4000
+	VITE_SERVER_SOCKET=ws://localhost:4000/socket
 
 Install dependencies:
 ```sh
