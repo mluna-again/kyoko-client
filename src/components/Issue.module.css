@@ -46,3 +46,13 @@
 .button.voting {
   background: var(--secondary-dark);
 }
+
+.title {
+  margin: 9px 0;
+}
+
+.description {
+  margin: 0;
+  margin-bottom: 9px;
+  opacity: 0.6;
+}

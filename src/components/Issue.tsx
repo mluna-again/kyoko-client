@@ -13,7 +13,7 @@ import styles from "./Issue.module.css";
 type Props = {
   children: IssueType;
   onDelete: (id: string) => Promise<void>;
-	channel?: Channel
+  channel?: Channel;
 };
 const Issue = ({ children, onDelete, channel }: Props) => {
   const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
@@ -21,12 +21,11 @@ const Issue = ({ children, onDelete, channel }: Props) => {
   const beingVoted = votingIssue?.id === children.id;
   const onVoteHandler = () => {
     if (beingVoted) {
-      setVotingIssue(null);
-			channel?.push("issues:clearVote", {})
+      channel?.push("issues:clearVote", children);
       return;
     }
 
-		channel?.push("issues:setVote", children)
+    channel?.push("issues:setVote", children);
     setVotingIssue(children);
   };
 
@@ -63,15 +62,18 @@ const Issue = ({ children, onDelete, channel }: Props) => {
           .then(() => toast.success("Issue deleted successfully"))
           .catch(() => toast.error("Failed to delete issue"))
           .finally(() => {
-            setVotingIssue(null);
             setDeleting(false);
+            if (votingIssue?.id === children.id) setVotingIssue(null);
           });
       });
   };
 
   return (
     <div className={styles.container}>
-      <h1>{children.title}</h1>
+      <h1 className={styles.title}>{children.title}</h1>
+      {children.description && (
+        <p className={styles.description}>{children.description}</p>
+      )}
 
       <div className={styles.buttons}>
         <button onClick={onVoteHandler} className={voteBtnClasses}>
