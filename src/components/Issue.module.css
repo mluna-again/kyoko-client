@@ -21,6 +21,9 @@
 .buttons .trash {
   flex-basis: 20%;
   background: var(--secondary-dark);
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .button {

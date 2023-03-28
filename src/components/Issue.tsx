@@ -1,5 +1,7 @@
+import { useState } from "react";
 import cx from "classnames";
 import { toast } from "react-toastify";
+import { TailSpin } from "react-loader-spinner";
 import swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -29,7 +31,9 @@ const Issue = ({ children, onDelete }: Props) => {
     [styles.voting]: beingVoted,
   });
 
+  const [deleting, setDeleting] = useState(false);
   const deleteHandler = () => {
+    if (deleting) return;
     swal
       .fire({
         title: "Are you sure?",
@@ -50,10 +54,14 @@ const Issue = ({ children, onDelete }: Props) => {
         if (!isConfirmed) return;
         if (!children.id) return;
 
+        setDeleting(true);
         onDelete(children.id)
           .then(() => toast.success("Issue deleted successfully"))
           .catch(() => toast.error("Failed to delete issue"))
-          .finally(() => setVotingIssue(null));
+          .finally(() => {
+            setVotingIssue(null);
+            setDeleting(false);
+          });
       });
   };
 
@@ -69,7 +77,16 @@ const Issue = ({ children, onDelete }: Props) => {
           className={cx(styles.button, styles.trash)}
           onClick={deleteHandler}
         >
-          <FontAwesomeIcon icon={faTrash} />
+          {deleting ? (
+            <TailSpin
+              height="25"
+              width="25"
+              color="white"
+              ariaLabel="loading"
+            />
+          ) : (
+            <FontAwesomeIcon icon={faTrash} />
+          )}
         </button>
       </div>
     </div>
