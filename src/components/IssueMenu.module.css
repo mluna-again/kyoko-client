@@ -1,0 +1,33 @@
+.overlay {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 1000;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.3s ease-in-out;
+}
+
+.overlay.open {
+	opacity: 1;
+	pointer-events: all;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.container {
+	position: fixed;
+	top: 0;
+	right: 0;
+	height: 100vh;
+	width: 40vw;
+	transform: translateX(100%);
+	transition: transform 0.3s ease-in-out;
+	background-color: crimson;
+	z-index: 1001;
+}
+
+.container.open {
+	transform: translateX(0);
+}

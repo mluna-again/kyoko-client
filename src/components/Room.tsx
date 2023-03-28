@@ -12,6 +12,7 @@ import { useRoomInfo } from "../hooks/useRoomInfo";
 import styles from "./Room.module.css";
 import EnterGameForm from "./EnterGameForm";
 import RoomContext from "../contexts/RoomContext";
+import IssuesMenu from "./IssuesMenu";
 
 const socket = new Socket(SERVER_SOCKET_URL);
 socket.connect();
@@ -30,6 +31,9 @@ const getUserFromLocalStorage = () => {
 };
 
 const Room = () => {
+  const [issueMenuOpen, setIssueMenuOpen] = useState(false);
+	const toggleIssueMenu = () => setIssueMenuOpen(!issueMenuOpen);
+
   const [playerName, setPlayerName] = useState(getUserFromLocalStorage());
   const onUserUpdate = ({ name }: any) => setPlayerName(name);
 
@@ -71,6 +75,7 @@ const Room = () => {
 
   return (
     <RoomContext.Provider value={{ channel, loggedUser: playerName }}>
+      <IssuesMenu open={issueMenuOpen} setOpen={setIssueMenuOpen} />
       <div className={styles.container}>
         <CopyToClipboard
           text={`${window.origin}/${room.code}`}
@@ -82,10 +87,10 @@ const Room = () => {
           </button>
         </CopyToClipboard>
 
-				<button className={styles.issuesTab}>
-					<FontAwesomeIcon icon={faList} />
-					<span>Open issues</span>
-				</button>
+        <button className={styles.issuesTab} onClick={toggleIssueMenu}>
+          <FontAwesomeIcon icon={faList} />
+          <span>Open issues</span>
+        </button>
 
         <div>
           <Board
