@@ -28,7 +28,7 @@ const Board = ({
   initialState,
   resetUsers,
 }: Props) => {
-	const {votingIssue} = useKyokoStore(state => state);
+  const { votingIssue } = useKyokoStore((state) => state);
 
   const [showClock, setShowClock] = useState(
     initialState?.settings?.clock ?? false
@@ -177,7 +177,7 @@ const Board = ({
           channel.push("toggle_emojis", { active })
         }
       />
-			{votingIssue && <p className={styles.votingIssue}>{votingIssue.title}</p>}
+      {votingIssue && <p className={styles.votingIssue}>{votingIssue.title}</p>}
       <div
         className={cx(styles.revealContainer, {
           [styles.active]: atLeastOneUserSelected && !gameOver && !showingCards,

@@ -8,7 +8,7 @@ import styles from "./IssueMenu.module.css";
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
-	room: string;
+  room: string;
 };
 const IssuesMenu = ({ open, setOpen, room }: Props) => {
   const { votingIssue } = useKyokoStore((state) => state);

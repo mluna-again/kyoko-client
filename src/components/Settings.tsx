@@ -56,12 +56,12 @@ const Settings = ({
       {showMenu ? (
         <>
           <h1 onClick={toggleMenu}>Settings</h1>
-					<div>
-						<label>
-							<p>Dark mode</p>
-							<ThemeSwitch />
-						</label>
-					</div>
+          <div>
+            <label>
+              <p>Dark mode</p>
+              <ThemeSwitch />
+            </label>
+          </div>
 
           <div>
             <label>

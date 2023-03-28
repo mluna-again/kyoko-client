@@ -1,45 +1,45 @@
 .form {
-	transform: scaleY(0);
-	transform-origin: top;
-	transition: transform 0.3s ease-in-out;
-	margin: 1rem 0;
-	box-sizing: border-box;
-	padding: 0 4px;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease-in-out;
+  margin: 1rem 0;
+  box-sizing: border-box;
+  padding: 0 4px;
 }
 
 .form.open {
-	transform: scaleY(1);
+  transform: scaleY(1);
 }
 
 .form input {
-	box-sizing: border-box;
-	width: 100%;
-	padding: 0.5rem;
-	border: none;
-	border-bottom: 1px solid var(--primary);
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid var(--primary);
 }
 
 .buttons {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .buttons button {
-	margin: 0 0.5rem;
-	border: none;
-	background: var(--primary);
-	padding: 0.5rem 1rem;
-	border-radius: 5px;
-	color: var(--text-light);
-	cursor: pointer;
-	opacity: 0.8;
-	transition: opacity 0.3s ease-in-out;
+  margin: 0 0.5rem;
+  border: none;
+  background: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  color: var(--text-light);
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .buttons button:hover {
-	opacity: 1;
+  opacity: 1;
 }
 
 .buttons .cancel {
-	background: var(--secondary-dark);
+  background: var(--secondary-dark);
 }

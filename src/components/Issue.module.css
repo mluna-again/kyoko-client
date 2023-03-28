@@ -1,45 +1,45 @@
 .container {
-	padding: 8px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin: 10px 0px;
-	border-radius: 5px;
-	border: 1px solid var(--secondary);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid var(--secondary);
 }
 
 .buttons {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .buttons .vote {
-	flex: 1;
+  flex: 1;
 }
 
 .buttons .trash {
-	flex-basis: 20%;
-	background: var(--secondary-dark);
+  flex-basis: 20%;
+  background: var(--secondary-dark);
 }
 
 .button {
-	margin: 0 5px;
-	background: var(--primary);
-	align-self: stretch;
-	border-radius: 5px;
-	border: none;
-	color: var(--text-light);
-	padding: 10px 0;
-	cursor: pointer;
-	transition: all 0.2s ease-in-out;
-	opacity: 1;
+  margin: 0 5px;
+  background: var(--primary);
+  align-self: stretch;
+  border-radius: 5px;
+  border: none;
+  color: var(--text-light);
+  padding: 10px 0;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  opacity: 1;
 }
 
 .button:hover {
-	opacity: 0.8;
+  opacity: 0.8;
 }
 
 .button.voting {
-	background: var(--secondary-dark);
+  background: var(--secondary-dark);
 }
