@@ -50,6 +50,7 @@ const Issue = ({ children, onDelete }: Props) => {
         if (!isConfirmed) return;
 
         onDelete(children.id);
+				setVotingIssue(null);
         toast.success("Issue deleted successfully");
       });
   };
