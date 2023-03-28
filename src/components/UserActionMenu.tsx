@@ -56,10 +56,10 @@ const UserActionMenu = ({ user }: Props) => {
         confirmButtonColor: "var(--primary)",
         confirmButtonText: "Change",
         showClass: {
-          popup: styles.slideIn,
+          popup: "slideIn"
         },
         hideClass: {
-          popup: styles.slideOut,
+          popup: "slideOut"
         },
       })
       .then(changeName)

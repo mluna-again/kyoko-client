@@ -1,4 +1,6 @@
 import cx from "classnames";
+import { toast } from "react-toastify";
+import swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useKyokoStore } from "../store";
@@ -28,7 +30,28 @@ const Issue = ({ children, onDelete }: Props) => {
   });
 
   const deleteHandler = () => {
-    onDelete(children.id);
+    swal
+      .fire({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this issue!",
+        icon: "warning",
+        cancelButtonText: "Cancel",
+        confirmButtonColor: "var(--secondary-dark)",
+        cancelButtonColor: "var(--primary)",
+        showCancelButton: true,
+        showClass: {
+          popup: "slideIn",
+        },
+        hideClass: {
+          popup: "slideOut",
+        },
+      })
+      .then(({ isConfirmed }) => {
+        if (!isConfirmed) return;
+
+        onDelete(children.id);
+        toast.success("Issue deleted successfully");
+      });
   };
 
   return (
