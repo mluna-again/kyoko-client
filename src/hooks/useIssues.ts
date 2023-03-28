@@ -9,8 +9,8 @@ const useIssues = () => {
 		setIssues([...issues, issue]);
 	};
 
-	const removeIssue = (issue: any) => {
-		setIssues(issues.filter((i: any) => i.id !== issue.id));
+	const removeIssue = (issue: string) => {
+		setIssues(issues.filter((i: any) => i.id !== issue));
 	};
 
 	return { issues, addIssue, removeIssue };

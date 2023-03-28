@@ -10,8 +10,8 @@ type Props = {
   setOpen: (open: boolean) => void;
 };
 const IssuesMenu = ({ open, setOpen }: Props) => {
-  const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
-  const { issues, addIssue } = useIssues();
+  const { votingIssue } = useKyokoStore((state) => state);
+  const { issues, addIssue, removeIssue } = useIssues();
 
   const closeMenu = () => setOpen(false);
 
@@ -36,11 +36,7 @@ const IssuesMenu = ({ open, setOpen }: Props) => {
 
         <div className={styles.list}>
           {issues.map((issue) => (
-            <Issue
-              key={issue.id}
-              setAsActive={setVotingIssue}
-              active={votingIssue}
-            >
+            <Issue key={issue.id} onDelete={removeIssue}>
               {issue}
             </Issue>
           ))}
