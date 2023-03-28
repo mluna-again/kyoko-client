@@ -32,14 +32,15 @@
     "sweetalert2": "^11.4.16",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.3.6"
   },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
     "test:react": "vite test",
     "test": "yarn playwright test",
-		"serve": "vite preview",
+    "serve": "vite preview",
     "prettier": "prettier --write \"./src/**/*.(tsx|ts|jsx|js|css)\""
   },
   "eslintConfig": {

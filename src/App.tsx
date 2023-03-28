@@ -8,13 +8,11 @@ import { faDiamond } from "@fortawesome/free-solid-svg-icons";
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Room from "./components/Room";
-import ThemeSwitch from "./components/ThemeSwitch";
 import styles from "./App.module.css";
 
 function App() {
   return (
     <>
-      <ThemeSwitch />
       <ToastContainer
         pauseOnFocusLoss={false}
         position="top-center"

@@ -26,3 +26,30 @@
   text-align: center;
   margin-top: 8rem;
 }
+
+.issuesTab {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 1rem;
+  padding: 10px;
+  border: 2px solid var(--primary-dark);
+  box-sizing: border-box;
+  border-radius: 5px;
+  cursor: pointer;
+  background: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.issuesTab:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-light);
+}
+
+.issuesTab span {
+  margin-left: 0.5rem;
+}

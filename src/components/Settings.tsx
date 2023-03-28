@@ -2,6 +2,7 @@ import { useState } from "react";
 import cx from "classnames";
 import { motion } from "framer-motion";
 import Switch from "react-switch";
+import ThemeSwitch from "./ThemeSwitch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Settings.module.css";
@@ -55,6 +56,13 @@ const Settings = ({
       {showMenu ? (
         <>
           <h1 onClick={toggleMenu}>Settings</h1>
+          <div>
+            <label>
+              <p>Dark mode</p>
+              <ThemeSwitch />
+            </label>
+          </div>
+
           <div>
             <label>
               <p>Show clock</p>

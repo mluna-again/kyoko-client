@@ -1,13 +1,3 @@
-.container {
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
 .container span {
   font-size: 18px;
   display: block;
