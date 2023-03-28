@@ -8,10 +8,11 @@ import styles from "./IssueMenu.module.css";
 type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
+	room: string;
 };
-const IssuesMenu = ({ open, setOpen }: Props) => {
+const IssuesMenu = ({ open, setOpen, room }: Props) => {
   const { votingIssue } = useKyokoStore((state) => state);
-  const { issues, addIssue, removeIssue } = useIssues();
+  const { issues, addIssue, removeIssue } = useIssues(room);
 
   const closeMenu = () => setOpen(false);
 
@@ -27,6 +28,7 @@ const IssuesMenu = ({ open, setOpen }: Props) => {
     ? `Currently voting "${votingIssue.title}"`
     : "Not voting for any issue";
 
+console.log(issues);
   return (
     <div>
       <div className={overlayClasses} onClick={closeMenu} />

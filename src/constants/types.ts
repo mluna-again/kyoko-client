@@ -15,7 +15,7 @@ export type RoomType = {
 };
 
 export type Issue = {
-	id: string;
+	id?: string;
 	title: string;
 	description?: string;
 }

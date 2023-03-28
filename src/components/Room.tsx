@@ -32,7 +32,7 @@ const getUserFromLocalStorage = () => {
 
 const Room = () => {
   const [issueMenuOpen, setIssueMenuOpen] = useState(false);
-	const toggleIssueMenu = () => setIssueMenuOpen(!issueMenuOpen);
+  const toggleIssueMenu = () => setIssueMenuOpen(!issueMenuOpen);
 
   const [playerName, setPlayerName] = useState(getUserFromLocalStorage());
   const onUserUpdate = ({ name }: any) => setPlayerName(name);
@@ -75,7 +75,11 @@ const Room = () => {
 
   return (
     <RoomContext.Provider value={{ channel, loggedUser: playerName }}>
-      <IssuesMenu open={issueMenuOpen} setOpen={setIssueMenuOpen} />
+      <IssuesMenu
+        open={issueMenuOpen}
+        setOpen={setIssueMenuOpen}
+        room={room.code}
+      />
       <div className={styles.container}>
         <CopyToClipboard
           text={`${window.origin}/${room.code}`}
