@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import { useState } from "react";
 import { Socket } from "phoenix";
 import { CopyToClipboard } from "react-copy-to-clipboard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import useRoomChannel from "../hooks/useRoomChannel";
 import Board from "./Board";
@@ -79,6 +81,11 @@ const Room = () => {
             <h3 className={styles.inviteLink}>Invite your friends</h3>
           </button>
         </CopyToClipboard>
+
+				<button className={styles.issuesTab}>
+					<FontAwesomeIcon icon={faList} />
+					<span>Open issues</span>
+				</button>
 
         <div>
           <Board
