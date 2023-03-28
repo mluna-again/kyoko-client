@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import cx from "classnames";
 import { Issue } from "../constants/types";
@@ -9,7 +10,7 @@ type Props = {
   addIssue: (issue: Issue) => Promise<void>;
 };
 const NewIssue = ({ addIssue }: Props) => {
-	const [creatingIssue, setCreatingIssue] = useState(false);
+  const [creatingIssue, setCreatingIssue] = useState(false);
 
   const [inputOpen, setInputOpen] = useState(false);
   const openInput = () => setInputOpen(true);
@@ -31,18 +32,18 @@ const NewIssue = ({ addIssue }: Props) => {
     const successAlert = () => toast.success("Issue added successfully");
     const failureAlert = () => toast.error("Issue could not be added");
 
-		setCreatingIssue(true);
+    setCreatingIssue(true);
     closeInput();
     resetIssueTitle();
     resetIssueDescription();
     addIssue({ title: issueTitle, description: issueDescription })
       .then(successAlert)
       .catch(failureAlert)
-			.finally(() => setCreatingIssue(false));
+      .finally(() => setCreatingIssue(false));
   };
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-		if (creatingIssue) return;
+    if (creatingIssue) return;
 
     addIssueWrapper();
   };
@@ -77,9 +78,18 @@ const NewIssue = ({ addIssue }: Props) => {
         <button
           onClick={inputOpen ? addIssueWrapper : openInput}
           className={styles.open}
-					disabled={creatingIssue}
+          disabled={creatingIssue}
         >
-          Add new issue
+          {creatingIssue ? (
+            <TailSpin
+              height="25"
+              width="25"
+              color="white"
+              ariaLabel="loading"
+            />
+          ) : (
+            "Add Issue"
+          )}
         </button>
       </div>
     </div>
