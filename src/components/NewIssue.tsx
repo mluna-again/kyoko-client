@@ -1,6 +1,8 @@
 import { useState } from "react";
+import cx from "classnames";
 import { Issue } from "../constants/types";
 import useInput from "../hooks/useInput";
+import styles from "./NewIssue.module.css";
 
 type Props = {
   addIssue: (issue: Issue) => void;
@@ -18,29 +20,38 @@ const NewIssue = ({ addIssue }: Props) => {
   const addIssueWrapper = () => {
     addIssue({ title: issueTitle, id: "0" });
     closeInput();
-		resetIssueTitle();
+    resetIssueTitle();
   };
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     addIssueWrapper();
   };
 
-  return (
-    <div>
-      {inputOpen && (
-        <form onSubmit={onSubmitHandler}>
-          <input
-            type="text"
-            placeholder="New issue"
-            onChange={onChangeIssueTitle}
-            value={issueTitle}
-          />
-        </form>
-      )}
+  const formClasses = cx(styles.form, {
+    [styles.open]: inputOpen,
+  });
 
-      <div>
-        {inputOpen && <button onClick={closeInput}>Cancel</button>}
-        <button onClick={inputOpen ? addIssueWrapper : openInput}>
+  return (
+    <div className={styles.container}>
+      <form onSubmit={onSubmitHandler} className={formClasses}>
+        <input
+          type="text"
+          placeholder="New issue"
+          onChange={onChangeIssueTitle}
+          value={issueTitle}
+        />
+      </form>
+
+      <div className={styles.buttons}>
+        {inputOpen && (
+          <button onClick={closeInput} className={styles.cancel}>
+            Cancel
+          </button>
+        )}
+        <button
+          onClick={inputOpen ? addIssueWrapper : openInput}
+          className={styles.open}
+        >
           Add new issue
         </button>
       </div>
