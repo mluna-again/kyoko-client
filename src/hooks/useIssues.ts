@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
+import { Channel } from "phoenix";
 import axios from "axios";
 import { Issue } from "../constants/types";
 import { SERVER_URL } from "../constants/values";
 
-const useIssues = (room: string) => {
+const useIssues = (room: string, channel?: Channel) => {
   const [issues, setIssues] = useState<Issue[]>([]);
+
+  const removeIssueHandler = (issue: any) => {
+    setIssues((issues) => issues.filter((i: any) => i.id !== issue.id));
+  };
+  const addIssueHandler = (issue: any) => {
+    setIssues((issues) => [...issues, issue]);
+  };
 
   useEffect(() => {
     const getIssues = async () => {
@@ -18,8 +26,16 @@ const useIssues = (room: string) => {
       setIssues(response.data?.data);
     };
 
+    channel?.on("issues:new", addIssueHandler);
+    channel?.on("issues:delete", removeIssueHandler);
+
     getIssues();
-  }, [room]);
+
+    return () => {
+      channel?.off("issues:new");
+      channel?.off("issues:delete");
+    };
+  }, [room, channel]);
 
   const addIssue = async (issue: Issue) => {
     const url = `${SERVER_URL}/api/issues`;
@@ -30,11 +46,13 @@ const useIssues = (room: string) => {
       },
     });
 
+    const data = response.data?.data;
+
     if (response.status !== 201) {
       throw new Error("Error creating issue");
     }
 
-    setIssues([...issues, response.data?.data]);
+    channel?.push("issues:new", data);
   };
 
   const removeIssue = async (issueId: string) => {
@@ -45,7 +63,7 @@ const useIssues = (room: string) => {
       throw new Error("Error deleting issue");
     }
 
-    setIssues(issues.filter((i: any) => i.id !== issueId));
+    channel?.push("issues:delete", { id: issueId });
   };
 
   return { issues, addIssue, removeIssue };

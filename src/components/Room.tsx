@@ -79,6 +79,7 @@ const Room = () => {
         open={issueMenuOpen}
         setOpen={setIssueMenuOpen}
         room={room.code}
+        channel={channel}
       />
       <div className={styles.container}>
         <CopyToClipboard

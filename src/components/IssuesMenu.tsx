@@ -1,4 +1,5 @@
 import cx from "classnames";
+import { Channel } from "phoenix";
 import { useKyokoStore } from "../store";
 import useIssues from "../hooks/useIssues";
 import Issue from "./Issue";
@@ -9,10 +10,11 @@ type Props = {
   open: boolean;
   setOpen: (open: boolean) => void;
   room: string;
+  channel?: Channel;
 };
-const IssuesMenu = ({ open, setOpen, room }: Props) => {
+const IssuesMenu = ({ open, setOpen, room, channel }: Props) => {
   const { votingIssue } = useKyokoStore((state) => state);
-  const { issues, addIssue, removeIssue } = useIssues(room);
+  const { issues, addIssue, removeIssue } = useIssues(room, channel);
 
   const closeMenu = () => setOpen(false);
 
