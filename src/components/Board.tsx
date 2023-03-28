@@ -177,7 +177,7 @@ const Board = ({
           channel.push("toggle_emojis", { active })
         }
       />
-			{votingIssue && <p className={styles.votingIssue}>{votingIssue}</p>}
+			{votingIssue && <p className={styles.votingIssue}>{votingIssue.title}</p>}
       <div
         className={cx(styles.revealContainer, {
           [styles.active]: atLeastOneUserSelected && !gameOver && !showingCards,

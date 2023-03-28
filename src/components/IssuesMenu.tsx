@@ -1,5 +1,8 @@
 import cx from "classnames";
 import { useKyokoStore } from "../store";
+import useIssues from "../hooks/useIssues";
+import Issue from "./Issue";
+import NewIssue from "./NewIssue";
 import styles from "./IssueMenu.module.css";
 
 type Props = {
@@ -8,6 +11,7 @@ type Props = {
 };
 const IssuesMenu = ({ open, setOpen }: Props) => {
   const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
+  const { issues, addIssue } = useIssues();
 
   const closeMenu = () => setOpen(false);
 
@@ -20,16 +24,21 @@ const IssuesMenu = ({ open, setOpen }: Props) => {
   });
 
   const votingMessage = votingIssue
-    ? `Currently voting \`${votingIssue}\``
+    ? `Currently voting \`${votingIssue.title}\``
     : "Not voting for any issue";
 
   return (
     <div>
       <div className={overlayClasses} onClick={closeMenu} />
       <div className={menuClasses}>
-				<p>{votingMessage}</p>
-        <button onClick={() => setVotingIssue("test")}>Set</button>
-        <button onClick={() => setVotingIssue(null)}>Remove</button>
+        <h1>Issues</h1>
+        <p>{votingMessage}</p>
+
+        {issues.map((issue) => (
+          <Issue setAsActive={setVotingIssue} active={votingIssue}>{issue}</Issue>
+        ))}
+
+        <NewIssue addIssue={addIssue} />
       </div>
     </div>
   );
