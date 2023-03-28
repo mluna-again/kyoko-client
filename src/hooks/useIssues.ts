@@ -37,8 +37,15 @@ const useIssues = (room: string) => {
     setIssues([...issues, response.data?.data]);
   };
 
-  const removeIssue = (issue: string) => {
-    setIssues(issues.filter((i: any) => i.id !== issue));
+  const removeIssue = async (issueId: string) => {
+		const url = `${SERVER_URL}/api/issues/${issueId}`;
+		const response = await axios.delete(url);
+
+		if (response.status !== 204) {
+			throw new Error("Error deleting issue");
+		}
+
+    setIssues(issues.filter((i: any) => i.id !== issueId));
   };
 
   return { issues, addIssue, removeIssue };

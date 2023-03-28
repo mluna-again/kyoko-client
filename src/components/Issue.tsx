@@ -9,7 +9,7 @@ import styles from "./Issue.module.css";
 
 type Props = {
   children: IssueType;
-  onDelete: (id: string) => void;
+  onDelete: (id: string) => Promise<void>;
 };
 const Issue = ({ children, onDelete }: Props) => {
   const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
@@ -48,10 +48,12 @@ const Issue = ({ children, onDelete }: Props) => {
       })
       .then(({ isConfirmed }) => {
         if (!isConfirmed) return;
+        if (!children.id) return;
 
-        onDelete(children.id);
-        setVotingIssue(null);
-        toast.success("Issue deleted successfully");
+        onDelete(children.id)
+          .then(() => toast.success("Issue deleted successfully"))
+          .catch(() => toast.error("Failed to delete issue"))
+          .finally(() => setVotingIssue(null));
       });
   };
 
