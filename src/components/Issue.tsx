@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Channel } from "phoenix";
 import cx from "classnames";
 import { toast } from "react-toastify";
 import { TailSpin } from "react-loader-spinner";
@@ -12,17 +13,20 @@ import styles from "./Issue.module.css";
 type Props = {
   children: IssueType;
   onDelete: (id: string) => Promise<void>;
+	channel?: Channel
 };
-const Issue = ({ children, onDelete }: Props) => {
+const Issue = ({ children, onDelete, channel }: Props) => {
   const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
 
   const beingVoted = votingIssue?.id === children.id;
   const onVoteHandler = () => {
     if (beingVoted) {
       setVotingIssue(null);
+			channel?.push("issues:clearVote", {})
       return;
     }
 
+		channel?.push("issues:setVote", { id: votingIssue?.id })
     setVotingIssue(children);
   };
 

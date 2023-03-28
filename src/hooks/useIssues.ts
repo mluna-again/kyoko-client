@@ -3,16 +3,27 @@ import { Channel } from "phoenix";
 import axios from "axios";
 import { Issue } from "../constants/types";
 import { SERVER_URL } from "../constants/values";
+import { useKyokoStore } from "../store";
 
 const useIssues = (room: string, channel?: Channel) => {
+	const { setVotingIssue, votingIssue } = useKyokoStore(state => state);
   const [issues, setIssues] = useState<Issue[]>([]);
 
   const removeIssueHandler = (issue: any) => {
+		if (votingIssue?.id === issue.id) {
+			setVotingIssue(null)
+		}
     setIssues((issues) => issues.filter((i: any) => i.id !== issue.id));
   };
   const addIssueHandler = (issue: any) => {
     setIssues((issues) => [...issues, issue]);
   };
+	const clearVote = () => {
+		setVotingIssue(null)
+	}
+	const setVote = (issue: any) => {
+		setVotingIssue(issue)
+	}
 
   useEffect(() => {
     const getIssues = async () => {
@@ -28,12 +39,16 @@ const useIssues = (room: string, channel?: Channel) => {
 
     channel?.on("issues:new", addIssueHandler);
     channel?.on("issues:delete", removeIssueHandler);
+		channel?.on("issues:clearVote", clearVote);
+		channel?.on("issues:setVote", setVote);
 
     getIssues();
 
     return () => {
       channel?.off("issues:new");
       channel?.off("issues:delete");
+      channel?.off("issues:clearVote");
+      channel?.off("issues:setVote");
     };
   }, [room, channel]);
 
