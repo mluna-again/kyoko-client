@@ -28,7 +28,6 @@ const IssuesMenu = ({ open, setOpen, room }: Props) => {
     ? `Currently voting "${votingIssue.title}"`
     : "Not voting for any issue";
 
-console.log(issues);
   return (
     <div>
       <div className={overlayClasses} onClick={closeMenu} />
