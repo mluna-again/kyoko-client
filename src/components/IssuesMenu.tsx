@@ -39,7 +39,7 @@ const IssuesMenu = ({ open, setOpen, room, channel }: Props) => {
 
         <div className={styles.list}>
           {issues.map((issue) => (
-            <Issue key={issue.id} onDelete={removeIssue}>
+            <Issue key={issue.id} onDelete={removeIssue} channel={channel}>
               {issue}
             </Issue>
           ))}

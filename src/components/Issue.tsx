@@ -26,7 +26,7 @@ const Issue = ({ children, onDelete, channel }: Props) => {
       return;
     }
 
-		channel?.push("issues:setVote", { id: votingIssue?.id })
+		channel?.push("issues:setVote", children)
     setVotingIssue(children);
   };
 
