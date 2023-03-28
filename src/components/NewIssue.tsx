@@ -29,6 +29,8 @@ const NewIssue = ({ addIssue }: Props) => {
   } = useInput();
 
   const addIssueWrapper = () => {
+		if (!issueTitle) return;
+
     const successAlert = () => toast.success("Issue added successfully");
     const failureAlert = () => toast.error("Issue could not be added");
 
