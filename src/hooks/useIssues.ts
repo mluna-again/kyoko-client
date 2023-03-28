@@ -38,12 +38,12 @@ const useIssues = (room: string) => {
   };
 
   const removeIssue = async (issueId: string) => {
-		const url = `${SERVER_URL}/api/issues/${issueId}`;
-		const response = await axios.delete(url);
+    const url = `${SERVER_URL}/api/issues/${issueId}`;
+    const response = await axios.delete(url);
 
-		if (response.status !== 204) {
-			throw new Error("Error deleting issue");
-		}
+    if (response.status !== 204) {
+      throw new Error("Error deleting issue");
+    }
 
     setIssues(issues.filter((i: any) => i.id !== issueId));
   };

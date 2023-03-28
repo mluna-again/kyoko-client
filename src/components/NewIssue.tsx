@@ -29,7 +29,8 @@ const NewIssue = ({ addIssue }: Props) => {
   } = useInput();
 
   const addIssueWrapper = () => {
-		if (!issueTitle) return;
+    if (!issueTitle) return;
+    if (creatingIssue) return;
 
     const successAlert = () => toast.success("Issue added successfully");
     const failureAlert = () => toast.error("Issue could not be added");
@@ -69,6 +70,7 @@ const NewIssue = ({ addIssue }: Props) => {
           onChange={onChangeIssueDescription}
           value={issueDescription}
         />
+        <input type="submit" hidden />
       </form>
 
       <div className={styles.buttons}>
