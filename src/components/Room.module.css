@@ -41,6 +41,13 @@
 	border-radius: 5px;
 	cursor: pointer;
 	background: none;
+	transition: all 0.2s ease-in-out;
+}
+
+.issuesTab:hover {
+	background: var(--primary);
+	border-color: var(--primary);
+	color: var(--text-light);
 }
 
 .issuesTab span {
