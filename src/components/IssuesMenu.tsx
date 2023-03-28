@@ -24,19 +24,27 @@ const IssuesMenu = ({ open, setOpen }: Props) => {
   });
 
   const votingMessage = votingIssue
-    ? `Currently voting \`${votingIssue.title}\``
+    ? `Currently voting "${votingIssue.title}"`
     : "Not voting for any issue";
 
   return (
     <div>
       <div className={overlayClasses} onClick={closeMenu} />
       <div className={menuClasses}>
-        <h1>Issues</h1>
-        <p>{votingMessage}</p>
+        <h1 className={styles.title}>Issues</h1>
+        <p className={styles.info}>{votingMessage}</p>
 
-        {issues.map((issue) => (
-          <Issue setAsActive={setVotingIssue} active={votingIssue}>{issue}</Issue>
-        ))}
+        <div className={styles.list}>
+          {issues.map((issue) => (
+            <Issue
+              key={issue.id}
+              setAsActive={setVotingIssue}
+              active={votingIssue}
+            >
+              {issue}
+            </Issue>
+          ))}
+        </div>
 
         <NewIssue addIssue={addIssue} />
       </div>
