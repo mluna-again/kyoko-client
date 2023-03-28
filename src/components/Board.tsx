@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
 import { UserType } from "../constants/types";
+import { useKyokoStore } from "../store";
 import Clock from "./Clock";
 import CustomValue from "./CustomValue";
 import Settings from "./Settings";
@@ -27,6 +28,8 @@ const Board = ({
   initialState,
   resetUsers,
 }: Props) => {
+	const {votingIssue} = useKyokoStore(state => state);
+
   const [showClock, setShowClock] = useState(
     initialState?.settings?.clock ?? false
   );
@@ -174,6 +177,7 @@ const Board = ({
           channel.push("toggle_emojis", { active })
         }
       />
+			{votingIssue && <p className={styles.votingIssue}>{votingIssue}</p>}
       <div
         className={cx(styles.revealContainer, {
           [styles.active]: atLeastOneUserSelected && !gameOver && !showingCards,

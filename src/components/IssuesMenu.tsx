@@ -1,28 +1,38 @@
 import cx from "classnames";
+import { useKyokoStore } from "../store";
 import styles from "./IssueMenu.module.css";
 
 type Props = {
-	open: boolean
-	setOpen: (open: boolean) => void
-}
+  open: boolean;
+  setOpen: (open: boolean) => void;
+};
 const IssuesMenu = ({ open, setOpen }: Props) => {
-	const closeMenu = () => setOpen(false)
+  const { votingIssue, setVotingIssue } = useKyokoStore((state) => state);
 
-	const menuClasses = cx(styles.container, {
-		[styles.open]: open,
-	})
+  const closeMenu = () => setOpen(false);
 
-	const overlayClasses = cx(styles.overlay, {
-		[styles.open]: open,
-	})
+  const menuClasses = cx(styles.container, {
+    [styles.open]: open,
+  });
 
-	return <div>
-		<div className={overlayClasses} onClick={closeMenu} />
+  const overlayClasses = cx(styles.overlay, {
+    [styles.open]: open,
+  });
 
-		<div className={menuClasses}>
-			<h1>Hello</h1>
-		</div>
-	</div>
-}
+  const votingMessage = votingIssue
+    ? `Currently voting \`${votingIssue}\``
+    : "Not voting for any issue";
 
-export default IssuesMenu
+  return (
+    <div>
+      <div className={overlayClasses} onClick={closeMenu} />
+      <div className={menuClasses}>
+				<p>{votingMessage}</p>
+        <button onClick={() => setVotingIssue("test")}>Set</button>
+        <button onClick={() => setVotingIssue(null)}>Remove</button>
+      </div>
+    </div>
+  );
+};
+
+export default IssuesMenu;

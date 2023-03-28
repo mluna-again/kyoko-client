@@ -170,3 +170,7 @@
   text-align: center;
   color: var(--text-dark);
 }
+
+.votingIssue {
+	text-align: center;
+}
