@@ -97,10 +97,10 @@ const UserActionMenu = ({ user }: Props) => {
         confirmButtonText: confirmMessage,
         cancelButtonText: "Cancel",
         showClass: {
-          popup: "slideIn"
+          popup: "slideIn",
         },
         hideClass: {
-          popup: "slideOut"
+          popup: "slideOut",
         },
       })
       .then(({ isConfirmed }) => isConfirmed && kickPlayer())
