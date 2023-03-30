@@ -1,8 +1,8 @@
 import { useState } from "react";
 import cx from "classnames";
 import { motion } from "framer-motion";
-import Switch from "react-switch";
 import ThemeSwitch from "./ThemeSwitch";
+import Switch from "./Switch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Settings.module.css";
@@ -56,7 +56,7 @@ const Settings = ({
           <h1 onClick={toggleMenu}>Settings</h1>
           <div>
             <label>
-              <p>Dark mode</p>
+              <p>Theme</p>
               <ThemeSwitch />
             </label>
           </div>
@@ -64,39 +64,21 @@ const Settings = ({
           <div>
             <label>
               <p>Show countdown</p>
-              <Switch
-                checked={showClock}
-                onChange={setShowClock}
-                onColor="#3993ff"
-                checkedIcon={false}
-                uncheckedIcon={false}
-              />
+              <Switch checked={showClock} onChange={setShowClock} />
             </label>
           </div>
 
           <div>
             <label>
               <p>Same answer animation</p>
-              <Switch
-                checked={showAnimation}
-                onChange={setShowAnimation}
-                onColor="#3993ff"
-                checkedIcon={false}
-                uncheckedIcon={false}
-              />
+              <Switch checked={showAnimation} onChange={setShowAnimation} />
             </label>
           </div>
 
           <div className={styles.emojisContainer}>
             <label>
               <p>Custom animation emojis</p>
-              <Switch
-                checked={enableEmojis}
-                onChange={setEnableEmojis}
-                onColor="#3993ff"
-                checkedIcon={false}
-                uncheckedIcon={false}
-              />
+              <Switch checked={enableEmojis} onChange={setEnableEmojis} />
             </label>
             <input
               className={cx({ [styles.active]: enableEmojis })}

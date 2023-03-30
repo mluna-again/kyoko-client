@@ -1,0 +1,33 @@
+.container {
+  cursor: pointer;
+  width: 50px;
+  height: 25px;
+  display: flex;
+  padding: 2px;
+  border-radius: 20px;
+  background-color: var(--white);
+  border: 1px solid var(--primary);
+  transition: all 0.2s;
+}
+
+.container.checked {
+  background-color: var(--primary);
+}
+
+.container .checkbox {
+  opacity: 1;
+  display: none;
+}
+
+.container .thumb {
+  height: 25px;
+  width: 25px;
+  border-radius: 100%;
+  transition: all 0.2s;
+  background-color: var(--primary);
+}
+
+.checked .thumb {
+  transform: translateX(25px);
+  background-color: var(--white);
+}
