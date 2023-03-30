@@ -33,6 +33,7 @@ const useRoomChannel = (
   config: Config
 ) => {
   const [alerted, setAlerted] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const alert = () => {
@@ -128,6 +129,8 @@ const useRoomChannel = (
 
     const presence = new Presence(channel);
     const syncUsers = () => {
+      setLoading(false);
+
       const newUsers = presence.list().map((user) => user.metas.at(-1));
 
       setUsers((users) => diffUsers(users, newUsers));
@@ -153,6 +156,6 @@ const useRoomChannel = (
     setUsers((users) => users.map(resetter));
   };
 
-  return { channel, users, error, resetUserSelections };
+  return { channel, users, error, resetUserSelections, loading };
 };
 export default useRoomChannel;

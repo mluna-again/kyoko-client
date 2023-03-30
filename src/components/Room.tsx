@@ -46,6 +46,7 @@ const Room = () => {
     channel,
     users,
     error: channelError,
+    loading: loadingChannel,
   } = useRoomChannel(
     socket,
     room,
@@ -99,6 +100,7 @@ const Room = () => {
 
         <div>
           <Board
+            loading={loadingChannel}
             initialState={room}
             playerName={playerName}
             channel={channel}

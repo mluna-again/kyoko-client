@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
@@ -19,6 +20,7 @@ type Props = {
   playerName: string;
   initialState: any;
   resetUsers: () => void;
+  loading: boolean;
 };
 
 const Board = ({
@@ -27,6 +29,7 @@ const Board = ({
   playerName,
   initialState,
   resetUsers,
+  loading,
 }: Props) => {
   const { votingIssue } = useKyokoStore((state) => state);
 
@@ -234,13 +237,23 @@ const Board = ({
       </div>
 
       <div className={styles.cardsContainer}>
-        <Cards
-          ratingType={initialState?.ratingType}
-          playerName={playerName}
-          users={users}
-          showCards={showCards}
-          showClock={showClock}
-        />
+        {loading ? (
+          <TailSpin
+            wrapperClass={styles.loadingSpinner}
+            height="35"
+            width="35"
+            color="var(--primary)"
+            ariaLabel="loading"
+          />
+        ) : (
+          <Cards
+            ratingType={initialState?.ratingType}
+            playerName={playerName}
+            users={users}
+            showCards={showCards}
+            showClock={showClock}
+          />
+        )}
       </div>
 
       <div className={styles.optionsContainer}>
