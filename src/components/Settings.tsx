@@ -65,7 +65,7 @@ const Settings = ({
 
           <div>
             <label>
-              <p>Show clock</p>
+              <p>Show countdown</p>
               <Switch
                 checked={showClock}
                 onChange={setShowClock}
