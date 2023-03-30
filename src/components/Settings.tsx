@@ -36,13 +36,11 @@ const Settings = ({
       height: "450px",
       width: "300px",
       borderRadius: "15px",
-      backgroundColor: "var(--secondary)",
     },
     hidden: {
       height: "80px",
       width: "80px",
       borderRadius: "150px",
-      backgroundColor: "var(--primary)",
     },
   };
 

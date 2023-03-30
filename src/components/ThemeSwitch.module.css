@@ -15,3 +15,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.select {
+  width: 100%;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--primary);
+  color: var(--text-dark);
+  border-radius: 5px;
+}

@@ -1,38 +1,34 @@
 import { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import Switch from "react-switch";
 import styles from "./ThemeSwitch.module.css";
 
+const VALID_THEMES = ["light", "dark", "kanagawa"];
+
 const ThemeSwitch = () => {
-  const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+
   useEffect(() => {
-    const theme = dark ? "dark" : "light";
+    if (!VALID_THEMES.includes(theme)) {
+      setTheme("light");
+      localStorage.setItem("theme", "light");
+      return;
+    }
+
     document.body.className = theme;
     localStorage.setItem("theme", theme);
-  }, [dark]);
+  }, [theme]);
+
+  const changeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newTheme = e.target.value;
+    setTheme(newTheme);
+  };
 
   return (
     <div className={styles.container}>
-      <label>
-        <Switch
-          checked={dark}
-          onChange={setDark}
-          onColor="#3993ff"
-          checkedIcon={false}
-          uncheckedIcon={false}
-          checkedHandleIcon={
-            <span className={styles.icon}>
-              <FontAwesomeIcon icon={faSun} />
-            </span>
-          }
-          uncheckedHandleIcon={
-            <span className={styles.icon}>
-              <FontAwesomeIcon icon={faMoon} />
-            </span>
-          }
-        />
-      </label>
+      <select onChange={changeHandler} className={styles.select}>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+        <option value="kanagawa">Kanagawa</option>
+      </select>
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import cx from "classnames";
 import "react-toastify/dist/ReactToastify.css";
@@ -11,6 +12,11 @@ import Room from "./components/Room";
 import styles from "./App.module.css";
 
 function App() {
+  useEffect(() => {
+    const theme = localStorage.getItem("theme") || "light";
+    document.body.className = theme;
+  }, []);
+
   return (
     <>
       <ToastContainer
