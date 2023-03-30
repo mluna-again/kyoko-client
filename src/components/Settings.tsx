@@ -33,7 +33,7 @@ const Settings = ({
 
   const menuStates = {
     visible: {
-      height: "400px",
+      height: "450px",
       width: "300px",
       borderRadius: "15px",
       backgroundColor: "var(--secondary)",
