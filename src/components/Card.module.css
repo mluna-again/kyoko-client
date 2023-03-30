@@ -159,3 +159,7 @@
     min-width: unset;
   }
 }
+
+.logo svg {
+  margin-right: 4px;
+}

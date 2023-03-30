@@ -1,5 +1,7 @@
 import cx from "classnames";
 import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDiamond } from "@fortawesome/free-solid-svg-icons";
 import { UserType } from "../constants/types";
 import UserBadge from "./UserBadge";
 import Shirt from "../svg/Shirt";
@@ -70,18 +72,26 @@ const Card = ({
               </span>
               <motion.span
                 animate={{
-                  color: show ? "white" : "transparent",
-                  opacity: show ? 1 : 0,
-                  rotateY: 180,
+                  color: "white",
+                  rotateY: show ? 180 : 0,
+                  fontSize: show ? "18px" : "10px",
                 }}
                 transition={{ delay: showClock ? 0.5 : 0 }}
               >
                 {(() => {
+                  if (!show && !user.selection) return "";
+
                   if (Number.isInteger(user.selection) && show) {
                     const tooLarge = String(user?.selection).length > 3;
                     return tooLarge ? "a lot" : user.selection;
                   }
-                  if (user.selection) return "";
+
+                  return (
+                    <span className={styles.logo}>
+                      <FontAwesomeIcon icon={faDiamond} />
+                      Kyoko
+                    </span>
+                  );
                 })()}
               </motion.span>
               <span className={cx(styles.cardEmoji, { [styles.active]: show })}>
