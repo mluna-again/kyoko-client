@@ -77,8 +77,10 @@ const Card = ({
                 transition={{ delay: showClock ? 0.5 : 0 }}
               >
                 {(() => {
-                  if (Number.isInteger(user.selection) && show)
-                    return user.selection;
+                  if (Number.isInteger(user.selection) && show) {
+                    const tooLarge = String(user?.selection).length > 3;
+                    return tooLarge ? "a lot" : user.selection;
+                  }
                   if (user.selection) return "";
                 })()}
               </motion.span>
