@@ -24,6 +24,21 @@ const useIssues = (room: string, channel?: Channel) => {
   const setVote = (issue: any) => {
     setVotingIssue(issue);
   };
+  const updateResult = ({ issue_id, result }: any) => {
+    setIssues((issues) => {
+      const newIssues = issues.map((issue) => {
+        if (issue.id === issue_id) {
+          return {
+            ...issue,
+            result,
+          };
+        }
+        return issue;
+      });
+
+      return newIssues;
+    });
+  };
 
   useEffect(() => {
     const getIssues = async () => {
@@ -41,6 +56,7 @@ const useIssues = (room: string, channel?: Channel) => {
     channel?.on("issues:delete", removeIssueHandler);
     channel?.on("issues:clearVote", clearVote);
     channel?.on("issues:setVote", setVote);
+    channel?.on("issues:new_result", updateResult);
 
     getIssues();
 
@@ -49,6 +65,7 @@ const useIssues = (room: string, channel?: Channel) => {
       channel?.off("issues:delete");
       channel?.off("issues:clearVote");
       channel?.off("issues:setVote");
+      channel?.off("issues:new_result");
     };
   }, [room, channel]);
 
