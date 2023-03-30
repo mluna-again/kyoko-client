@@ -1,4 +1,5 @@
 import { useState } from "react";
+import cx from "classnames";
 import styles from "./CustomValue.module.css";
 
 type Props = {
@@ -15,16 +16,19 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
     setValue(value);
   };
 
-  const isValidNumber = Boolean(Number(value));
-  const isNegative = isValidNumber && Number(value) < 0;
-  const isTooBiG = isValidNumber && Number(value) > 100;
+  // Number("10.") is a valid call for some reason...
+  const hasADot = value.includes(".");
+  const isEmpty = value === "";
+  const isInteger = !hasADot && !isEmpty && Number.isInteger(Number(value));
+  const isNegative = isInteger && Number(value) < 0;
+  const isTooBiG = isInteger && Number(value) > 500;
   const shouldDisplayEmoji =
-    Boolean(value && !isValidNumber) || isNegative || isTooBiG;
+    Boolean(value && !isInteger) || isNegative || isTooBiG;
 
   const submitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (gameOver) return;
-    if (!isValidNumber) return;
+    if (!isInteger) return;
     onConfirm("🕵️", Number(value));
   };
 
@@ -41,8 +45,11 @@ const CustomValue = ({ onConfirm, gameOver }: Props) => {
           />
         </div>
         <button
-          disabled={!isValidNumber}
-          className={`${!isValidNumber && styles.disabled}`}
+          disabled={!isInteger}
+          className={cx({
+            [styles.disabled]: !isInteger,
+            [styles.valid]: isInteger,
+          })}
         >
           Confirm
         </button>
