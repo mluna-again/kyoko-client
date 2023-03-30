@@ -173,6 +173,7 @@
 
 .votingIssue {
   text-align: center;
+  color: var(--text-dark);
 }
 
 .loadingSpinner {
