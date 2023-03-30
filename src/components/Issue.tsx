@@ -74,7 +74,9 @@ const Issue = ({ children, onDelete, channel }: Props) => {
       {children.description && (
         <p className={styles.description}>{children.description}</p>
       )}
-      {children.result && <span>{children.result}</span>}
+      {children.result && (
+        <span className={styles.result}>Result: {children.result}</span>
+      )}
 
       <div className={styles.buttons}>
         <button onClick={onVoteHandler} className={voteBtnClasses}>
