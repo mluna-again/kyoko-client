@@ -1,14 +1,9 @@
 .container {
-  border: 1px solid var(--primary-dark);
   padding: 4px;
   padding-bottom: 8px;
   border-radius: 5px;
   border-color: transparent;
   transition: all 0.3s ease-in-out;
-}
-
-.container.open {
-  border-color: var(--primary-dark);
 }
 
 .form {
@@ -18,11 +13,11 @@
   box-sizing: border-box;
   padding: 0 4px;
   transform: scaleY(0);
-	display: none;
+  display: none;
 }
 
 .form.open {
-	display: inline-block;
+  display: inline-block;
   transform: scaleY(1);
 }
 
@@ -31,7 +26,6 @@
   width: 100%;
   padding: 0.5rem;
   border: none;
-  border-bottom: 1px solid var(--primary);
   margin: 4px 0;
 }
 
