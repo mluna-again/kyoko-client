@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { TailSpin } from "react-loader-spinner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
@@ -220,6 +222,7 @@ const Board = ({
       {!gameOver && (
         <div className={styles.resetSecondBtnContainer}>
           <button className={styles.resetSecondBtn} onClick={resetHandler}>
+            <FontAwesomeIcon icon={faRotateRight} />
             Reset cards
           </button>
         </div>

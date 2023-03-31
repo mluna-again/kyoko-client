@@ -94,6 +94,10 @@
   color: var(--text-dark);
 }
 
+.resetSecondBtn svg {
+  margin-right: 5px;
+}
+
 .optionsContainer,
 .cardsContainer {
   display: flex;
