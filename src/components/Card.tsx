@@ -86,6 +86,8 @@ const Card = ({
                     return tooLarge ? "a lot" : user.selection;
                   }
 
+                  if (!user.selection && show) return "";
+
                   return (
                     <span className={styles.logo}>
                       <FontAwesomeIcon icon={faDiamond} />
