@@ -5,7 +5,8 @@
   align-items: center;
   margin: 10px 0px;
   border-radius: 5px;
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--primary-dark);
+  text-align: center;
 }
 
 .buttons {
@@ -55,6 +56,13 @@
   margin: 0;
   margin-bottom: 9px;
   opacity: 0.6;
+}
+
+.title,
+.description {
+  width: 100%;
+  white-space: wrap;
+  overflow: hidden;
 }
 
 .result {

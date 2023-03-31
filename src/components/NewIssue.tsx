@@ -55,8 +55,12 @@ const NewIssue = ({ addIssue }: Props) => {
     [styles.open]: inputOpen,
   });
 
+  const containerClasses = cx(styles.container, {
+    [styles.open]: inputOpen,
+  });
+
   return (
-    <div className={styles.container}>
+    <div className={containerClasses}>
       <form onSubmit={onSubmitHandler} className={formClasses}>
         <input
           type="text"

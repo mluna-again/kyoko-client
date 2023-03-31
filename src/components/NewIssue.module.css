@@ -1,8 +1,21 @@
+.container {
+  border: 1px solid var(--primary-dark);
+  padding: 4px;
+  padding-bottom: 8px;
+  border-radius: 5px;
+  border-color: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.container.open {
+  border-color: var(--primary-dark);
+}
+
 .form {
   transform: scaleY(0);
   transform-origin: top;
   transition: transform 0.3s ease-in-out;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   box-sizing: border-box;
   padding: 0 4px;
 }
@@ -17,6 +30,7 @@
   padding: 0.5rem;
   border: none;
   border-bottom: 1px solid var(--primary);
+  margin: 4px 0;
 }
 
 .buttons {
