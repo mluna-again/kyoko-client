@@ -57,11 +57,39 @@ body.kanagawa {
   --primary-light: #7fb4ca;
   --primary-dark: #938aa9;
   --secondary: #ff9e3b;
-  --secondary-light: ##dca561;
+  --secondary-light: #dca561;
   --secondary-dark: #c34043;
   --white: #dcd7ba;
   --text-light: #dcd7ba;
   --text-dark: #dcd7ba;
+  --toastify-color-success: var(--primary) !important;
+}
+
+body.gruvbox-dark {
+  --background: #282828;
+  --primary: #d79921;
+  --primary-light: #fabd2f;
+  --primary-dark: #fe8019;
+  --secondary: #fb4934;
+  --secondary-light: #d65d0e;
+  --secondary-dark: #cc241d;
+  --white: #fbf1c7;
+  --text-light: #fbf1c7;
+  --text-dark: #fbf1c7;
+  --toastify-color-success: var(--primary) !important;
+}
+
+body.gruvbox-light {
+  --background: #fbf1c7;
+  --primary: #b57614;
+  --primary-light: #d79921;
+  --primary-dark: #af3a03;
+  --secondary: #cc241d;
+  --secondary-light: #d65d0e;
+  --secondary-dark: #9d0006;
+  --white: #f9f5d7;
+  --text-light: #f9f5d7;
+  --text-dark: #282828;
   --toastify-color-success: var(--primary) !important;
 }
 
