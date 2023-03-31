@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "./ThemeSwitch.module.css";
+import { DEFAULT_THEME } from "../constants/theme";
 
 const VALID_THEMES = [
   "light",
@@ -10,7 +11,9 @@ const VALID_THEMES = [
 ];
 
 const ThemeSwitch = () => {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || DEFAULT_THEME
+  );
 
   useEffect(() => {
     if (!VALID_THEMES.includes(theme)) {

@@ -10,10 +10,11 @@ import { Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Room from "./components/Room";
 import styles from "./App.module.css";
+import { DEFAULT_THEME } from "./constants/theme";
 
 function App() {
   useEffect(() => {
-    const theme = localStorage.getItem("theme") || "light";
+    const theme = localStorage.getItem("theme") || DEFAULT_THEME;
     document.body.className = theme;
   }, []);
 
