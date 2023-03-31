@@ -43,9 +43,8 @@ const IssuesMenu = ({ open, setOpen, room, channel }: Props) => {
               {issue}
             </Issue>
           ))}
+          <NewIssue addIssue={addIssue} />
         </div>
-
-        <NewIssue addIssue={addIssue} />
       </div>
     </div>
   );

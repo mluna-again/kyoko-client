@@ -47,8 +47,7 @@
 }
 
 .list {
-  max-height: 70vh;
   overflow-y: scroll;
-  padding-bottom: 5px;
+  padding-bottom: 30px;
   box-sizing: border-box;
 }
