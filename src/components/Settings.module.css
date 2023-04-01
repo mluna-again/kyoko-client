@@ -51,7 +51,6 @@
 }
 
 .emojisContainer input {
-  margin-top: 10px;
   padding: 5px;
   border: none;
   background-color: var(--white);
@@ -76,4 +75,16 @@
 .emojisContainer input.active {
   transform: translateY(0);
   opacity: 1;
+}
+
+.inputContainer {
+  position: relative;
+  margin-top: 10px;
+}
+
+.loadingSpinner {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translate(-50%, -50%);
 }

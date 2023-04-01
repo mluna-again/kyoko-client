@@ -1,10 +1,12 @@
 import { useState } from "react";
 import cx from "classnames";
+import { TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import ThemeSwitch from "./ThemeSwitch";
 import Switch from "./Switch";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
+import useDebounce from "../hooks/useDebounce";
 import styles from "./Settings.module.css";
 
 type Props = {
@@ -44,6 +46,12 @@ const Settings = ({
     },
   };
 
+  const [debouncedEmojis, setDebouncedEmojis, debouncingEmojis] = useDebounce(
+    emojis,
+    setEmojis,
+    500
+  );
+
   return (
     <motion.div
       className={cx(styles.container, { [styles.active]: showMenu })}
@@ -80,13 +88,24 @@ const Settings = ({
               <p>Custom animation emojis</p>
               <Switch checked={enableEmojis} onChange={setEnableEmojis} />
             </label>
-            <input
-              className={cx({ [styles.active]: enableEmojis })}
-              disabled={!enableEmojis}
-              type="text"
-              value={emojis}
-              onChange={(e) => setEmojis(e.target.value)}
-            />
+            <div className={styles.inputContainer}>
+              <input
+                className={cx({ [styles.active]: enableEmojis })}
+                disabled={!enableEmojis}
+                type="text"
+                value={debouncedEmojis}
+                onChange={setDebouncedEmojis}
+              />
+              {debouncingEmojis && (
+                <TailSpin
+                  height={20}
+                  width={20}
+                  wrapperClass={styles.loadingSpinner}
+                  color="var(--primary)"
+                  ariaLabel="loading"
+                />
+              )}
+            </div>
           </div>
         </>
       ) : (
