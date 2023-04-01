@@ -10,6 +10,7 @@ import * as yup from "yup";
 import { SERVER_URL } from "../constants/values";
 import styles from "./Home.module.css";
 import Teams from "./Teams";
+import Switch from "./Switch";
 
 // disabled by default
 const DEFAULT_TEAMS_OPTION = false;
@@ -43,15 +44,13 @@ const Home = () => {
   }, []);
 
   const [team, setTeam] = useState<string | undefined>();
+  const [teamsEnabled, setTeamsEnabled] = useState(DEFAULT_TEAMS_OPTION);
 
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<Inputs>({ resolver: yupResolver(schema) });
-
-  const teamsEnabled = watch("teams", DEFAULT_TEAMS_OPTION);
 
   const navigate = useNavigate();
 
@@ -139,11 +138,9 @@ const Home = () => {
 
         <div className={styles.checkbox}>
           <label htmlFor="teams">Enable teams</label>
-          <input
-            id="teams"
-            type="checkbox"
-            defaultChecked={DEFAULT_TEAMS_OPTION}
-            {...register("teams")}
+          <Switch
+            onChange={(checked) => setTeamsEnabled(checked as boolean)}
+            checked={teamsEnabled}
           />
         </div>
 

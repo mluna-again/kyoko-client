@@ -20,8 +20,6 @@ const Switch = ({ checked, ...props }: Props) => {
         onChange={onChangeHandler}
         checked={Boolean(checked)}
       />
-
-      <div className={styles.thumb} />
     </div>
   );
 };
