@@ -18,7 +18,6 @@ const DEFAULT_TEAMS_OPTION = false;
 type Inputs = {
   roomName: string;
   playerName: string;
-  teams: boolean;
   ratingType: "cards" | "shirts";
 };
 
@@ -32,7 +31,6 @@ const schema = yup
       .string()
       .required("Required")
       .max(30, "Should be at most 30 characters long"),
-    teams: yup.boolean(),
     ratingType: yup.string().required("Required"),
   })
   .required();
@@ -62,8 +60,11 @@ const Home = () => {
       const response = await axios.post(`${SERVER_URL}/api/rooms`, {
         room: {
           name: data.roomName,
-          first: { name: data.playerName, team: data.teams ? team : undefined },
-          teams_enabled: data.teams,
+          first: {
+            name: data.playerName,
+            team: teamsEnabled ? team : undefined,
+          },
+          teams_enabled: teamsEnabled,
           rating_type: data.ratingType,
         },
       });
@@ -96,6 +97,7 @@ const Home = () => {
             type="text"
             id="room-name"
             placeholder="Room's name"
+            autoComplete="off"
             {...register("roomName", {
               required: true,
               maxLength: 30,
@@ -111,6 +113,7 @@ const Home = () => {
             type="text"
             id="player-name"
             placeholder="Your name"
+            autoComplete="off"
             {...register("playerName", {
               required: true,
               maxLength: 30,
