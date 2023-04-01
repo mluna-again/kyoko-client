@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: var(--text-dark);
 }
 
 .input input {
@@ -17,7 +18,7 @@
   padding: 0.8rem;
   border-radius: 8px;
   width: 50%;
-  color: var(--white);
+  color: var(--text-dark);
   font-size: 1.7rem;
   cursor: pointer;
   margin-top: 2rem;
