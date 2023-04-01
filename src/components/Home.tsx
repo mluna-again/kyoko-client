@@ -139,6 +139,7 @@ const Home = () => {
         <div className={styles.checkbox}>
           <label htmlFor="teams">Enable teams</label>
           <Switch
+            id="teams"
             onChange={(checked) => setTeamsEnabled(checked as boolean)}
             checked={teamsEnabled}
           />
