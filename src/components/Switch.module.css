@@ -4,7 +4,14 @@
   height: 30px;
   position: relative;
   border-radius: 30px;
-  background: var(--primary);
+  background-color: var(--white);
+  border: 1px solid var(--primary);
+  transition: all 0.2s ease;
+}
+
+.container.checked {
+  background-color: var(--primary);
+  border: 1px solid var(--white);
 }
 
 .container input {
@@ -23,13 +30,17 @@
   position: absolute;
   top: 2px;
   left: 2px;
-  background: var(--white);
   border-radius: 100%;
   transition: all 0.2s ease;
   pointer-events: none;
+  background-color: var(--primary);
+  border: 1px solid var(--white);
+  box-sizing: border-box;
 }
 
 .checked::before {
   left: 32px;
   pointer-events: none;
+  background-color: var(--white);
+  border: 1px solid var(--primary);
 }
