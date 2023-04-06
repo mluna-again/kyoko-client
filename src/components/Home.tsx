@@ -11,6 +11,7 @@ import { SERVER_URL } from "../constants/values";
 import styles from "./Home.module.css";
 import Teams from "./Teams";
 import Switch from "./Switch";
+import { wakeMeUpInside } from "../api/wakeMeUp";
 
 // disabled by default
 const DEFAULT_TEAMS_OPTION = false;
@@ -38,6 +39,7 @@ const schema = yup
 const Home = () => {
   // clear localstorage
   useEffect(() => {
+		wakeMeUpInside();
     localStorage.removeItem("user");
   }, []);
 
