@@ -30,6 +30,12 @@
   padding: 0 1rem;
 }
 
+@media screen and (max-width: 800px) {
+  .container {
+    width: 50vw;
+  }
+}
+
 .title {
   text-align: center;
   margin: 1rem 0;

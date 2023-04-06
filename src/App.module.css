@@ -36,10 +36,10 @@
 }
 
 input {
-	outline: 1px solid transparent;
-	border: none !important;
+  outline: 1px solid transparent;
+  border: none !important;
 }
 
 input:focus {
-	outline: 3px solid var(--primary-light);
+  outline: 3px solid var(--primary-light);
 }

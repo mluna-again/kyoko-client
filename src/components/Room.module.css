@@ -13,6 +13,12 @@
   font-size: 18px;
 }
 
+@media screen and (max-width: 800px) {
+  .inviteContainer {
+    padding: 3rem 2rem;
+  }
+}
+
 .inviteLink {
   color: var(--primary);
   cursor: pointer;

@@ -39,7 +39,7 @@ const schema = yup
 const Home = () => {
   // clear localstorage
   useEffect(() => {
-		wakeMeUpInside();
+    wakeMeUpInside();
     localStorage.removeItem("user");
   }, []);
 
