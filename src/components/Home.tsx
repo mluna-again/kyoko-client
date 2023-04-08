@@ -154,7 +154,7 @@ const Home = () => {
 
         <div className={styles.playContainer}>
           <button disabled={submitDisabled}>
-            {true ? (
+            {loading ? (
               <LoadingBars />
             ) : (
               "Create game"

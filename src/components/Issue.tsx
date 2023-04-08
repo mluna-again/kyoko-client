@@ -2,13 +2,13 @@ import { useState } from "react";
 import { Channel } from "phoenix";
 import cx from "classnames";
 import { toast } from "react-toastify";
-import { TailSpin } from "react-loader-spinner";
 import swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { useKyokoStore } from "../store";
 import { Issue as IssueType } from "../constants/types";
 import styles from "./Issue.module.css";
+import LoadingBars from "./LoadingBars";
 
 type Props = {
   children: IssueType;
@@ -87,12 +87,7 @@ const Issue = ({ children, onDelete, channel }: Props) => {
           onClick={deleteHandler}
         >
           {deleting ? (
-            <TailSpin
-              height="25"
-              width="25"
-              color="white"
-              ariaLabel="loading"
-            />
+            <LoadingBars />
           ) : (
             <FontAwesomeIcon icon={faTrash} />
           )}

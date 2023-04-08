@@ -2,10 +2,12 @@ type Props = {
   height?: number;
   width?: number;
   color?: string;
+  className?: string;
 };
-const LoadingBars = ({ height, width, color }: Props) => {
+const LoadingBars = ({ height, width, color, className }: Props) => {
   return (
     <svg
+      className={className}
       style={{ fill: color ?? "var(--white)" }}
       width={width ?? 25}
       height={height ?? 25}

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { TailSpin } from "react-loader-spinner";
 import { toast } from "react-toastify";
 import cx from "classnames";
 import { Issue } from "../constants/types";
 import useInput from "../hooks/useInput";
 import styles from "./NewIssue.module.css";
+import LoadingBars from "./LoadingBars";
 
 type Props = {
   addIssue: (issue: Issue) => Promise<void>;
@@ -89,12 +89,7 @@ const NewIssue = ({ addIssue }: Props) => {
           disabled={creatingIssue}
         >
           {creatingIssue ? (
-            <TailSpin
-              height="25"
-              width="25"
-              color="white"
-              ariaLabel="loading"
-            />
+            <LoadingBars />
           ) : (
             "Add Issue"
           )}

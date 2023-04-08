@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { TailSpin } from "react-loader-spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
@@ -15,6 +14,7 @@ import Cards from "./Cards";
 import Rating from "./Rating";
 import { DEFAULT_EMOJIS } from "../constants/emojis";
 import { getShirtMedian } from "../constants/ratings";
+import LoadingBars from "./LoadingBars";
 
 type Props = {
   users: UserType[];
@@ -241,12 +241,11 @@ const Board = ({
 
       <div className={styles.cardsContainer}>
         {loading ? (
-          <TailSpin
-            wrapperClass={styles.loadingSpinner}
-            height="35"
-            width="35"
+          <LoadingBars
+            className={styles.loadingSpinner}
+            height={35}
+            width={35}
             color="var(--primary)"
-            ariaLabel="loading"
           />
         ) : (
           <Cards

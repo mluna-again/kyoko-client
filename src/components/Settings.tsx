@@ -1,6 +1,5 @@
 import { useState } from "react";
 import cx from "classnames";
-import { TailSpin } from "react-loader-spinner";
 import { motion } from "framer-motion";
 import ThemeSwitch from "./ThemeSwitch";
 import Switch from "./Switch";
@@ -8,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import useDebounce from "../hooks/useDebounce";
 import styles from "./Settings.module.css";
+import LoadingBars from "./LoadingBars";
 
 type Props = {
   showClock: boolean;
@@ -97,12 +97,11 @@ const Settings = ({
                 onChange={setDebouncedEmojis}
               />
               {debouncingEmojis && (
-                <TailSpin
+                <LoadingBars
                   height={20}
                   width={20}
-                  wrapperClass={styles.loadingSpinner}
+                  className={styles.loadingSpinner}
                   color="var(--primary)"
-                  ariaLabel="loading"
                 />
               )}
             </div>
