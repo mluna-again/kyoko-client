@@ -86,11 +86,7 @@ const Issue = ({ children, onDelete, channel }: Props) => {
           className={cx(styles.button, styles.trash)}
           onClick={deleteHandler}
         >
-          {deleting ? (
-            <LoadingBars />
-          ) : (
-            <FontAwesomeIcon icon={faTrash} />
-          )}
+          {deleting ? <LoadingBars /> : <FontAwesomeIcon icon={faTrash} />}
         </button>
       </div>
     </div>

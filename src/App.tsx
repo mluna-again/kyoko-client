@@ -24,6 +24,7 @@ function App() {
         position="top-center"
         pauseOnHover
         theme="colored"
+        autoClose={3000}
       />
       <div className={cx(styles.container)}>
         <nav className={styles.nav}>

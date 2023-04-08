@@ -88,11 +88,7 @@ const NewIssue = ({ addIssue }: Props) => {
           className={styles.open}
           disabled={creatingIssue}
         >
-          {creatingIssue ? (
-            <LoadingBars />
-          ) : (
-            "Add Issue"
-          )}
+          {creatingIssue ? <LoadingBars /> : "Add Issue"}
         </button>
       </div>
     </div>

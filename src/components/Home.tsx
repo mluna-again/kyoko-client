@@ -154,11 +154,7 @@ const Home = () => {
 
         <div className={styles.playContainer}>
           <button disabled={submitDisabled}>
-            {loading ? (
-              <LoadingBars />
-            ) : (
-              "Create game"
-            )}
+            {loading ? <LoadingBars /> : "Create game"}
           </button>
         </div>
       </form>
