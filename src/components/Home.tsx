@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { TailSpin } from "react-loader-spinner";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -12,6 +11,7 @@ import styles from "./Home.module.css";
 import Teams from "./Teams";
 import Switch from "./Switch";
 import { wakeMeUpInside } from "../api/wakeMeUp";
+import LoadingBars from "./LoadingBars";
 
 // disabled by default
 const DEFAULT_TEAMS_OPTION = false;
@@ -154,13 +154,8 @@ const Home = () => {
 
         <div className={styles.playContainer}>
           <button disabled={submitDisabled}>
-            {loading ? (
-              <TailSpin
-                height="25"
-                width="25"
-                color="white"
-                ariaLabel="loading"
-              />
+            {true ? (
+              <LoadingBars />
             ) : (
               "Create game"
             )}
