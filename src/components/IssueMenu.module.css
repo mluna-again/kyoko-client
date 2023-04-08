@@ -59,4 +59,5 @@
   overflow-y: scroll;
   padding-bottom: 30px;
   box-sizing: border-box;
+  width: 100%;
 }
