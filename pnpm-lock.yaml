@@ -67,9 +67,6 @@ dependencies:
   react-hook-form:
     specifier: ^7.31.2
     version: 7.31.2(react@18.1.0)
-  react-loader-spinner:
-    specifier: ^5.1.5
-    version: 5.1.5(react-dom@18.1.0)(react@18.1.0)
   react-router-dom:
     specifier: '6'
     version: 6.0.0(react-dom@18.1.0)(react@18.1.0)
@@ -1807,16 +1804,6 @@ packages:
 
   /react-is@17.0.2:
     resolution: {integrity: sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w==}
-    dev: false
-
-  /react-loader-spinner@5.1.5(react-dom@18.1.0)(react@18.1.0):
-    resolution: {integrity: sha512-kHSBa3pNPNzd3UGOiOsHCC33qx5bZA7IHKau+YSTVn36Jib4eBVx/TNMggudbzW5CTnRCbP5bnYU4ACAX3mA6g==}
-    peerDependencies:
-      react: ^16.0.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.1.0
-      react-dom: 18.1.0(react@18.1.0)
     dev: false
 
   /react-refresh@0.14.0:
