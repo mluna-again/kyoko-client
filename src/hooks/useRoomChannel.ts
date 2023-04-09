@@ -49,8 +49,10 @@ const useRoomChannel = (
 
     const onOpen = socket.onOpen(() => {
       if (alerted) {
+        toast.dismiss("connected");
         toast.success("You are back online!", {
           className: "back-online",
+          toastId: "connected",
           closeButton: false,
           closeOnClick: true,
           icon: false,
