@@ -67,7 +67,7 @@ const useIssues = (room: string, channel?: Channel) => {
       channel?.off("issues:setVote");
       channel?.off("issues:new_result");
     };
-  }, [room, channel]);
+  }, [room, channel, votingIssue, setVotingIssue, setIssues]);
 
   const addIssue = async (issue: Issue) => {
     const url = `${SERVER_URL}/api/issues`;
