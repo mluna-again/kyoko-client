@@ -14,7 +14,11 @@ const NewIssue = ({ addIssue }: Props) => {
 
   const [inputOpen, setInputOpen] = useState(false);
   const openInput = () => setInputOpen(true);
-  const closeInput = () => setInputOpen(false);
+  const closeInput = () => {
+    setInputOpen(false);
+    resetIssueTitle();
+    resetIssueDescription();
+  };
 
   const {
     value: issueTitle,
