@@ -221,7 +221,7 @@ const Board = ({
 
       {!gameOver && (
         <div className={styles.resetSecondBtnContainer}>
-          <button className={styles.resetSecondBtn} onClick={resetHandler}>
+          <button className={styles.resetSecondBtn} onClick={resetHandler} disabled={showingCards}>
             <FontAwesomeIcon icon={faRotateRight} />
             Reset cards
           </button>
