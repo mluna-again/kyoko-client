@@ -38,8 +38,8 @@
 input {
   outline: 3px solid transparent;
   border: none !important;
-  background: var(--white) !important;
-  color: var(--background) !important;
+  background: var(--primary) !important;
+  color: var(--text-dark) !important;
   filter: brightness(0.9);
 }
 
