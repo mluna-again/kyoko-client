@@ -1,5 +1,13 @@
 export type UserType = {
   name: string;
+  selection?: boolean|number;
+  emoji?: string;
+  team?: string;
+  offline?: boolean;
+};
+
+export type UserWithSelection = {
+  name: string;
   selection?: number;
   emoji?: string;
   team?: string;

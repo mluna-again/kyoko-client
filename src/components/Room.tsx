@@ -51,7 +51,7 @@ const Room = () => {
     socket,
     room,
     { username: playerName, team },
-    { onUserUpdate }
+    { onUserUpdate },
   );
 
   const copyLinkHandler = () => {
@@ -100,6 +100,7 @@ const Room = () => {
 
         <div>
           <Board
+            room={params.roomId!}
             loading={loadingChannel}
             initialState={room}
             playerName={playerName}

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Option from "./Option";
 import ShirtRating from "./ShirtRating";
 
@@ -14,23 +15,27 @@ const OPTIONS: any = {
 
 type Props = {
   optionsType: string;
-  selectedOption?: number;
   selectionHandler: any;
   gameOver: boolean;
   ratingType?: string;
 };
 const Rating = ({
   optionsType,
-  selectedOption,
   selectionHandler,
   gameOver,
   ratingType,
 }: Props) => {
+  const [selected, setSelected] = useState<number | null>();
+  const changeHandler = async (emoji: string, value: number | undefined) => {
+      selectionHandler(emoji, value);
+      setSelected(value);
+  };
+
   if (ratingType === "shirts") {
     return (
       <ShirtRating
-        selected={selectedOption}
-        onChange={selectionHandler}
+        selected={selected}
+        onChange={changeHandler}
         gameOver={gameOver}
       />
     );
@@ -38,10 +43,10 @@ const Rating = ({
 
   return OPTIONS[optionsType].map((opt: any) => (
     <Option
-      selected={opt === selectedOption}
+      selected={opt === selected}
       key={opt}
       value={opt}
-      onChange={selectionHandler}
+      onChange={changeHandler}
       gameOver={gameOver}
     />
   ));

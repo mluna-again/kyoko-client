@@ -26,7 +26,7 @@ const Card = ({
   team,
   ratingType,
 }: Props) => {
-  const selected = Number.isInteger(user.selection);
+  const selected = Boolean(user.selection);
   return (
     <div className={styles.container}>
       <UserActionMenu user={user} />

@@ -1,18 +1,17 @@
 import axios from "axios";
 import { SERVER_URL } from "../constants/values";
-import { UserType } from "../constants/types";
 
 type UpdateNameParams = {
-  user: UserType;
+  username: string;
   roomId: string;
   newName: string;
 };
-export async function updateName({ user, roomId, newName }: UpdateNameParams) {
-  const url = `${SERVER_URL}/api/users/${user.name}`;
+export async function updateName({ username, roomId, newName }: UpdateNameParams) {
+  const url = `${SERVER_URL}/api/users/${username}`;
   const response = await axios.patch(url, {
     name: newName,
     room_code: roomId,
-    user: user.name,
+    user: username,
   });
 
   if (response.status !== 200) {

@@ -3,7 +3,7 @@ import { SHIRT_SIZES } from "../constants/ratings";
 import Shirt from "../svg/Shirt";
 
 type Props = {
-  selected?: number;
+  selected?: number | null;
   onChange: any;
   gameOver: boolean;
 };

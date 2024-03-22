@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import axios from "axios";
+import { SERVER_URL } from "../constants/values";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import cx from "classnames";
 import { Channel } from "phoenix";
-import { UserType } from "../constants/types";
+import { UserType, UserWithSelection } from "../constants/types";
 import { useKyokoStore } from "../store";
 import Clock from "./Clock";
 import CustomValue from "./CustomValue";
@@ -23,6 +26,7 @@ type Props = {
   initialState: any;
   resetUsers: () => void;
   loading: boolean;
+  room: string;
 };
 
 const Board = ({
@@ -32,31 +36,42 @@ const Board = ({
   initialState,
   resetUsers,
   loading,
+  room,
 }: Props) => {
   const { votingIssue } = useKyokoStore((state) => state);
 
   const [showClock, setShowClock] = useState(
-    initialState?.settings?.clock ?? false
+    initialState?.settings?.clock ?? false,
   );
   const [showAnimation, setShowAnimation] = useState(
-    initialState?.settings?.animation
+    initialState?.settings?.animation,
   );
+
+  const [result, setResult] = useState<number | null>(null);
 
   const [showingCards, setShowingCards] = useState(false);
   const [gameOver, setGameOver] = useState(
-    initialState?.status === "game_over" || false
+    initialState?.status === "game_over" || false,
   );
   const [showCards, setShowCards] = useState(gameOver);
   useEffect(() => {
-    channel.on("reveal_cards", () => {
+    channel.on("reveal_cards", ({ users }: { users: any }) => {
+
+      const selectionSum = users
+        .map((user: any) => user.selection)
+        .filter((sel: number) => !Number.isNaN(sel))
+        .filter((sel: number) => Boolean(sel))
+        .reduce((acc: number, val: number) => acc! + val!, 0);
+
       setShowingCards(true);
       setTimeout(
         () => {
           setShowingCards(false);
           setShowCards(true);
           setGameOver(true);
+          setResult(selectionSum);
         },
-        showClock ? 1700 : 0
+        showClock ? 1700 : 0,
       );
     });
 
@@ -65,6 +80,7 @@ const Board = ({
       setGameOver(false);
       setShowCards(false);
       resetUsers();
+      setResult(null);
     });
     return () => {
       channel.off("reveal_cards");
@@ -97,12 +113,26 @@ const Board = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
 
-  const userPlaying = users.find((user) => user.name === playerName);
-  const selectedOption = userPlaying?.selection;
+  const selectionHandler = async (emoji: string, value: number | null) => {
+    try {
+      const response = await axios.patch(
+        `${SERVER_URL}/api/rooms/${room}/selection`,
+        {
+          player: playerName,
+          selection: value,
+          emoji,
+        },
+      );
 
-  const selectionHandler = (emoji: string, num?: number) => {
-    const selection = num === selectedOption ? null : num;
-    channel.push("user_selection", { selection, player: playerName, emoji });
+      if (response.status !== 204) {
+        throw new Error(response.statusText);
+      }
+    } catch (_err) {
+      toast.error("Something went wrong while updating your selection!", {
+        autoClose: 2000,
+        closeButton: true,
+      });
+    }
   };
 
   const revealHandler = () => {
@@ -114,23 +144,16 @@ const Board = ({
   };
 
   const usersSelected = users.filter((user) => Boolean(user.selection)).length;
-  const selectionSum = users
-    .map((user) => user.selection)
-    .filter((sel) => !Number.isNaN(sel))
-    .filter((sel) => Boolean(sel))
-    .reduce((acc, val) => acc! + val!, 0);
 
   const [optionsType, setOptionsType] = useState<string>("fibonacci");
   const changeOptionsHandler = (
-    event: React.ChangeEvent<HTMLSelectElement>
+    event: React.ChangeEvent<HTMLSelectElement>,
   ) => {
     setOptionsType(event.target.value);
-    selectionHandler("", undefined);
+    selectionHandler("", null);
   };
 
-  const atLeastOneUserSelected = users.some((user: UserType) =>
-    Number.isInteger(user.selection)
-  );
+  const atLeastOneUserSelected = users.some((user: UserType) => user.selection);
 
   const usersWithSelection = users.filter((user) => Boolean(user.selection));
   const allUsersSameAnswer =
@@ -138,7 +161,7 @@ const Board = ({
     usersWithSelection.length > 1;
 
   const [emojis, setEmojis] = useState(
-    initialState?.settings?.emojis ?? DEFAULT_EMOJIS.join("")
+    initialState?.settings?.emojis ?? DEFAULT_EMOJIS.join(""),
   );
   const [enableEmojis, setEnableEmojis] = useState(true);
   useEffect(() => {
@@ -152,7 +175,7 @@ const Board = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [channel]);
 
-  const average = Math.round((selectionSum as number) / usersSelected);
+  const average = Math.round((result as number) / usersSelected);
   const averageMessage =
     initialState?.ratingType === "shirts"
       ? getShirtMedian(usersWithSelection)
@@ -221,7 +244,11 @@ const Board = ({
 
       {!gameOver && (
         <div className={styles.resetSecondBtnContainer}>
-          <button className={styles.resetSecondBtn} onClick={resetHandler} disabled={showingCards}>
+          <button
+            className={styles.resetSecondBtn}
+            onClick={resetHandler}
+            disabled={showingCards}
+          >
             <FontAwesomeIcon icon={faRotateRight} />
             Reset cards
           </button>
@@ -263,7 +290,6 @@ const Board = ({
           <Rating
             ratingType={initialState?.ratingType}
             optionsType={optionsType}
-            selectedOption={selectedOption}
             selectionHandler={selectionHandler}
             gameOver={gameOver || showingCards}
           />
@@ -300,7 +326,7 @@ const Board = ({
         {allUsersSameAnswer && (
           <h1 className={styles.sameAnswer}>Everyone chose the same answer!</h1>
         )}
-        {Boolean(average) && (
+        {Boolean(result) && Boolean(average) && (
           <h1 className={styles.avg}>Average: {averageMessage}</h1>
         )}
       </motion.div>

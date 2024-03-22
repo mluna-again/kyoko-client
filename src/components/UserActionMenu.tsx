@@ -37,7 +37,7 @@ const UserActionMenu = ({ user }: Props) => {
       return toast.error("You can't choose the same name again.");
     }
 
-    updateName({ roomId: roomId!, newName, user })
+    updateName({ roomId: roomId!, newName, username: user.name })
       .then(() => toast(`You are now ${value}!`, { type: "success" }))
       .catch(() => toast("Could not update your name...", { type: "error" }));
   };
