@@ -30,7 +30,7 @@ const useRoomChannel = (
   socket: Socket,
   room: RoomType | undefined,
   player: Player,
-  config: Config
+  config: Config,
 ) => {
   const [alerted, setAlerted] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -98,11 +98,15 @@ const useRoomChannel = (
     if (!channel) return;
     if (!player.username) return;
 
+    channel.on("users:update_selections", ({ users }: { users: any }) => {
+      setUsers(users as UserType[]);
+    });
+
     channel.on("user:update", (user: any) => {
       setUsers((users) =>
         users.map((u) =>
-          u.name === user.old_name ? { ...u, name: user.name } : u
-        )
+          u.name === user.old_name ? { ...u, name: user.name } : u,
+        ),
       );
 
       if (player.username === user.old_name) {

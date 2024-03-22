@@ -17,9 +17,11 @@ const Cards = ({
   playerName,
   ratingType,
 }: Options) => {
+  const orderedUsers = users.sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <AnimatePresence>
-      {users.map((user) => (
+      {orderedUsers.map((user) => (
         <motion.div
           key={user.name}
           initial={{ scale: 0.8, opacity: 0 }}
