@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Option from "./Option";
 import ShirtRating from "./ShirtRating";
 
@@ -18,18 +18,26 @@ type Props = {
   selectionHandler: any;
   gameOver: boolean;
   ratingType?: string;
+  userSelection: boolean | number | undefined;
 };
 const Rating = ({
   optionsType,
   selectionHandler,
   gameOver,
   ratingType,
+  userSelection,
 }: Props) => {
   const [selected, setSelected] = useState<number | null>();
   const changeHandler = async (emoji: string, value: number | undefined) => {
-      selectionHandler(emoji, value);
-      setSelected(value);
+    selectionHandler(emoji, value);
+    setSelected(value);
   };
+
+  useEffect(() => {
+    if (!userSelection) {
+      setSelected(null);
+    }
+  }, [userSelection]);
 
   if (ratingType === "shirts") {
     return (

@@ -56,7 +56,6 @@ const Board = ({
   const [showCards, setShowCards] = useState(gameOver);
   useEffect(() => {
     channel.on("reveal_cards", ({ users }: { users: any }) => {
-
       const selectionSum = users
         .map((user: any) => user.selection)
         .filter((sel: number) => !Number.isNaN(sel))
@@ -155,7 +154,7 @@ const Board = ({
 
   const atLeastOneUserSelected = users.some((user: UserType) => user.selection);
 
-  const usersWithSelection = users.filter((user) => Boolean(user.selection));
+  const usersWithSelection = users.filter((user) => Number.isInteger(user.selection));
   const allUsersSameAnswer =
     new Set(usersWithSelection.map((user) => user.selection)).size === 1 &&
     usersWithSelection.length > 1;
@@ -288,6 +287,7 @@ const Board = ({
       <div className={styles.optionsContainer}>
         {optionsType !== "custom" ? (
           <Rating
+            userSelection={users.find((u) => u.name === playerName)?.selection}
             ratingType={initialState?.ratingType}
             optionsType={optionsType}
             selectionHandler={selectionHandler}
