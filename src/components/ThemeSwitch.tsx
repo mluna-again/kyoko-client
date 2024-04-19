@@ -6,6 +6,7 @@ const VALID_THEMES = [
   "light",
   "dark",
   "kanagawa",
+  "kanagawa-dragon",
   "gruvbox-dark",
   "gruvbox-light",
 ];
@@ -41,6 +42,7 @@ const ThemeSwitch = () => {
         <option value="light">Light</option>
         <option value="dark">Dark</option>
         <option value="kanagawa">Kanagawa</option>
+        <option value="kanagawa-dragon">Kanagawa Dragon</option>
         <option value="gruvbox-dark">Gruvbox Dark</option>
         <option value="gruvbox-light">Gruvbox Light</option>
       </select>

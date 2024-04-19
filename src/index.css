@@ -65,6 +65,20 @@ body.kanagawa {
   --toastify-color-success: var(--primary) !important;
 }
 
+body.kanagawa-dragon {
+  --background: #1D1C19;
+  --primary: #c4b28a;
+  --primary-light: #e3ce9f;
+  --primary-dark: #948565;
+  --secondary: #c4746e;
+  --secondary-light: #e88780;
+  --secondary-dark: #965651;
+  --white: #ffffff;
+  --text-light: #1D1C19;
+  --text-dark: #c5c9c5;
+  --toastify-color-success: var(--primary) !important;
+}
+
 body.gruvbox-dark {
   --background: #282828;
   --primary: #d79921;
@@ -241,4 +255,8 @@ code {
   100% {
     transform: rotate(360deg);
   }
+}
+
+input, select, textarea {
+  color: var(--background) !important;
 }
