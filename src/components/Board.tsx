@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import swal from "sweetalert2";
 import { SERVER_URL } from "../constants/values";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
@@ -134,7 +135,45 @@ const Board = ({
     }
   };
 
-  const revealHandler = () => {
+  const revealHandler = async () => {
+    const data = await axios.get(`${SERVER_URL}/api/rooms/everyone/${room}`);
+    if (data.status !== 200) {
+      toast.error("Something went wrong...", {
+        autoClose: 2000,
+        closeButton: true,
+      });
+      return;
+    }
+
+    const notAllUsersSelected = !data.data.ok;
+
+    if (notAllUsersSelected) {
+      swal
+        .fire({
+          title: "Are you sure?",
+          text: "There are some users without selection",
+          icon: "warning",
+          cancelButtonText: "Cancel",
+          confirmButtonColor: "var(--secondary-dark)",
+          cancelButtonColor: "var(--primary)",
+          showCancelButton: true,
+          showClass: {
+            popup: "slideIn",
+          },
+          hideClass: {
+            popup: "slideOut",
+          },
+        })
+        .then(({ isConfirmed }) => {
+          if (!isConfirmed) {
+            return;
+          }
+          channel.push("reveal_cards", {});
+        });
+
+      return;
+    }
+
     channel.push("reveal_cards", {});
   };
 
@@ -154,7 +193,9 @@ const Board = ({
 
   const atLeastOneUserSelected = users.some((user: UserType) => user.selection);
 
-  const usersWithSelection = users.filter((user) => Number.isInteger(user.selection));
+  const usersWithSelection = users.filter((user) =>
+    Number.isInteger(user.selection),
+  );
   const allUsersSameAnswer =
     new Set(usersWithSelection.map((user) => user.selection)).size === 1 &&
     usersWithSelection.length > 1;
