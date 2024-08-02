@@ -49,5 +49,11 @@ This will make a container with a webserver serving the web app. You can (and ho
 ```sh
 $ podman image build --build-arg SERVER="<server http url>" --build-arg WEBSOCKET="<server ws url>" -t kyoko-client .
 
+# option 1: podman run
 $ podman run --name kyoko-client -d -p 127.0.0.1:8881:80 --restart unless-stopped kyoko-client
+
+# option 2: systemd service
+$ cp kyoko.container ~/.config/containers/systemd/
+$ systemctl --user daemon-reload
+$ systemctl --user start kyoko
 ```

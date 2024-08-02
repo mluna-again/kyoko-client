@@ -1,0 +1,10 @@
+[Container]
+ContainerName=kyoko
+Image=kyoko-client
+PublishPort=8881:80
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
